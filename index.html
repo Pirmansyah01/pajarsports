@@ -147,15 +147,9 @@ footer {
 <body>
   <div id="splash">
     <h1>PS</h1>
-    <audio autoplay>
-      <source src="https://cdn.pixabay.com/audio/2023/03/13/audio_0dbe2f7a36.mp3" type="audio/mp3">
-    </audio>
   </div>  <header>
     <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola">
     <h1 class="judul">Pajar Sports</h1>
-    <audio autoplay>
-      <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4017cd16df.mp3" type="audio/mp3">
-    </audio>
   </header>  <nav id="main-nav">
     <a onclick="showSection('beranda', this)">Beranda</a>
     <a onclick="showSection('berita', this)">Berita</a>
@@ -182,16 +176,28 @@ footer {
       <a href="https://wa.me/?text=Lihat%20Pajar%20Sports%20di%20https://pajarsports.github.io/pajarsports/">Bagikan ke WhatsApp</a>
       <a href="https://www.instagram.com/pajarpirmansyah_?igsh=eGx6a3NjcWs0Y2kx" class="instagram">Follow Instagram</a>
     </div>
-  </div>  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer>  <script>
+  </div>  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer><audio id="sound" src="https://cdn.pixabay.com/audio/2023/03/13/audio_0dbe2f7a36.mp3"></audio>
+
+  <script>
     function showSection(id, el = null) {
       document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
       document.getElementById(id).classList.add("active");
       document.querySelectorAll("#main-nav a").forEach(link => link.classList.remove("active-link"));
       if (el) el.classList.add("active-link");
     }
-    window.onload = () => {
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const splash = document.getElementById("splash");
+      const sound = document.getElementById("sound");
+      setTimeout(() => {
+        splash.style.display = "none";
+        sound.play().catch(() => {
+          console.log("Autoplay diblokir, tunggu interaksi user.");
+        });
+      }, 3000);
+
       const defaultNav = document.querySelector("#main-nav a");
       showSection("beranda", defaultNav);
-    }
+    });
   </script></body>
 </html>
