@@ -99,6 +99,7 @@ nav a {
   border: 2px solid transparent;
   transition: 0.3s;
   font-size: 1rem;
+  cursor: pointer;
 }
 nav a.active-link {
   background-color: orange;
@@ -176,7 +177,7 @@ footer {
       <a href="https://wa.me/?text=Lihat%20Pajar%20Sports%20di%20https://pajarsports.github.io/pajarsports/">Bagikan ke WhatsApp</a>
       <a href="https://www.instagram.com/pajarpirmansyah_?igsh=eGx6a3NjcWs0Y2kx" class="instagram">Follow Instagram</a>
     </div>
-  </div>  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer><audio id="sound" src="https://cdn.pixabay.com/audio/2023/03/13/audio_0dbe2f7a36.mp3"></audio>
+  </div>  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer><audio id="nav-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_4017cd16df.mp3"></audio>
 
   <script>
     function showSection(id, el = null) {
@@ -184,20 +185,19 @@ footer {
       document.getElementById(id).classList.add("active");
       document.querySelectorAll("#main-nav a").forEach(link => link.classList.remove("active-link"));
       if (el) el.classList.add("active-link");
+
+      // Mainkan efek suara saat klik navigasi
+      const navSound = document.getElementById("nav-sound");
+      if (navSound) navSound.play().catch(() => {});
     }
 
     window.addEventListener("DOMContentLoaded", () => {
       const splash = document.getElementById("splash");
-      const sound = document.getElementById("sound");
       setTimeout(() => {
         splash.style.display = "none";
-        sound.play().catch(() => {
-          console.log("Autoplay diblokir, tunggu interaksi user.");
-        });
+        const defaultNav = document.querySelector("#main-nav a");
+        showSection("beranda", defaultNav);
       }, 3000);
-
-      const defaultNav = document.querySelector("#main-nav a");
-      showSection("beranda", defaultNav);
     });
   </script></body>
 </html>
