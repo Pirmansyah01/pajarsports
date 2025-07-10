@@ -2,196 +2,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pajar Sports</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <title>Pajar Sports - Semua Fitur Lengkap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
-      font-family: 'Montserrat', sans-serif;
-      background: #fff;
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0d1117;
+      color: white;
       overflow-x: hidden;
-    }/* Splash Screen */
-#splash {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #FFD700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation: fadeOut 2s ease-out 2s forwards;
-}
-#splash h1 {
-  font-size: 5rem;
-  color: white;
-  animation: scaleIn 2s ease;
-}
-@keyframes scaleIn {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-@keyframes fadeOut {
-  to { opacity: 0; visibility: hidden; }
-}
-
-/* Header */
-header {
-  height: 188px;
-  width: 100%;
-  background: linear-gradient(to bottom, #FFA500, #ffffff);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  position: relative;
-}
-.bola {
-  width: 60px;
-  position: absolute;
-  top: 40%;
-  left: -80px;
-  animation: bolaMasuk 2s ease forwards;
-}
-@keyframes bolaMasuk {
-  0% { left: -80px; transform: rotate(0); opacity: 1; }
-  100% { left: 50%; transform: translateX(-50%) rotate(720deg); opacity: 0; }
-}
-.judul {
-  font-size: 2.5rem;
-  font-weight: 700;
-  opacity: 0;
-  animation: fadeIn 2s ease 2s forwards;
-  color: #fff;
-}
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-/* Navigasi */
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  background-color: white;
-  padding: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  gap: 0.5rem;
-  max-width: 100%;
-}
-nav a {
-  color: black;
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  border: 2px solid transparent;
-  transition: 0.3s;
-  font-size: 1rem;
-}
-nav a.active-link {
-  background-color: orange;
-  color: white;
-  border-color: orange;
-}
-
-/* Konten */
-.section {
-  display: none;
-  padding: 2rem 5%;
-  max-width: 1200px;
-  margin: auto;
-}
-.active { display: block; }
-iframe {
-  width: 100%;
-  height: 80vh;
-  border: none;
-  border-radius: 10px;
-}
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: #FFA500;
-  color: white;
-}
-.share-buttons {
-  margin-top: 20px;
-}
-.share-buttons a {
-  background: #25D366;
-  color: #fff;
-  padding: 10px 20px;
-  margin: 0 10px;
-  border-radius: 30px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: bold;
-}
-.share-buttons a.instagram { background: #E1306C; }
-
+    }
+    .splash {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #0d1117;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem; color: #facc15;
+      z-index: 9999;
+      animation: fadeOut 3s forwards 2s;
+    }
+    .ball {
+      position: absolute; top: 50%; left: -100px;
+      width: 50px; height: 50px;
+      background: url('https://i.imgur.com/dVqFh2H.png') no-repeat center/contain;
+      animation: rollIn 2s ease-out forwards;
+    }
+    @keyframes rollIn {
+      0% {left: -100px; transform: rotate(0deg);}
+      100% {left: 50%; transform: translateX(-50%) rotate(720deg);}
+    }
+    @keyframes fadeOut {
+      to {opacity: 0; visibility: hidden;}
+    }
+    header {
+      background: url('https://i.imgur.com/6uH8aYl.jpg') center/cover no-repeat;
+      padding: 100px 20px 60px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-family: 'Orbitron', sans-serif;
+      color: #facc15;
+      animation: fadeIn 1.5s ease-out 2s forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {to {opacity: 1;}}
+    nav {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 16px; padding: 12px; background: #fff;
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav a {
+      color: #111; text-decoration: none; font-weight: 600;
+      padding: 6px 10px; border-radius: 6px;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      background: #facc15; color: #000;
+    }
+    section {
+      padding: 40px 20px; max-width: 1000px; margin: auto;
+    }
+    .card {
+      background: #1a1a1a; padding: 20px;
+      border-radius: 12px; margin-bottom: 30px;
+    }
+    input[type="search"] {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: none; width: 100%; max-width: 400px;
+      margin-bottom: 20px;
+    }
+    .timeline {height: 6px; background: #444; position: relative; border-radius: 3px; margin-top: 20px;}
+    .dot {position: absolute; width: 16px; height: 16px; background: yellow; border-radius: 50%; top: -5px; cursor: pointer;}
+    .dot:hover {background: orange;}
+    table {width: 100%; border-collapse: collapse; margin-top: 10px;}
+    th, td {border: 1px solid #555; padding: 8px; text-align: center;}
+    th {background: #222;}
+    footer {text-align: center; font-size: 0.9rem; color: #aaa; padding: 20px;}
+    a {color: #facc15;}
+    @media (max-width: 600px) {header h1 {font-size: 2rem;} nav {gap: 10px;}}
   </style>
 </head>
 <body>
-  <div id="splash">
-    <h1>PS</h1>
-    <audio autoplay>
-      <source src="https://cdn.pixabay.com/audio/2023/03/13/audio_0dbe2f7a36.mp3" type="audio/mp3">
-    </audio>
-  </div>  <header>
-    <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola">
-    <h1 class="judul">Pajar Sports</h1>
-    <audio autoplay>
-      <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4017cd16df.mp3" type="audio/mp3">
-    </audio>
-  </header>  <nav id="main-nav">
-    <a onclick="showSection('beranda', this)">Beranda</a>
-    <a onclick="showSection('berita', this)">Berita</a>
-    <a onclick="showSection('jadwal', this)">Jadwal</a>
-    <a onclick="showSection('tentang', this)">Tentang Kami</a>
-  </nav>  <div class="section" id="beranda">
-    <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
+  <div class="splash">
+    <div class="ball"></div>
+    <div style="z-index: 1;">PS</div>
   </div>
-  <div class="section" id="berita">
-    <iframe src="https://www.bola.net/bola/"></iframe>
-  </div>
-  <div class="section" id="jadwal">
-    <iframe src="https://www.scorebat.com/embed/livescore/"></iframe>
-  </div>
-  <div class="section" id="tentang">
-    <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Tentang Pajar Sports</h2>
-    <p style="line-height: 1.6; font-size: 1rem;">
-      Pajar Sports adalah platform olahraga digital buatan Pajar Pirmansyah yang menyajikan berita terkini, jadwal live, dan tayangan streaming dari dunia sepak bola global. Kami menyatukan penggemar bola Indonesia dalam satu tempat yang modern, cepat, dan bebas iklan.
-    </p>
-    <p style="line-height: 1.6; font-size: 1rem;">
-      Dengan desain responsif dan informasi yang diperbarui real-time, Pajar Sports akan terus berkembang bersama komunitas pecinta sepak bola. Yuk gabung dan dukung tim favoritmu sekarang!
-    </p>
-    <div class="share-buttons">
-      <a href="https://wa.me/?text=Lihat%20Pajar%20Sports%20di%20https://pajarsports.github.io/pajarsports/">Bagikan ke WhatsApp</a>
-      <a href="https://www.instagram.com/pajarpirmansyah_?igsh=eGx6a3NjcWs0Y2kx" class="instagram">Follow Instagram</a>
+  <header><h1>Pajar Sports</h1></header>
+  <nav>
+    <a href="#berita">Berita</a><a href="#skor">Skor</a><a href="#jadwal">Jadwal</a><a href="#klasemen">Klasemen</a><a href="#timeline">Timeline</a><a href="#fiturlain">Fitur Lain</a>
+  </nav>
+  <section id="berita" class="card">
+    <h2>🔍 Cari Berita</h2>
+    <input type="search" placeholder="Cari berita bola..." oninput="filterBerita(this.value)">
+    <div id="beritaList">
+      <p>Messi ke Inter Miami</p>
+      <p>Ronaldo cetak 900 gol</p>
+      <p>Persib kalahkan Persija</p>
     </div>
-  </div>  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer>  <script>
-    function showSection(id, el = null) {
-      document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      document.querySelectorAll("#main-nav a").forEach(link => link.classList.remove("active-link"));
-      if (el) el.classList.add("active-link");
+  </section>
+  <section id="skor" class="card">
+    <h2>🎯 Skor Langsung</h2>
+    <p>Real Madrid 2 - 1 Barcelona</p>
+    <p>Persib 3 - 2 Persija</p>
+  </section>
+  <section id="jadwal" class="card">
+    <h2>📆 Kalender Jadwal</h2>
+    <p>10 Juli: Man City vs Arsenal</p>
+    <p>11 Juli: Persita vs Persebaya</p>
+  </section>
+  <section id="klasemen" class="card">
+    <h2>📊 Klasemen</h2>
+    <table><tr><th>#</th><th>Tim</th><th>P</th><th>W</th><th>D</th><th>L</th><th>Pts</th></tr><tr><td>1</td><td>Man City</td><td>38</td><td>29</td><td>5</td><td>4</td><td>92</td></tr><tr><td>2</td><td>Arsenal</td><td>38</td><td>27</td><td>6</td><td>5</td><td>87</td></tr></table>
+  </section>
+  <section id="timeline" class="card">
+    <h2>⏱️ Timeline Pertandingan</h2>
+    <div class="timeline" id="timelineBar"></div>
+    <div id="eventInfo" style="margin-top:10px;">Klik titik di garis waktu</div>
+  </section>
+  <section id="fiturlain" class="card">
+    <h2>🎮 Fitur Tambahan</h2>
+    <p><strong>Prediksi AI:</strong> Real Madrid 2 - 1 Barca (Prediksi)</p>
+    <p><strong>Polling:</strong> Siapa menang malam ini? <button>Real</button> <button>Barca</button></p>
+    <p><strong>Quiz Bola:</strong> Siapa top skor Liga Inggris 2020? <button>Kane</button></p>
+    <p><strong>Mini Game:</strong> Tebak Skor <input type="text" placeholder="Contoh: 3-1"></p>
+    <p><strong>Cerita Bola:</strong> Ronaldo rekor dunia ⚽</p>
+    <p><strong>Peta Stadion:</strong> Coming Soon</p>
+    <p><strong>Komentar:</strong> <input type="text" placeholder="Tulis komentar kamu..."></p>
+  </section>
+  <footer>
+    &copy; 2025 Pajar Sports | IG: <a href="https://www.instagram.com/pajarpirmansyah_" target="_blank">@pajarpirmansyah_</a>
+  </footer>
+  <script>
+    const beritaList = document.getElementById("beritaList");
+    function filterBerita(value) {
+      const children = beritaList.querySelectorAll("p");
+      children.forEach(p => {
+        p.style.display = p.textContent.toLowerCase().includes(value.toLowerCase()) ? "block" : "none";
+      });
     }
-    window.onload = () => {
-      const defaultNav = document.querySelector("#main-nav a");
-      showSection("beranda", defaultNav);
-    }
-  </script></body>
+    const events = [
+      { minute: 12, text: "⚽ Gol Vinicius Jr" },
+      { minute: 33, text: "🟨 Kartu kuning Gavi" },
+      { minute: 47, text: "⚽ Gol Lewandowski" },
+      { minute: 66, text: "🔁 Modric masuk" },
+      { minute: 89, text: "🟥 Kartu merah Araujo" }
+    ];
+    const timelineBar = document.getElementById("timelineBar");
+    const eventInfo = document.getElementById("eventInfo");
+    events.forEach(e => {
+      const dot = document.createElement("div");
+      dot.className = "dot";
+      dot.style.left = `${e.minute / 90 * 100}%`;
+      dot.title = `${e.minute}'`;
+      dot.onclick = () => {
+        eventInfo.innerHTML = `<strong>${e.minute}'</strong> - ${e.text}`;
+      };
+      timelineBar.appendChild(dot);
+    });
+  </script>
+</body>
 </html>
