@@ -1,31 +1,20 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pajar Sports</title>
-  <link rel="icon" href="https://raw.githubusercontent.com/openaidemos/logo-host/main/ps-logo.png" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0d1117;
-      color: #ffffff;
+      background: #ffffff;
+      color: #000000;
       padding: 20px;
     }
-    .logo {
-      width: 80px;
-      border-radius: 50%;
-      border: 2px solid #00ffcc;
-      display: block;
-      margin: 0 auto 10px;
-      background: white;
-    }
     h1 {
-      color: #00ffcc;
+      color: #007a4d;
       font-size: 28px;
       text-align: center;
     }
@@ -37,8 +26,8 @@
     }
     nav button {
       background: none;
-      border: none;
-      color: #00ffcc;
+      border: 2px solid #007a4d;
+      color: #007a4d;
       font-weight: bold;
       font-size: 14px;
       margin: 6px;
@@ -47,8 +36,8 @@
       border-radius: 6px;
     }
     nav button.active {
-      background: #00ffcc;
-      color: #000;
+      background: #007a4d;
+      color: #fff;
     }
     section {
       display: none;
@@ -58,12 +47,6 @@
     section.active {
       display: block;
     }
-    .berita-item, li {
-      background: #1f2937;
-      padding: 12px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-    }
     iframe {
       width: 100%;
       height: 320px;
@@ -71,8 +54,8 @@
       border-radius: 10px;
     }
     .btn {
-      background: #00ffcc;
-      color: #000;
+      background: #007a4d;
+      color: #fff;
       padding: 10px 18px;
       border-radius: 8px;
       text-decoration: none;
@@ -94,50 +77,27 @@
   </style>
 </head>
 <body>
-  <img src="https://raw.githubusercontent.com/openaidemos/logo-host/main/ps-logo.png" class="logo" alt="Logo Pajar Sports" />
   <h1>Pajar Sports</h1>
-  <p style="text-align:center;">Website olahraga tanpa iklan dan cepat diakses 💪⚽🏀🏐</p>
+  <p style="text-align:center;">Streaming bola cepat tanpa iklan. Nonton langsung sekarang! ⚽</p>
 
   <nav>
     <button class="tab active" onclick="showTab('beranda')">Beranda</button>
-    <button class="tab" onclick="showTab('jadwal')">Jadwal</button>
-    <button class="tab" onclick="showTab('berita')">Berita</button>
-    <button class="tab" onclick="showTab('skor')">Skor</button>
     <button class="tab" onclick="showTab('live')">Live</button>
   </nav>
 
   <section id="beranda" class="active">
-    <p style="text-align:center">Selamat datang di situs resmi Pajar Sports! Semua berita, jadwal, dan skor bola terupdate ada di sini.</p>
+    <p style="text-align:center">Selamat datang di Pajar Sports. Klik tombol di atas untuk nonton bola langsung!</p>
     <div style="text-align:center">
-      <a href="#live" onclick="event.preventDefault(); document.querySelector('[onclick*=live]').click();" class="btn">Nonton Bola Sekarang ⚽</a>
+      <a href="#live" onclick="event.preventDefault(); document.querySelector('[onclick*=live]').click();" class="btn">Tonton Sekarang</a>
     </div>
   </section>
 
-  <section id="jadwal">
-    <h2>Jadwal Pertandingan Hari Ini</h2>
-    <div id="jadwal-container" class="loading">⏳ Memuat jadwal...</div>
-  </section>
-
-  <section id="berita">
-    <h2>Berita Bola Terbaru</h2>
-    <div id="berita-container" class="loading">⏳ Memuat berita...</div>
-  </section>
-
-  <section id="skor">
-    <h2>Live Score ⚽</h2>
-    <ul id="skor-container">
-      <li>🇪🇸 Real Madrid 2 - 1 Barcelona (FT)</li>
-      <li>🇮🇹 Juventus 1 - 1 AC Milan (HT)</li>
-      <li>🇩🇪 Bayern 3 - 0 Dortmund (FT)</li>
-    </ul>
-    <small>*Skor contoh. Versi real-time akan pakai API di bawah 👇</small>
-  </section>
-
   <section id="live">
-    <h2>Nonton Bola Langsung 🎥</h2>
+    <h2 style="text-align:center;">Live Streaming Bola</h2>
     <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
-    <br />
-    <a href="https://www.rbtvplus01.com/id/football.html" target="_blank" class="btn">Tonton Fullscreen</a>
+    <div style="text-align:center;">
+      <a href="https://www.rbtvplus01.com/id/football.html" target="_blank" class="btn">Buka Layar Penuh</a>
+    </div>
   </section>
 
   <footer>
@@ -153,42 +113,6 @@
       document.getElementById(tabId).classList.add("active");
       event.target.classList.add("active");
     }
-
-    async function loadBerita() {
-      const sumber = [
-        "https://rss2json.com/api.json?rss_url=https://www.goal.com/feeds/en/news",
-        "https://rss2json.com/api.json?rss_url=https://www.bola.net/rss/all.xml",
-        "https://rss2json.com/api.json?rss_url=https://news.google.com/rss/search?q=liga+bola&hl=id&gl=ID&ceid=ID:id"
-      ];
-      let hasil = "";
-      for (const url of sumber) {
-        try {
-          const res = await fetch(url);
-          const data = await res.json();
-          if (data.items) {
-            data.items.slice(0, 2).forEach(item => {
-              hasil += `<div class='berita-item'><strong>${item.title}</strong><br/><small>${new Date(item.pubDate).toLocaleDateString('id-ID')} • ${item.link.split('/')[2]}</small><br/><a href='${item.link}' target='_blank' style='color:#00ffcc;'>Baca Selengkapnya</a></div>`;
-            });
-          }
-        } catch (e) {
-          console.error("Gagal ambil berita", e);
-        }
-      }
-      document.getElementById("berita-container").innerHTML = hasil || "Gagal memuat berita.";
-    }
-
-    function loadJadwal() {
-      const contohJadwal = `
-        <ul>
-          <li>🏆 UCL: Man City vs Bayern - 02:00 WIB</li>
-          <li>🇮🇹 Napoli vs Roma - 00:30 WIB</li>
-          <li>🇫🇷 Lyon vs PSG - 01:45 WIB</li>
-        </ul>`;
-      document.getElementById("jadwal-container").innerHTML = contohJadwal;
-    }
-
-    loadBerita();
-    loadJadwal();
   </script>
 </body>
 </html>
