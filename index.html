@@ -13,7 +13,7 @@
       color: #000;
     }
 
-    /* Logo Splash PS */
+    /* Splash PS */
     #splash {
       position: fixed;
       top: 0; left: 0;
@@ -96,6 +96,26 @@
       text-align: center;
       padding: 1rem;
     }
+
+    .share-buttons {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .share-buttons a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #fff;
+      background: #25D366;
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: inline-block;
+    }
+
+    .share-buttons a.instagram {
+      background: #E1306C;
+    }
   </style>
 
   <script>
@@ -107,18 +127,24 @@
     window.onload = () => {
       showSection("beranda");
 
-      // Mainkan sound transisi saat splash keluar
-      const sound = document.getElementById("splash-sound");
-      if (sound) sound.play();
+      setTimeout(() => {
+        const sound = document.getElementById("splash-sound");
+        if (sound) {
+          sound.volume = 1;
+          sound.play().catch(e => console.log("Sound gagal diputar:", e));
+        }
+      }, 1300);
     };
   </script>
 </head>
 <body>
 
-  <!-- Splash Screen dengan Logo PS -->
+  <!-- Splash PS -->
   <div id="splash">
     <h1>PS</h1>
-    <audio id="splash-sound" src="https://cdn.pixabay.com/audio/2022/03/31/audio_bf047cdfa4.mp3" preload="auto"></audio>
+    <audio id="splash-sound" preload="auto">
+      <source src="https://cdn.pixabay.com/audio/2023/03/13/audio_0dbe2f7a36.mp3" type="audio/mp3">
+    </audio>
   </div>
 
   <header>
@@ -128,24 +154,36 @@
   <nav>
     <a onclick="showSection('beranda')">Beranda</a>
     <a onclick="showSection('berita')">Berita</a>
+    <a onclick="showSection('jadwal')">Jadwal</a>
     <a onclick="showSection('tentang')">Tentang Kami</a>
   </nav>
 
-  <!-- Beranda -->
+  <!-- BERANDA -->
   <div class="section" id="beranda">
     <iframe src="https://www.rbtvplus01.com/id/football.html" title="Live Streaming Bola"></iframe>
   </div>
 
-  <!-- Berita -->
+  <!-- BERITA -->
   <div class="section" id="berita">
     <iframe src="https://www.bola.net/bola/" title="Berita Bola Terbaru"></iframe>
   </div>
 
-  <!-- Tentang Kami -->
+  <!-- JADWAL -->
+  <div class="section" id="jadwal">
+    <h2>Jadwal Pertandingan Terbaru</h2>
+    <iframe src="https://www.scorebat.com/embed/livescore/" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- TENTANG -->
   <div class="section" id="tentang">
     <h2>Tentang Pajar Sports</h2>
     <p>Pajar Sports adalah portal olahraga online yang menyajikan live streaming bola, berita terkini, jadwal pertandingan, dan informasi seputar dunia sepak bola.</p>
     <p>Didirikan oleh Pajar Pirmansyah, situs ini hadir untuk penggemar bola yang ingin akses cepat dan bebas iklan berlebihan.</p>
+    
+    <div class="share-buttons">
+      <a href="https://wa.me/?text=Lihat%20Pajar%20Sports%20di%20https://pajarsports.github.io/pajarsports/" target="_blank">Bagikan ke WhatsApp</a>
+      <a href="https://www.instagram.com/" class="instagram" target="_blank">Follow Instagram</a>
+    </div>
   </div>
 
   <footer>&copy; 2025 Pajar Sports</footer>
