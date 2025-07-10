@@ -10,9 +10,9 @@
       padding: 0;
       box-sizing: border-box;
     }
-    body, html {
-      height: 100%;
+    html, body {
       width: 100%;
+      height: 100%;
       font-family: 'Orbitron', sans-serif;
       background-color: #fff;
       overflow-x: hidden;
@@ -20,16 +20,16 @@
     #splash {
       position: fixed;
       top: 0; left: 0;
-      height: 100%; width: 100%;
+      width: 100%; height: 100%;
       background-color: #FFD700;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1000;
-      animation: fadeOut 2.5s ease-out 2s forwards;
+      z-index: 9999;
+      animation: fadeOut 2.5s ease-out 2.5s forwards;
     }
     #splash h1 {
-      font-size: 7rem;
+      font-size: 6rem;
       font-family: 'Russo One', sans-serif;
       color: white;
       animation: scaleIn 2s ease;
@@ -39,23 +39,23 @@
       100% { transform: scale(1); opacity: 1; }
     }
     @keyframes fadeOut {
-      to { opacity: 0; pointer-events: none; }
+      to { opacity: 0; visibility: hidden; }
     }
     header {
       height: 100vh;
-      background: url('https://i.imgur.com/pj8IcFq.jpg') center/cover no-repeat;
+      background: url('https://i.imgur.com/HPrw0Fc.jpg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: white;
       text-align: center;
+      color: white;
       position: relative;
     }
     .bola {
       width: 80px;
       position: absolute;
-      top: 40%;
+      top: 45%;
       left: -100px;
       animation: bolaMasuk 2s ease forwards;
     }
@@ -66,10 +66,9 @@
     .judul {
       font-size: 4rem;
       font-family: 'Russo One', sans-serif;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       opacity: 0;
       animation: fadeIn 2s ease 2s forwards;
-      z-index: 2;
     }
     @keyframes fadeIn {
       to { opacity: 1; }
@@ -77,27 +76,27 @@
     nav {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      background-color: #fff;
-      padding: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
-      z-index: 999;
+      z-index: 1000;
+      gap: 1rem;
     }
     nav a {
+      color: black;
       text-decoration: none;
-      color: #000;
-      font-family: 'Orbitron', sans-serif;
-      padding: 8px 15px;
+      padding: 10px 20px;
       border-radius: 30px;
-      transition: all 0.3s ease;
+      font-weight: bold;
       border: 2px solid transparent;
+      transition: 0.3s;
     }
     nav a.active-link {
-      background: #FF8C00;
-      color: #fff;
-      border-color: #FF8C00;
+      background-color: orange;
+      color: white;
+      border-color: orange;
     }
     .section {
       display: none;
@@ -119,7 +118,6 @@
       padding: 2rem;
       background: #FFA500;
       color: white;
-      font-weight: bold;
     }
     .share-buttons {
       margin-top: 20px;
@@ -145,54 +143,47 @@
     <audio autoplay>
       <source src="https://cdn.pixabay.com/audio/2023/03/13/audio_0dbe2f7a36.mp3" type="audio/mp3">
     </audio>
-  </div>
-  <header>
+  </div>  <header>
     <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola">
     <h1 class="judul">Pajar Sports</h1>
     <audio autoplay>
       <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4017cd16df.mp3" type="audio/mp3">
     </audio>
-  </header>
-  <nav id="main-nav">
+  </header>  <nav id="main-nav">
     <a onclick="showSection('beranda', this)">Beranda</a>
     <a onclick="showSection('berita', this)">Berita</a>
     <a onclick="showSection('jadwal', this)">Jadwal</a>
     <a onclick="showSection('tentang', this)">Tentang Kami</a>
-  </nav>
-  <div class="section" id="beranda">
+  </nav>  <div class="section" id="beranda">
     <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
-  </div>
-  <div class="section" id="berita">
+  </div>  <div class="section" id="berita">
     <iframe src="https://www.bola.net/bola/"></iframe>
-  </div>
-  <div class="section" id="jadwal">
+  </div>  <div class="section" id="jadwal">
     <iframe src="https://www.scorebat.com/embed/livescore/"></iframe>
-  </div>
-  <div class="section" id="tentang">
+  </div>  <div class="section" id="tentang">
     <h2 style="font-size: 2rem; margin-bottom: 1rem;">Tentang Pajar Sports</h2>
     <p style="line-height: 1.6; font-size: 1.1rem;">
-      Pajar Sports adalah platform olahraga digital yang menyajikan konten sepak bola berkualitas tinggi bagi penggemar di seluruh Indonesia. Didirikan oleh Pajar Pirmansyah, situs ini memberikan kemudahan akses ke tayangan langsung, berita terkini, dan jadwal pertandingan terbaru.
+      Pajar Sports adalah platform digital olahraga yang menyajikan streaming langsung, berita terbaru, dan jadwal pertandingan sepak bola dari seluruh dunia. Didirikan oleh Pajar Pirmansyah, situs ini bertujuan memberikan pengalaman terbaik bagi para pecinta sepak bola Indonesia.
     </p>
     <p style="line-height: 1.6; font-size: 1.1rem;">
-      Dengan tampilan profesional, desain modern, dan fitur interaktif, Pajar Sports menjadi tempat berkumpulnya komunitas pecinta bola. Kami juga mendukung kolaborasi dengan komunitas lokal dan menyediakan informasi terpercaya seputar dunia sepak bola global.
+      Dengan desain yang profesional dan update real-time, Pajar Sports hadir tanpa iklan yang mengganggu. Follow juga Instagram kami untuk konten eksklusif dan kabar terbaru!
     </p>
     <div class="share-buttons">
       <a href="https://wa.me/?text=Lihat%20Pajar%20Sports%20di%20https://pajarsports.github.io/pajarsports/">Bagikan ke WhatsApp</a>
       <a href="https://www.instagram.com/pajarpirmansyah_?igsh=eGx6a3NjcWs0Y2kx" class="instagram">Follow Instagram</a>
     </div>
-  </div>
-  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer>
-  <script>
+  </div>  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer>  <script>
     function showSection(id, el = null) {
       document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
       document.getElementById(id).classList.add("active");
+
       document.querySelectorAll("#main-nav a").forEach(link => link.classList.remove("active-link"));
       if (el) el.classList.add("active-link");
     }
+
     window.onload = () => {
       const defaultNav = document.querySelector("#main-nav a");
       showSection("beranda", defaultNav);
     }
-  </script>
-</body>
+  </script></body>
 </html>
