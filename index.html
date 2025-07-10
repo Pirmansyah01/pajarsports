@@ -1,66 +1,56 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pajar Sports</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pajar Sports - Berita olahraga, skor langsung, dan jadwal pertandingan terupdate.">
+  <title>Pajar Sports | Berita & Skor Live</title>
+  <link rel="icon" href="https://pajarsports.github.io/favicon.png" type="image/png" />
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
-      background: #006400;
-      color: #ffffff;
+      background-color: #ffffff;
+      color: #111;
+    }
+    header {
+      background-color: #ff6600;
+      color: #fff;
+      padding: 1rem;
       text-align: center;
-    }
-    h1 {
-      font-size: 36px;
-      margin-top: 40px;
-      color: #00ffcc;
-    }
-    p {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-    .btn {
-      background: #00ffcc;
-      color: #000;
-      padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 8px;
+      font-size: 1.8rem;
       font-weight: bold;
-      display: inline-block;
-      margin-bottom: 30px;
+    }
+    main {
+      padding: 0;
     }
     iframe {
-      width: 95%;
-      height: 400px;
+      width: 100%;
+      height: 100vh;
       border: none;
-      border-radius: 12px;
-      margin-bottom: 30px;
     }
     footer {
-      margin-top: 40px;
-      padding: 20px;
-      font-size: 14px;
-      color: #ccc;
+      background-color: #ff6600;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
     }
     @media (max-width: 600px) {
-      h1 { font-size: 24px; }
-      iframe { height: 250px; }
+      header {
+        font-size: 1.4rem;
+      }
+      footer {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <h1>Pajar Sports</h1>
-  <p>Website olahraga tanpa iklan dan cepat diakses 💪⚽🏀🏐</p>
-
-  <a href="https://www.rbtvplus01.com/id/football.html" class="btn" target="_blank">Nonton Bola Sekarang</a>
-
-  <iframe src="https://www.rbtvplus01.com/id/football.html" allowfullscreen></iframe>
-
-  <footer>© 2025 Pajar Pirmansyah</footer>
-
+  <header>Pajar Sports</header>
+  <main>
+    <iframe src="https://www.rbtvplus01.com/id/football.html" title="Berita Olahraga & Skor Live"></iframe>
+  </main>
+  <footer>&copy; 2025 Pajar Sports. Semua hak dilindungi.</footer>
 </body>
 </html>
