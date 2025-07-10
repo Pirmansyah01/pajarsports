@@ -1,118 +1,34 @@
-      <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pajar Sports</title>
+  <title>Selamat Datang</title>
   <style>
-    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #000000;
-      padding: 20px;
-    }
-    h1 {
-      color: #007a4d;
-      font-size: 28px;
+      background-color: #0d0d0d;
+      color: #ffffff;
+      font-family: sans-serif;
       text-align: center;
+      padding-top: 100px;
     }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 15px 0;
-    }
-    nav button {
-      background: none;
-      border: 2px solid #007a4d;
-      color: #007a4d;
-      font-weight: bold;
-      font-size: 14px;
-      margin: 6px;
-      padding: 8px 14px;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-    nav button.active {
-      background: #007a4d;
-      color: #fff;
-    }
-    section {
-      display: none;
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
-    section.active {
-      display: block;
-    }
-    iframe {
-      width: 100%;
-      height: 320px;
+    .button {
+      background-color: #e60000;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
       border: none;
-      border-radius: 10px;
-    }
-    .btn {
-      background: #007a4d;
-      color: #fff;
-      padding: 10px 18px;
       border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-      margin-top: 15px;
+      cursor: pointer;
     }
-    footer {
-      text-align: center;
-      font-size: 12px;
-      color: #666;
-      padding-top: 20px;
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 22px; }
-      nav button { font-size: 12px; padding: 6px 10px; }
-      iframe { height: 220px; }
+    .button:hover {
+      background-color: #cc0000;
     }
   </style>
 </head>
 <body>
-  <h1>Pajar Sports</h1>
-  <p style="text-align:center;">Streaming bola cepat tanpa iklan. Nonton langsung sekarang! ⚽</p>
-
-  <nav>
-    <button class="tab active" onclick="showTab('beranda')">Beranda</button>
-    <button class="tab" onclick="showTab('live')">Live</button>
-  </nav>
-
-  <section id="beranda" class="active">
-    <p style="text-align:center">Selamat datang di Pajar Sports. Klik tombol di atas untuk nonton bola langsung!</p>
-    <div style="text-align:center">
-      <a href="#live" onclick="event.preventDefault(); document.querySelector('[onclick*=live]').click();" class="btn">Tonton Sekarang</a>
-    </div>
-  </section>
-
-  <section id="live">
-    <h2 style="text-align:center;">Live Streaming Bola</h2>
-    <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
-    <div style="text-align:center;">
-      <a href="https://www.rbtvplus01.com/id/football.html" target="_blank" class="btn">Buka Layar Penuh</a>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Pajar Pirmansyah
-  </footer>
-
-  <script>
-    function showTab(tabId) {
-      const sections = document.querySelectorAll("section");
-      const buttons = document.querySelectorAll(".tab");
-      sections.forEach(s => s.classList.remove("active"));
-      buttons.forEach(b => b.classList.remove("active"));
-      document.getElementById(tabId).classList.add("active");
-      event.target.classList.add("active");
-    }
-  </script>
+  <h1>Selamat Datang di PajarSports</h1>
+  <p>Silakan klik tombol di bawah untuk melanjutkan.</p>
+  <button class="button" onclick="window.location.href='https://36ciltroops.shop';">MASUK</button>
 </body>
 </html>
