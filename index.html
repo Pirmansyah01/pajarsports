@@ -55,16 +55,10 @@
       list-style: none;
       padding: 0;
     }
-    li {
+    li, .berita-item {
       background: #1f2937;
       padding: 12px;
       margin-bottom: 10px;
-      border-radius: 6px;
-    }
-    .berita-item {
-      background: #1f2937;
-      padding: 15px;
-      margin-bottom: 15px;
       border-radius: 6px;
     }
     iframe {
@@ -100,39 +94,35 @@
     <button class="tab active" onclick="showTab('beranda')">Beranda</button>
     <button class="tab" onclick="showTab('jadwal')">Jadwal</button>
     <button class="tab" onclick="showTab('berita')">Berita</button>
+    <button class="tab" onclick="showTab('skor')">Skor</button>
     <button class="tab" onclick="showTab('live')">Live</button>
   </nav>
 
-  <!-- Beranda -->
   <section id="beranda" class="active">
-    <p>Selamat datang di situs resmi Pajar Sports! Semua berita dan jadwal olahraga terupdate ada di sini.</p>
+    <p>Selamat datang di situs resmi Pajar Sports! Semua berita, jadwal, dan skor bola terupdate ada di sini.</p>
     <a href="#live" onclick="showTab('live')" class="btn">Nonton Bola Sekarang ⚽</a>
   </section>
 
-  <!-- Jadwal -->
   <section id="jadwal">
     <h2>Jadwal Pertandingan Hari Ini</h2>
-    <ul>
-      <li>🏆 Liga Champions: Real Madrid vs Man City — 02:00 WIB</li>
-      <li>🇫🇷 PSG vs Marseille — 23:30 WIB</li>
-      <li>🇮🇹 AC Milan vs Inter — 01:45 WIB</li>
-    </ul>
+    <div id="jadwal-container">Memuat jadwal...</div>
   </section>
 
-  <!-- Berita -->
   <section id="berita">
     <h2>Berita Bola Terbaru</h2>
-    <div class="berita-item">
-      <strong>Messi Hat-trick!</strong><br/>
-      Lionel Messi cetak 3 gol saat Argentina kalahkan Brasil 4-1 di Copa America.
-    </div>
-    <div class="berita-item">
-      <strong>Bellingham ke Madrid!</strong><br/>
-      Jude Bellingham resmi gabung Real Madrid musim ini.
-    </div>
+    <div id="berita-container">Memuat berita...</div>
   </section>
 
-  <!-- Live -->
+  <section id="skor">
+    <h2>Live Score ⚽</h2>
+    <ul id="skor-container">
+      <li>🇪🇸 Real Madrid 2 - 1 Barcelona (FT)</li>
+      <li>🇮🇹 Juventus 1 - 1 AC Milan (HT)</li>
+      <li>🇩🇪 Bayern 3 - 0 Dortmund (FT)</li>
+    </ul>
+    <small>*Skor ini contoh. Untuk versi real-time bisa pakai API bola live.</small>
+  </section>
+
   <section id="live">
     <h2>Nonton Bola Langsung 🎥</h2>
     <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
@@ -151,6 +141,51 @@
       document.getElementById(tabId).classList.add("active");
       event.target.classList.add("active");
     }
+
+    // Load BERITA OTOMATIS
+    async function loadBerita() {
+      const sumber = [
+        "https://rss2json.com/api.json?rss_url=https://www.goal.com/feeds/en/news",
+        "https://rss2json.com/api.json?rss_url=https://www.bola.net/rss/all.xml",
+        "https://rss2json.com/api.json?rss_url=https://news.google.com/rss/search?q=liga+bola&hl=id&gl=ID&ceid=ID:id"
+      ];
+
+      let hasil = "";
+      for (const url of sumber) {
+        try {
+          const res = await fetch(url);
+          const data = await res.json();
+          if (data.items) {
+            data.items.slice(0, 3).forEach(item => {
+              hasil += `
+                <div class="berita-item">
+                  <strong>${item.title}</strong><br/>
+                  <small>${new Date(item.pubDate).toLocaleDateString('id-ID')} • Sumber: ${item.link.split('/')[2]}</small><br/>
+                  <a href="${item.link}" target="_blank" style="color:#00ffcc;">Baca Selengkapnya</a>
+                </div>`;
+            });
+          }
+        } catch (err) {
+          console.error("Gagal ambil berita dari:", url);
+        }
+      }
+
+      document.getElementById("berita-container").innerHTML = hasil || "Gagal memuat berita.";
+    }
+
+    // Load JADWAL OTOMATIS (sementara dummy)
+    function loadJadwal() {
+      const contohJadwal = `
+        <ul>
+          <li>🏆 UCL: Man City vs Bayern - 02:00 WIB</li>
+          <li>🇮🇹 Napoli vs Roma - 00:30 WIB</li>
+          <li>🇫🇷 Lyon vs PSG - 01:45 WIB</li>
+        </ul>`;
+      document.getElementById("jadwal-container").innerHTML = contohJadwal;
+    }
+
+    loadBerita();
+    loadJadwal();
   </script>
 
 </body>
