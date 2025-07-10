@@ -2,65 +2,57 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pajar Sports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Berita Otomatis - Pajar Sports</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #fff; color: #111; }
-    header, footer { background-color: #FFA500; color: #fff; text-align: center; padding: 1rem; }
+    body { font-family: Arial, sans-serif; background: #fff; margin: 0; color: #111; }
+    header, footer { background-color: #FFA500; color: white; text-align: center; padding: 1rem; }
     nav { background: #FFD580; padding: 1rem; text-align: center; }
-    nav a { margin: 0 15px; color: #000; text-decoration: none; font-weight: bold; cursor: pointer; }
-    .section { display: none; padding: 2rem; max-width: 900px; margin: auto; }
-    .active { display: block; }
-    iframe { width: 100%; height: 80vh; border: none; }
-    .ad { margin: 1rem 0; padding: 1rem; background: #eee; text-align: center; border: dashed 1px #ccc; }
+    nav a { margin: 0 10px; color: #000; text-decoration: none; font-weight: bold; }
+    .news-container { max-width: 800px; margin: auto; padding: 2rem; }
+    .news-item { margin-bottom: 1.5rem; padding: 1rem; border-bottom: 1px solid #ddd; }
+    .news-item h3 { margin: 0 0 0.5rem; }
+    .news-item a { color: #FFA500; text-decoration: none; }
   </style>
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-
-    window.onload = () => {
-      showSection('beranda');
-    };
-  </script>
 </head>
 <body>
   <header><h1>Pajar Sports</h1></header>
-
   <nav>
-    <a onclick="showSection('beranda')">Beranda</a>
-    <a onclick="showSection('berita')">Berita</a>
-    <a onclick="showSection('tentang')">Tentang Kami</a>
+    <a href="index.html">Beranda</a>
+    <a href="#">Berita Otomatis</a>
+    <a href="tentang.html">Tentang Kami</a>
   </nav>
 
-  <!-- Beranda -->
-  <div class="section" id="beranda">
-    <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
-  </div>
-
-  <!-- Berita -->
-  <div class="section" id="berita">
-    <h2>Hasil Liga Champions: Real Madrid Lolos Dramatis</h2>
-    <p><strong>Madrid</strong> - Real Madrid kembali menunjukkan mental juaranya. Mereka berhasil lolos ke final Liga Champions setelah mengalahkan Manchester City dengan skor 2-1 dalam pertandingan yang dramatis.</p>
-    
-    <div class="ad">[Slot Iklan Google AdSense / Banner]</div>
-
-    <p>Gol penentu datang dari Jude Bellingham di menit ke-89 setelah permainan cepat dari lini tengah. Dengan hasil ini, Madrid akan menghadapi Bayern di final.</p>
-
-    <div class="ad">[Iklan sidebar / native ad]</div>
-
-    <p>Laga final akan digelar di Wembley, dan antusiasme fans di seluruh dunia sangat tinggi menyambut duel klasik ini.</p>
-  </div>
-
-  <!-- Tentang -->
-  <div class="section" id="tentang">
-    <h2>Tentang Pajar Sports</h2>
-    <p>Pajar Sports adalah portal berita olahraga yang menyajikan informasi terupdate seputar sepak bola, skor langsung, jadwal pertandingan, dan highlight menarik lainnya.</p>
-    <p>Didirikan oleh Pajar Pirmansyah, situs ini bertujuan untuk memberikan pengalaman baca yang cepat, ringan, dan bebas gangguan.</p>
+  <div class="news-container" id="news">
+    <p>Memuat berita terbaru...</p>
   </div>
 
   <footer>&copy; 2025 Pajar Sports</footer>
+
+  <script>
+    async function fetchRSS() {
+      const rss_url = encodeURIComponent('https://www.bola.net/rss/index.xml');
+      const api_url = `https://api.rss2json.com/v1/api.json?rss_url=${rss_url}`;
+      const container = document.getElementById("news");
+
+      try {
+        const res = await fetch(api_url);
+        const data = await res.json();
+
+        container.innerHTML = '';
+        data.items.slice(0, 5).forEach(item => {
+          const div = document.createElement("div");
+          div.className = "news-item";
+          div.innerHTML = `<h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                           <p>${item.pubDate.split(" ")[0]}</p>`;
+          container.appendChild(div);
+        });
+      } catch (err) {
+        container.innerHTML = '<p>Gagal memuat berita.</p>';
+      }
+    }
+
+    fetchRSS();
+  </script>
 </body>
 </html>
