@@ -3,54 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Pajar Sports - Berita olahraga, skor langsung, dan jadwal pertandingan terupdate.">
-  <title>Pajar Sports | Berita & Skor Live</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
+  <title>Pajar Sports</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #111;
-    }
-    header {
-      background-color: #FFA500; /* kuning ke orenan */
-      color: #ffffff; /* tulisan putih */
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-    main {
-      padding: 0;
-    }
-    iframe {
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
-    footer {
-      background-color: #FFA500; /* kuning ke orenan */
-      color: #ffffff; /* tulisan putih */
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
-    @media (max-width: 600px) {
-      header {
-        font-size: 1.4rem;
-      }
-      footer {
-        font-size: 0.8rem;
-      }
-    }
+    body { font-family: Arial, sans-serif; margin: 0; background: #fff; color: #111; }
+    header, footer { background-color: #FFA500; color: #fff; text-align: center; padding: 1rem; }
+    nav { background: #FFD580; padding: 1rem; text-align: center; }
+    nav a { margin: 0 15px; color: #000; text-decoration: none; font-weight: bold; cursor: pointer; }
+    .section { display: none; padding: 2rem; max-width: 900px; margin: auto; }
+    .active { display: block; }
+    iframe { width: 100%; height: 80vh; border: none; }
+    .ad { margin: 1rem 0; padding: 1rem; background: #eee; text-align: center; border: dashed 1px #ccc; }
   </style>
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    window.onload = () => {
+      showSection('beranda');
+    };
+  </script>
 </head>
 <body>
-  <header>Pajar Sports</header>
-  <main>
-    <iframe src="https://www.rbtvplus01.com/id/football.html" title="Berita Olahraga & Skor Live"></iframe>
-  </main>
-  <footer>&copy; 2025 Pajar Sports. Semua hak dilindungi.</footer>
+  <header><h1>Pajar Sports</h1></header>
+
+  <nav>
+    <a onclick="showSection('beranda')">Beranda</a>
+    <a onclick="showSection('berita')">Berita</a>
+    <a onclick="showSection('tentang')">Tentang Kami</a>
+  </nav>
+
+  <!-- Beranda -->
+  <div class="section" id="beranda">
+    <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
+  </div>
+
+  <!-- Berita -->
+  <div class="section" id="berita">
+    <h2>Hasil Liga Champions: Real Madrid Lolos Dramatis</h2>
+    <p><strong>Madrid</strong> - Real Madrid kembali menunjukkan mental juaranya. Mereka berhasil lolos ke final Liga Champions setelah mengalahkan Manchester City dengan skor 2-1 dalam pertandingan yang dramatis.</p>
+    
+    <div class="ad">[Slot Iklan Google AdSense / Banner]</div>
+
+    <p>Gol penentu datang dari Jude Bellingham di menit ke-89 setelah permainan cepat dari lini tengah. Dengan hasil ini, Madrid akan menghadapi Bayern di final.</p>
+
+    <div class="ad">[Iklan sidebar / native ad]</div>
+
+    <p>Laga final akan digelar di Wembley, dan antusiasme fans di seluruh dunia sangat tinggi menyambut duel klasik ini.</p>
+  </div>
+
+  <!-- Tentang -->
+  <div class="section" id="tentang">
+    <h2>Tentang Pajar Sports</h2>
+    <p>Pajar Sports adalah portal berita olahraga yang menyajikan informasi terupdate seputar sepak bola, skor langsung, jadwal pertandingan, dan highlight menarik lainnya.</p>
+    <p>Didirikan oleh Pajar Pirmansyah, situs ini bertujuan untuk memberikan pengalaman baca yang cepat, ringan, dan bebas gangguan.</p>
+  </div>
+
+  <footer>&copy; 2025 Pajar Sports</footer>
 </body>
 </html>
