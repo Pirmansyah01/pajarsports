@@ -5,136 +5,115 @@
   <title>Pajar Sports</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Russo+One&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
-      font-family: 'Orbitron', sans-serif;
-      background-color: #fff;
-      overflow-x: hidden;
-    }
-    #splash {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: #FFD700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      animation: fadeOut 2.5s ease-out 2.5s forwards;
-    }
-    #splash h1 {
-      font-size: 6rem;
-      font-family: 'Russo One', sans-serif;
-      color: white;
-      animation: scaleIn 2s ease;
-    }
-    @keyframes scaleIn {
-      0% { transform: scale(0); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-    header {
-      height: 100vh;
-      background: url('https://i.imgur.com/HPrw0Fc.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      position: relative;
-    }
-    .bola {
-      width: 80px;
-      position: absolute;
-      top: 45%;
-      left: -100px;
-      animation: bolaMasuk 2s ease forwards;
-    }
-    @keyframes bolaMasuk {
-      0% { left: -100px; transform: rotate(0); opacity: 1; }
-      100% { left: 50%; transform: translateX(-50%) rotate(720deg); opacity: 0; }
-    }
-    .judul {
-      font-size: 4rem;
-      font-family: 'Russo One', sans-serif;
-      letter-spacing: 3px;
-      opacity: 0;
-      animation: fadeIn 2s ease 2s forwards;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: white;
-      padding: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      gap: 1rem;
-    }
-    nav a {
-      color: black;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-weight: bold;
-      border: 2px solid transparent;
-      transition: 0.3s;
-    }
-    nav a.active-link {
-      background-color: orange;
-      color: white;
-      border-color: orange;
-    }
-    .section {
-      display: none;
-      padding: 2rem 5%;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .active {
-      display: block;
-    }
-    iframe {
-      width: 100%;
-      height: 80vh;
-      border: none;
-      border-radius: 10px;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #FFA500;
-      color: white;
-    }
-    .share-buttons {
-      margin-top: 20px;
-    }
-    .share-buttons a {
-      background: #25D366;
-      color: #fff;
-      padding: 10px 20px;
-      margin: 0 10px;
-      border-radius: 30px;
-      text-decoration: none;
-      display: inline-block;
-      font-weight: bold;
-    }
-    .share-buttons a.instagram {
-      background: #E1306C;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; font-family: 'Orbitron', sans-serif; background: #fff; overflow-x: hidden; }/* Splash Screen */
+#splash {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #FFD700;
+  display: flex; align-items: center; justify-content: center; z-index: 9999;
+  animation: fadeOut 2s ease-out 2s forwards;
+}
+#splash h1 {
+  font-size: 6rem; font-family: 'Russo One', sans-serif; color: white; animation: scaleIn 2s ease;
+}
+@keyframes scaleIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+
+/* Header */
+header {
+  height: 100vh;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.imgur.com/TxwRwZz.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+.bola {
+  width: 80px;
+  position: absolute;
+  top: 45%;
+  left: -100px;
+  animation: bolaMasuk 2s ease forwards;
+}
+@keyframes bolaMasuk {
+  0% { left: -100px; transform: rotate(0); opacity: 1; }
+  100% { left: 50%; transform: translateX(-50%) rotate(720deg); opacity: 0; }
+}
+.judul {
+  font-size: 4rem;
+  font-family: 'Russo One', sans-serif;
+  letter-spacing: 3px;
+  opacity: 0;
+  animation: fadeIn 2s ease 2s forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* Navigasi */
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  gap: 1rem;
+}
+nav a {
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+nav a.active-link {
+  background-color: orange;
+  color: white;
+  border-color: orange;
+}
+
+/* Konten */
+.section {
+  display: none;
+  padding: 2rem 5%;
+  max-width: 1200px;
+  margin: auto;
+}
+.active { display: block; }
+iframe {
+  width: 100%; height: 80vh;
+  border: none; border-radius: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #FFA500;
+  color: white;
+}
+.share-buttons {
+  margin-top: 20px;
+}
+.share-buttons a {
+  background: #25D366;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+}
+.share-buttons a.instagram { background: #E1306C; }
+
   </style>
 </head>
 <body>
@@ -156,17 +135,20 @@
     <a onclick="showSection('tentang', this)">Tentang Kami</a>
   </nav>  <div class="section" id="beranda">
     <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
-  </div>  <div class="section" id="berita">
+  </div>
+  <div class="section" id="berita">
     <iframe src="https://www.bola.net/bola/"></iframe>
-  </div>  <div class="section" id="jadwal">
+  </div>
+  <div class="section" id="jadwal">
     <iframe src="https://www.scorebat.com/embed/livescore/"></iframe>
-  </div>  <div class="section" id="tentang">
+  </div>
+  <div class="section" id="tentang">
     <h2 style="font-size: 2rem; margin-bottom: 1rem;">Tentang Pajar Sports</h2>
     <p style="line-height: 1.6; font-size: 1.1rem;">
-      Pajar Sports adalah platform digital olahraga yang menyajikan streaming langsung, berita terbaru, dan jadwal pertandingan sepak bola dari seluruh dunia. Didirikan oleh Pajar Pirmansyah, situs ini bertujuan memberikan pengalaman terbaik bagi para pecinta sepak bola Indonesia.
+      Pajar Sports adalah platform olahraga digital buatan Pajar Pirmansyah yang menyajikan berita terkini, jadwal live, dan tayangan streaming dari dunia sepak bola global. Kami menyatukan penggemar bola Indonesia dalam satu tempat yang modern, cepat, dan bebas iklan.
     </p>
     <p style="line-height: 1.6; font-size: 1.1rem;">
-      Dengan desain yang profesional dan update real-time, Pajar Sports hadir tanpa iklan yang mengganggu. Follow juga Instagram kami untuk konten eksklusif dan kabar terbaru!
+      Dengan desain responsif dan informasi yang diperbarui real-time, Pajar Sports akan terus berkembang bersama komunitas pecinta sepak bola. Yuk gabung dan dukung tim favoritmu sekarang!
     </p>
     <div class="share-buttons">
       <a href="https://wa.me/?text=Lihat%20Pajar%20Sports%20di%20https://pajarsports.github.io/pajarsports/">Bagikan ke WhatsApp</a>
@@ -176,11 +158,9 @@
     function showSection(id, el = null) {
       document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
       document.getElementById(id).classList.add("active");
-
       document.querySelectorAll("#main-nav a").forEach(link => link.classList.remove("active-link"));
       if (el) el.classList.add("active-link");
     }
-
     window.onload = () => {
       const defaultNav = document.querySelector("#main-nav a");
       showSection("beranda", defaultNav);
