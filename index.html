@@ -14,6 +14,7 @@
     .news-item h3 { margin: 0 0 0.5rem; }
     .news-item a { color: #FFA500; text-decoration: none; }
   </style>
+  <script src="https://api.rss2json.com/v1/api.js"></script>
 </head>
 <body>
   <header><h1>Pajar Sports</h1></header>
@@ -30,16 +31,12 @@
   <footer>&copy; 2025 Pajar Sports</footer>
 
   <script>
-    async function fetchRSS() {
-      const rss_url = encodeURIComponent('https://www.bola.net/rss/index.xml');
-      const api_url = `https://api.rss2json.com/v1/api.json?rss_url=${rss_url}`;
-      const container = document.getElementById("news");
+    const container = document.getElementById("news");
 
-      try {
-        const res = await fetch(api_url);
-        const data = await res.json();
-
-        container.innerHTML = '';
+    fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.bola.net/rss/index.xml")
+      .then(res => res.json())
+      .then(data => {
+        container.innerHTML = "";
         data.items.slice(0, 5).forEach(item => {
           const div = document.createElement("div");
           div.className = "news-item";
@@ -47,12 +44,10 @@
                            <p>${item.pubDate.split(" ")[0]}</p>`;
           container.appendChild(div);
         });
-      } catch (err) {
-        container.innerHTML = '<p>Gagal memuat berita.</p>';
-      }
-    }
-
-    fetchRSS();
+      })
+      .catch(() => {
+        container.innerHTML = "<p>Berita gagal dimuat. Coba refresh halaman.</p>";
+      });
   </script>
 </body>
 </html>
