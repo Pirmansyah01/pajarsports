@@ -1,9 +1,10 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pajar Sports</title>
+  <link rel="icon" href="https://i.imgur.com/dy0VUpH.png" />
   <style>
     * {
       box-sizing: border-box;
@@ -21,6 +22,7 @@
       border: 2px solid #00ffcc;
       display: block;
       margin: 0 auto 10px;
+      background: white;
     }
     h1 {
       color: #00ffcc;
@@ -92,7 +94,8 @@
   </style>
 </head>
 <body>
-  <img src="https://i.imgur.com/5kIlK9g.png" class="logo" alt="Logo Pajar Sports" />
+  <!-- Ganti src ini dengan logo sendiri jika mau -->
+  <img src="https://i.imgur.com/dy0VUpH.png" class="logo" alt="Logo Pajar Sports" />
   <h1>Pajar Sports</h1>
   <p style="text-align:center;">Website olahraga tanpa iklan dan cepat diakses 💪⚽🏀🏐</p>
 
@@ -107,18 +110,18 @@
   <section id="beranda" class="active">
     <p style="text-align:center">Selamat datang di situs resmi Pajar Sports! Semua berita, jadwal, dan skor bola terupdate ada di sini.</p>
     <div style="text-align:center">
-      <a href="#live" onclick="showTab('live')" class="btn">Nonton Bola Sekarang ⚽</a>
+      <a href="#live" onclick="event.preventDefault(); document.querySelector('[onclick*=live]').click();" class="btn">Nonton Bola Sekarang ⚽</a>
     </div>
   </section>
 
   <section id="jadwal">
     <h2>Jadwal Pertandingan Hari Ini</h2>
-    <div id="jadwal-container">Memuat jadwal...</div>
+    <div id="jadwal-container" class="loading">⏳ Memuat jadwal...</div>
   </section>
 
   <section id="berita">
     <h2>Berita Bola Terbaru</h2>
-    <div id="berita-container">Memuat berita...</div>
+    <div id="berita-container" class="loading">⏳ Memuat berita...</div>
   </section>
 
   <section id="skor">
