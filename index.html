@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pajar Sports</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #fff; color: #000; }
+    header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 1px; }
     header, footer { background-color: #FFA500; color: white; text-align: center; padding: 1rem; }
     nav { background: #FFD580; padding: 1rem; text-align: center; }
     nav a { margin: 0 15px; color: #000; text-decoration: none; font-weight: bold; cursor: pointer; }
@@ -21,32 +21,3 @@
     window.onload = () => showSection("beranda");
   </script>
 </head>
-<body>
-  <header><h1>Pajar Sports</h1></header>
-
-  <nav>
-    <a onclick="showSection('beranda')">Beranda</a>
-    <a onclick="showSection('berita')">Berita</a>
-    <a onclick="showSection('tentang')">Tentang Kami</a>
-  </nav>
-
-  <!-- Beranda: Live Streaming -->
-  <div id="beranda" class="section active">
-    <iframe src="https://www.rbtvplus01.com/id/football.html" title="Live Streaming Bola"></iframe>
-  </div>
-
-  <!-- Berita: Otomatis dari Bola.net -->
-  <div id="berita" class="section">
-    <iframe src="https://www.bola.net/bola/" title="Berita Bola Terbaru"></iframe>
-  </div>
-
-  <!-- Tentang Kami -->
-  <div id="tentang" class="section">
-    <h2>Tentang Pajar Sports</h2>
-    <p>Pajar Sports adalah platform olahraga terkini yang menyajikan live streaming bola, berita terbaru, dan info pertandingan secara gratis dan cepat diakses.</p>
-    <p>Dikelola oleh Pajar Pirmansyah, situs ini hadir untuk penggemar bola sejati yang ingin selalu update tanpa ribet.</p>
-  </div>
-
-  <footer>&copy; 2025 Pajar Sports</footer>
-</body>
-</html>
