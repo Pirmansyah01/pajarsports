@@ -1,320 +1,215 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PP SPORTS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    :root {
-      --telur-asin: #A3D2CA;
-      --gelap: #0d0d0d;
-      --abu: #1a1a1a;
-      --putih: #ffffff;
-    }
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
-      padding: 0;
-    }
-    html, body {
       font-family: Arial, sans-serif;
-      background-color: var(--gelap);
-      color: var(--putih);
-      transition: 0.3s;
+      background: #111;
+      color: #fff;
+      transition: background 0.3s, color 0.3s;
     }
-    body.light {
-      background-color: var(--putih);
-      color: var(--gelap);
+    .light-mode {
+      background: #e6f0eb;
+      color: #111;
     }
-    body.light header, body.light nav, body.light .sidemenu {
-      background-color: var(--telur-asin);
+    .page {
+      padding: 20px;
+      display: none;
     }
-    header {
+    #beranda { display: block; }
+    .modal, .sidemenu {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal-box, .sidemenu-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+    }
+    .modal-box input {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+    }
+    .modal-box button {
+      margin: 5px 0;
+      width: 100%;
+      padding: 10px;
+      background: #44bbaa;
+      border: none;
+      color: white;
+      font-weight: bold;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
-      background-color: var(--abu);
+      background: #1a1a1a;
+      padding: 10px;
     }
-    .menu-toggle {
-      font-size: 1.5rem;
-      color: var(--putih);
-      cursor: pointer;
-    }
-    .title {
-      font-family: 'Pacifico', cursive;
-      font-size: 2rem;
-      color: var(--telur-asin);
-      text-align: center;
-      flex: 1;
-    }
-    .nav-icons {
+    .nav-left, .nav-right {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
     }
-    .nav-icons i {
-      font-size: 24px;
-      color: var(--putih);
-      cursor: pointer;
+    .nav button {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 14px;
+      margin: 0 5px;
+      padding: 8px;
+      border-radius: 50px;
     }
-    .nav-icons img {
+    .nav button:hover, .nav button.active {
+      background: #44bbaa;
+      color: black;
+    }
+    #profileImgHeader {
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      object-fit: cover;
-      cursor: pointer;
-      background-color: var(--putih);
+      margin-left: 10px;
     }
-    .sidemenu {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
-      background-color: var(--abu);
-      padding: 1rem;
-      transition: left 0.3s;
-      z-index: 999;
-    }
-    .sidemenu a {
-      display: block;
-      color: var(--putih);
-      text-decoration: none;
-      margin: 1rem 0;
-    }
-    .sidemenu.show {
-      left: 0;
-    }
-    .sidemenu .close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 0.5rem;
-      background-color: var(--abu);
-    }
-    nav a {
-      color: var(--putih);
-      text-decoration: none;
-      font-size: 0.9rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 20px;
-      transition: 0.3s;
-    }
-    nav a:hover, nav a.active {
-      background-color: var(--telur-asin);
-      color: var(--gelap);
-    }
-    main {
-      padding: 1rem;
-    }
-    iframe {
-      width: 100%;
-      height: 600px;
+    #searchBox {
+      padding: 5px;
+      border-radius: 4px;
       border: none;
+      margin-left: 5px;
     }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.8rem;
-      color: gray;
-    }
-    #loginModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    .modal-box {
-      background: #222;
-      color: white;
-      padding: 1rem;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      position: relative;
-    }
-    .modal-box .close-btn {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    .modal-box input, .modal-box button {
-      width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.5rem;
-      border: none;
-      border-radius: 5px;
-    }
-    .modal-box button {
-      background: var(--telur-asin);
-      color: black;
-      cursor: pointer;
-    }
-    @media screen and (max-width: 600px) {
-      .title { font-size: 1.4rem; }
-      nav a { font-size: 0.8rem; padding: 0.3rem 0.6rem; }
-      iframe { height: 400px; }
-    }
+    .sidemenu.show { display: flex; align-items: flex-start; justify-content: flex-start; }
   </style>
 </head>
-<body>
-  <div class="sidemenu" id="sidemenu">
-    <span class="material-icons close-btn" onclick="toggleMenu()">blur_circular</span>
-    <a href="#" onclick="toggleTheme()">🌗 Mode Terang/Gelap</a>
-    <a href="#">⚙️ Pengaturan</a>
-    <a href="#" onclick="showPage('tentang')">Tentang Kami</a>
+<body><div class="nav">
+  <div class="nav-left">
+    <button onclick="toggleSideMenu()">☰</button>
+    <button onclick="showPage('beranda')">Beranda</button>
+    <button onclick="showPage('berita')">Berita</button>
+    <button onclick="showPage('jadwal')">Jadwal</button>
+    <button onclick="showPage('streaming')">Streaming</button>
   </div>
-
-  <header>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="title">PP SPORTS</div>
-    <div class="nav-icons">
-      <i class="material-icons" onclick="toggleSearch()">search</i>
-      <input id="searchBox" type="text" placeholder="Cari berita bola..." style="display:none" onkeyup="searchNews(event)">
-      <img id="profileImgHeader" src="https://www.svgrepo.com/show/452251/account.svg" onclick="openLoginOrProfile()" />
-    </div>
-  </header>
-
-  <nav>
-    <a href="#" onclick="showPage('beranda')">Beranda</a>
-    <a href="#" onclick="showPage('berita')">Berita</a>
-    <a href="#" onclick="showPage('skor')">Skor</a>
-    <a href="#" onclick="showPage('streaming')">Streaming</a>
-    <a href="#" onclick="showPage('jadwal')">Jadwal Bola</a>
-  </nav>
-
-  <main>
-    <section id="beranda" class="page">
-      <h2>Selamat Datang di PP SPORTS</h2>
-      <p>Portal sepak bola modern dengan skor, berita, dan streaming langsung.</p>
-      <div id="berandaVideo" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
-        <iframe id="ytplayer" src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=1&loop=1&playlist=KfJt6B5Ed1U&controls=0&showinfo=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-      </div>
-    </section>
-
-    <section id="berita" class="page" style="display:none">
-      <h2>Berita Bola</h2>
-      <iframe src="https://pajarsport.vercel.app/berita.html" allowfullscreen></iframe>
-    </section>
-
-    <section id="skor" class="page" style="display:none">
-      <h2>Skor Langsung</h2>
-      <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
-    </section>
-
-    <section id="streaming" class="page" style="display:none">
-      <h2>Streaming Bola</h2>
-      <iframe src="https://www.rbtvplus01.com/id/football.html" allowfullscreen></iframe>
-    </section>
-
-    <section id="jadwal" class="page" style="display:none">
-      <h2>Jadwal Pertandingan</h2>
-      <iframe src="https://www.livescore.com/en/football/live/" allowfullscreen></iframe>
-    </section>
-
-    <section id="tentang" class="page" style="display:none">
-      <h2>Tentang Kami</h2>
-      <p>Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> untuk menyajikan informasi sepak bola secara lengkap dan profesional.</p>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 Pajar Pirmansyah. All rights reserved.
-  </footer>
-
-  <div id="loginModal" class="modal" style="display:none;">
-    <div class="modal-box">
-      <span class="material-icons close-btn" onclick="document.getElementById('loginModal').style.display='none'">blur_circular</span>
-      <h3>Login</h3>
-      <input type="text" id="loginEmail" placeholder="Email / No HP">
-      <input type="password" id="loginPassword" placeholder="Password">
-      <label>Foto Profil:</label>
-      <input type="file" id="loginPhoto" accept="image/*">
-      <button onclick="submitLogin()">Masuk</button>
-      <button onclick="logout()">Hapus Profil</button>
-    </div>
+  <div class="nav-right">
+    <input id="searchBox" type="text" placeholder="Cari..." onkeydown="searchNews(event)">
+    <img id="profileImgHeader" onclick="openLoginOrProfile()" src="https://www.svgrepo.com/show/452251/account.svg" style="cursor:pointer"/>
   </div>
+</div><section id="beranda" class="page">
+  <div style="text-align:center;margin:20px auto;font-size:1.2em;color:#ccc">
+    <p>Platform sepak bola digital yang menyajikan skor langsung, berita terkini, dan layanan streaming berkualitas.</p>
+  </div>
+  <div id="berandaVideo" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
+    <iframe id="ytplayer" src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&showinfo=0&modestbranding=1&rel=0&disablekb=1&fs=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+  </div>
+</section><section id="berita" class="page" style="display:none">
+  <h2>Berita Bola</h2>
+  <div id="news-feed">
+    <iframe src="https://pajarsport.vercel.app/berita.html" style="width:100%;height:600px;border:none"></iframe>
+  </div>
+</section><section id="jadwal" class="page" style="display:none">
+  <h2>Jadwal Bola</h2>
+  <iframe src="https://www.livescore.com/en/football/live/" style="width:100%;height:600px;border:none"></iframe>
+</section><section id="streaming" class="page" style="display:none">
+  <h2>Streaming Bola</h2>
+  <iframe src="https://www.rbtvplus01.com/id/football.html" style="width:100%;height:600px;border:none" allowfullscreen></iframe>
+</section><div id="loginModal" class="modal">
+  <div class="modal-box">
+    <span class="close-btn" onclick="document.getElementById('loginModal').style.display='none'">×</span>
+    <h3>Login</h3>
+    <input type="text" id="loginEmail" placeholder="Email / No HP">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <label>Foto Profil:</label>
+    <input type="file" id="loginPhoto" accept="image/*">
+    <button onclick="submitLogin()">Masuk</button>
+    <button onclick="logout()">Hapus Profil</button>
+  </div>
+</div><div id="sidemenu" class="sidemenu">
+  <div class="sidemenu-box">
+    <span class="close-btn" onclick="toggleSideMenu()">×</span>
+    <button onclick="toggleTheme()">Mode Terang / Gelap</button>
+    <button onclick="alert('Fitur pengaturan segera tersedia')">Pengaturan</button>
+    <button onclick="alert('Tentang PP Sports: situs bola by Pajar Pirmansyah')">Tentang Saya</button>
+  </div>
+</div><script>
+  const pages = document.querySelectorAll('.page');
 
-  <script>
-    const pages = document.querySelectorAll('.page');
-    function showPage(id) {
-      pages.forEach(p => p.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
+  function showPage(id) {
+    pages.forEach(p => p.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    const ytPlayer = document.getElementById('ytplayer');
+    if (ytPlayer) {
+      ytPlayer.src = (id === 'beranda')
+        ? 'https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&showinfo=0&modestbranding=1&rel=0&disablekb=1&fs=0'
+        : '';
+    }
+  }
 
-      const ytPlayer = document.getElementById('ytplayer');
-      if (ytPlayer) {
-        ytPlayer.src = (id === 'beranda')
-          ? 'https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=1&loop=1&playlist=KfJt6B5Ed1U&controls=0&showinfo=0&modestbranding=1&rel=0'
-          : '';
-      }
+  function toggleSideMenu() {
+    document.getElementById('sidemenu').classList.toggle('show');
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+  }
+
+  function searchNews(event) {
+    if (event.key === 'Enter') {
+      const query = event.target.value;
+      showPage('berita');
+      document.getElementById('news-feed').innerHTML = `<iframe src='https://www.google.com/search?q=${query}+site:bolanet.com' style='width:100%;height:600px;border:none'></iframe>`;
     }
-    function toggleMenu() {
-      document.getElementById('sidemenu').classList.toggle('show');
-    }
-    function toggleTheme() {
-      document.body.classList.toggle('light');
-    }
-    function toggleSearch() {
-      const box = document.getElementById('searchBox');
-      box.style.display = box.style.display === 'none' ? 'inline' : 'none';
-      box.focus();
-    }
-    function openLoginOrProfile() {
-      document.getElementById('loginModal').style.display = 'flex';
-    }
-    function submitLogin() {
-      const email = document.getElementById('loginEmail').value;
-      const pass = document.getElementById('loginPassword').value;
-      const photo = document.getElementById('loginPhoto').files[0];
-      if (!email || !pass) return alert(\"Lengkapi semua data.\");
-      if (photo) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const image = reader.result;
-          localStorage.setItem('user', JSON.stringify({ email, image }));
-          document.getElementById('profileImgHeader').src = image;
-          document.getElementById('loginModal').style.display = 'none';
-        }
-        reader.readAsDataURL(photo);
-      } else {
-        localStorage.setItem('user', JSON.stringify({ email, image: null }));
+  }
+
+  function openLoginOrProfile() {
+    document.getElementById('loginModal').style.display = 'flex';
+  }
+
+  function submitLogin() {
+    const email = document.getElementById('loginEmail').value;
+    const pass = document.getElementById('loginPassword').value;
+    const photo = document.getElementById('loginPhoto').files[0];
+    if (!email || !pass) return alert("Lengkapi semua data.");
+    if (photo) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const image = reader.result;
+        localStorage.setItem('user', JSON.stringify({ email, image }));
+        document.getElementById('profileImgHeader').src = image;
         document.getElementById('loginModal').style.display = 'none';
       }
-    }
-    function logout() {
-      localStorage.removeItem('user');
-      document.getElementById('profileImgHeader').src = 'https://www.svgrepo.com/show/452251/account.svg';
+      reader.readAsDataURL(photo);
+    } else {
+      localStorage.setItem('user', JSON.stringify({ email, image: null }));
       document.getElementById('loginModal').style.display = 'none';
     }
-    function searchNews(event) {
-      if (event.key === 'Enter') {
-        const query = event.target.value;
-        showPage('berita');
-        document.getElementById('news-feed').innerHTML = `<iframe src='https://www.google.com/search?q=${query}+site:bolanet.com' style='width:100%;height:600px;border:none'></iframe>`;
-      }
+  }
+
+  function logout() {
+    localStorage.removeItem('user');
+    document.getElementById('profileImgHeader').src = 'https://www.svgrepo.com/show/452251/account.svg';
+    document.getElementById('loginModal').style.display = 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.image) {
+      document.getElementById('profileImgHeader').src = user.image;
     }
-    window.addEventListener('DOMContentLoaded', () => {
-      const user = JSON.parse(localStorage.getItem('user'));
-      if (user && user.image) {
-        document.getElementById('profileImgHeader').src = user.image;
-      }
-    });
-  </script>
-</body>
+  });
+</script></body>
 </html>
