@@ -2,130 +2,243 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pajar Sports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PP SPORT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
-      color: white;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
       scroll-behavior: smooth;
     }
-
+    body {
+      font-family: 'Bebas Neue', sans-serif;
+      background-color: #0d0d0d;
+      color: #ffffff;
+    }
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
       background-color: #1a1a1a;
-      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 2px solid #00bfa6;
+    }
+    .site-title {
+      font-size: 2rem;
+      color: #00bfa6;
+      letter-spacing: 2px;
+    }
+    .menu-icon, .search-icon {
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    /* Menu Navigasi Horizontal */
+    nav.horizontal-nav {
+      background-color: #0d0d0d;
       display: flex;
       justify-content: center;
-      padding: 10px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      border-bottom: 2px solid #00bfa6;
     }
-
-    nav {
-      display: flex;
-      gap: 25px;
-    }
-
-    nav a {
+    nav.horizontal-nav a {
+      padding: 1rem 1.5rem;
       color: white;
       text-decoration: none;
+      font-size: 1.2rem;
+      transition: 0.3s;
       position: relative;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 30px;
-      transition: all 0.3s ease;
+    }
+    nav.horizontal-nav a:hover,
+    nav.horizontal-nav a.active {
+      color: #00bfa6;
+    }
+    nav.horizontal-nav a.active::after,
+    nav.horizontal-nav a:hover::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: #00bfa6;
     }
 
-    nav a.active {
-      background-color: #00b894;
-      color: #000;
-      box-shadow: 0 0 0 2px white;
+    /* Sidebar */
+    #side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #1a1a1a;
+      padding: 1rem;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+    #side-menu ul li {
+      list-style: none;
+      margin: 1rem 0;
+    }
+    #side-menu ul li a,
+    #side-menu ul li button {
+      color: #00bfa6;
+      font-size: 1.2rem;
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
+    /* Konten */
+    main {
+      padding: 1.5rem;
+    }
     section {
-      padding: 100px 20px;
-      min-height: 100vh;
-      border-bottom: 1px solid #333;
+      margin-bottom: 2.5rem;
+    }
+    section h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #1ecbe1;
     }
 
-    section h2 {
-      margin-top: 0;
-      font-size: 32px;
+    /* Splash Screen */
+    #splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      color: #00bfa6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      z-index: 9999;
+      transition: opacity 1s ease;
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
+    /* Mode Gelap */
+    body.dark-mode {
+      background-color: #ffffff;
+      color: #000000;
+    }
+    body.dark-mode header,
+    body.dark-mode nav.horizontal-nav {
+      background-color: #eeeeee;
+    }
+    body.dark-mode nav.horizontal-nav a {
+      color: #000000;
+    }
+    body.dark-mode nav.horizontal-nav a.active::after,
+    body.dark-mode nav.horizontal-nav a:hover::after {
+      background-color: #00bfa6;
     }
   </style>
 </head>
 <body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <h1>PP SPORT</h1>
+  </div>
 
+  <!-- Header -->
   <header>
-    <nav>
-      <a href="#beranda" class="nav-link">Beranda</a>
-      <a href="#berita" class="nav-link">Berita</a>
-      <a href="#jadwal" class="nav-link">Jadwal</a>
-      <a href="#tentang" class="nav-link">Tentang Kami</a>
-    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <h2 class="site-title">PP SPORT</h2>
+    <div class="search-icon">🔍</div>
   </header>
 
-  <section id="beranda">
-    <h2>Beranda</h2>
-    <p>Selamat datang di Pajar Sports!</p>
-  </section>
+  <!-- Menu Navigasi Horizontal -->
+  <nav class="horizontal-nav">
+    <a href="#berita" class="nav-link active">Berita</a>
+    <a href="#skor" class="nav-link">Skor</a>
+    <a href="#tv-streaming" class="nav-link">Streaming</a>
+    <a href="#tentang" class="nav-link">Tentang</a>
+  </nav>
 
-  <section id="berita">
-    <h2>Berita</h2>
-    <p>Berita olahraga terbaru akan muncul di sini.</p>
-  </section>
+  <!-- Sidebar Samping -->
+  <nav id="side-menu">
+    <ul>
+      <li onclick="closeMenu()">❌</li>
+      <li><a href="#tentang">Tentang Kami</a></li>
+      <li><button onclick="toggleDarkMode()">Mode Gelap</button></li>
+    </ul>
+  </nav>
 
-  <section id="jadwal">
-    <h2>Jadwal</h2>
-    <p>Jadwal pertandingan langsung di sini.</p>
-  </section>
+  <!-- Konten -->
+  <main>
+    <section id="berita">
+      <h3>Berita Sepak Bola</h3>
+      <div id="news-feed">Memuat berita...</div>
+    </section>
 
-  <section id="tentang">
-    <h2>Tentang Kami</h2>
-    <p>Kami adalah situs olahraga terbaik untuk kamu yang suka bola.</p>
-  </section>
+    <section id="skor">
+      <h3>Live Skor</h3>
+      <iframe src="https://www.scorebat.com/embed/livescore/" frameborder="0" width="100%" height="400" allowfullscreen></iframe>
+    </section>
+
+    <section id="tv-streaming">
+      <h3>Streaming Bola</h3>
+      <iframe src="https://www.rbtvplus01.com/id/football.html" frameborder="0" width="100%" height="600" allowfullscreen></iframe>
+    </section>
+
+    <section id="tentang">
+      <h3>Tentang Kami</h3>
+      <p>PP SPORT adalah platform sepak bola modern buatan Pajar Pirmansyah. Kami hadir untuk menyajikan info bola terkini, skor real-time, streaming, dan tampilan yang sporty abis!</p>
+    </section>
+  </main>
 
   <script>
-    const links = document.querySelectorAll(".nav-link");
+    // Splash screen
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+      }, 2000);
+      fetchNews();
+    };
 
-    function activateLink() {
-      links.forEach(link => link.classList.remove("active"));
-      this.classList.add("active");
+    function toggleMenu() {
+      const menu = document.getElementById("side-menu");
+      menu.style.left = menu.style.left === "0px" ? "-250px" : "0px";
+    }
+    function closeMenu() {
+      document.getElementById("side-menu").style.left = "-250px";
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
     }
 
-    links.forEach(link => {
-      link.addEventListener("click", activateLink);
-    });
+    // Ambil berita sepak bola dari Google News
+    function fetchNews() {
+      const url = "https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola&hl=id&gl=ID&ceid=ID:id";
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById("news-feed");
+          container.innerHTML = "";
+          data.items.slice(0, 5).forEach(item => {
+            const el = document.createElement("div");
+            el.innerHTML = `<a href="${item.link}" target="_blank" style="color:#ffffff;text-decoration:none;display:block;margin-bottom:10px;">${item.title}</a>`;
+            container.appendChild(el);
+          });
+        })
+        .catch(() => {
+          document.getElementById("news-feed").innerText = "Gagal memuat berita.";
+        });
+    }
 
-    // Optional: Otomatis aktif saat scroll
-    const sections = document.querySelectorAll("section");
-
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (scrollY >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
-
-      links.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href").includes(current)) {
-          link.classList.add("active");
-        }
+    // Aktifkan highlight menu navigasi
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
       });
     });
   </script>
