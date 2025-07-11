@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PP SPORTS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -38,10 +38,9 @@
       color: white;
       border: none;
       font-family: 'Roboto', sans-serif;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
-      margin: 0;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 20px;
       transition: background 0.3s;
     }
@@ -51,7 +50,7 @@
     }
     #logoTitle {
       font-family: 'Pacifico', cursive;
-      font-size: 22px;
+      font-size: 24px;
       color: #7fc7bd;
       font-weight: bold;
     }
@@ -74,6 +73,7 @@
       display: none; justify-content: center; align-items: center;
       z-index: 999;
     }
+    .sidemenu.show { display: flex; }
     .sidemenu-box {
       background: #222; padding: 20px; width: 220px; height: auto; position: relative; border-radius: 10px;
     }
@@ -96,10 +96,7 @@
       font-size: 16px;
       cursor: pointer;
     }
-    .sidemenu-box h3 {
-      margin-top: 0;
-      color: #7fc7bd;
-    }
+    .sidemenu-box h3 { margin-top: 0; color: #7fc7bd; }
   </style>
 </head>
 <body><div class="nav">
@@ -131,7 +128,7 @@
   <iframe src="https://www.rbtvplus01.com/id/football.html" style="width:100%;height:600px;border:none" allowfullscreen></iframe>
 </section><div id="loginModal" class="modal" style="display:none;">
   <div class="modal-box">
-    <span class="material-icons close-btn" onclick="document.getElementById('loginModal').style.display='none'">×</span>
+    <span class="close-btn" onclick="document.getElementById('loginModal').style.display='none'">×</span>
     <h3>Login</h3>
     <input type="text" id="loginEmail" placeholder="Email / No HP">
     <input type="password" id="loginPassword" placeholder="Password">
@@ -158,14 +155,11 @@
     document.getElementById(id).style.display = 'block';
     const ytPlayer = document.getElementById('ytplayer');
     if (ytPlayer) {
-      ytPlayer.src = (id === 'beranda')
-        ? 'https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&volume=0.5&loop=1&playlist=KfJt6B5Ed1U&controls=0&modestbranding=1&rel=0'
-        : '';
+      ytPlayer.src = (id === 'beranda') ? ytPlayer.src : '';
     }
     document.querySelectorAll('.nav button').forEach(btn => btn.classList.remove('active'));
-    if (document.getElementById('nav-' + id)) {
-      document.getElementById('nav-' + id).classList.add('active');
-    }
+    const activeBtn = document.getElementById('nav-' + id);
+    if (activeBtn) activeBtn.classList.add('active');
   }
   function toggleSideMenu() {
     document.getElementById('sidemenu').classList.toggle('show');
@@ -216,8 +210,6 @@
     const user = JSON.parse(localStorage.getItem('user'));
     if (user && user.image) {
       document.getElementById('profileImgHeader').src = user.image;
-    } else {
-      document.getElementById('profileImgHeader').src = 'https://www.svgrepo.com/show/452251/account.svg';
     }
   });
 </script></body>
