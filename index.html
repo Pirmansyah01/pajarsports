@@ -77,7 +77,7 @@ header {
 
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   background-color: white;
@@ -87,7 +87,11 @@ nav {
   top: 0;
   z-index: 1000;
   max-width: 100%;
+}
+.nav-links {
+  display: flex;
   gap: 0.5rem;
+  align-items: center;
 }
 nav a {
   color: black;
@@ -106,7 +110,6 @@ nav a.active-link {
   border-color: orange;
 }
 .search-box {
-  margin-left: auto;
   position: relative;
 }
 .search-box input {
@@ -168,10 +171,12 @@ footer {
     <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola">
     <h1 class="judul">Pajar Sports</h1>
   </header>  <nav id="main-nav">
-    <a onclick="showSection('beranda', this)">Beranda</a>
-    <a onclick="showSection('berita', this)">Berita</a>
-    <a onclick="showSection('jadwal', this)">Jadwal</a>
-    <a onclick="showSection('tentang', this)">Tentang Kami</a>
+    <div class="nav-links">
+      <a onclick="showSection('beranda', this)">Beranda</a>
+      <a onclick="showSection('berita', this)">Berita</a>
+      <a onclick="showSection('jadwal', this)">Jadwal</a>
+      <a onclick="showSection('tentang', this)">Tentang Kami</a>
+    </div>
     <div class="search-box">
       <i class="fas fa-search" onclick="toggleSearch()"></i>
       <input type="text" id="searchInput" placeholder="Cari klub..." oninput="searchClub()">
