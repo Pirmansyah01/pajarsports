@@ -1,56 +1,46 @@
 <!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pajar Sports</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root {
       --bg: #ffffff;
       --text: #000000;
-      --accent: #FFA500;
+      --accent: #ffa500;
+      --nav-bg: #ffffff;
+      --nav-text: #000000;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #ffffff;
+      --accent: #3cb4e7;
+      --nav-bg: #1e1e1e;
+      --nav-text: #ffffff;
     }
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
     }
     header {
       position: relative;
-      height: 200px;
       background: linear-gradient(to bottom, var(--accent), var(--bg));
+      height: 220px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      text-align: center;
     }
-    .bola {
-      width: 50px;
-      position: absolute;
-      top: 50%;
-      left: -60px;
-      animation: bolaMasuk 2s ease forwards;
-    }
-    @keyframes bolaMasuk {
-      0% { left: -60px; transform: rotate(0); opacity: 1; }
-      100% { left: 50%; transform: translateX(-50%) rotate(720deg); opacity: 0; }
-    }
-    .judul {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: white;
-      opacity: 0;
-      animation: fadeIn 2s ease 2s forwards;
-    }
-    @keyframes fadeIn { to { opacity: 1; } }
     .top-bar {
       position: absolute;
       top: 10px;
@@ -79,9 +69,47 @@
     .search-header i {
       margin-left: 10px;
       cursor: pointer;
+      color: white;
+    }
+    .bola {
+      width: 50px;
+      position: absolute;
+      top: 50%;
+      left: -60px;
+      animation: bolaMasuk 2s ease forwards;
+    }
+    @keyframes bolaMasuk {
+      0% { left: -60px; transform: rotate(0); opacity: 1; }
+      100% { left: 50%; transform: translateX(-50%) rotate(720deg); opacity: 0; }
+    }
+    .judul {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      opacity: 0;
+      animation: fadeIn 2s ease 2s forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .sidebar {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      z-index: 10;
+    }
+    .sidebar a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
     }
     nav {
-      background-color: white;
+      background-color: var(--nav-bg);
       display: flex;
       justify-content: center;
       gap: 25px;
@@ -89,7 +117,7 @@
     }
     nav a {
       text-decoration: none;
-      color: #333;
+      color: var(--nav-text);
       font-weight: 600;
       position: relative;
     }
@@ -105,21 +133,6 @@
     }
     nav a:hover::after {
       width: 100%;
-    }
-    .sidebar {
-      display: none;
-      position: absolute;
-      top: 60px;
-      left: 10px;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-    .sidebar a {
-      display: block;
-      margin-bottom: 10px;
-      text-decoration: none;
-      color: #333;
     }
     main {
       padding: 20px;
@@ -141,22 +154,25 @@
     <div class="top-bar">
       <div class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
       <div class="search-header">
-        <input type="text" id="searchInput" placeholder="Cari klub..." oninput="searchClub()">
+        <input type="text" id="searchInput" placeholder="Cari klub..." oninput="searchClub()" />
         <i class="fas fa-search" onclick="toggleSearch()"></i>
       </div>
       <div class="language-switcher" onclick="toggleLang()">🇮🇩</div>
     </div>
-    <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola">
+    <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola" />
     <h1 class="judul" data-id="Pajar Sports" data-en="Pajar Sports">Pajar Sports</h1>
-  </header>  <div class="sidebar" id="sidebar">
+  </header>
+  <div class="sidebar" id="sidebar">
     <a href="#" onclick="showSection('tentang')">Tentang Kami</a>
     <a href="#" onclick="toggleDarkMode()">Mode Gelap</a>
-  </div>  <nav>
+  </div>
+  <nav>
     <a href="#" onclick="showSection('beranda')">Beranda</a>
     <a href="#" onclick="showSection('berita')">Berita</a>
     <a href="#" onclick="showSection('jadwal')">Jadwal</a>
     <a href="#" onclick="showSection('live')">Live</a>
-  </nav>  <main>
+  </nav>
+  <main>
     <section id="beranda" class="section">
       <h2>Video Terbaru</h2>
       <div class="video-grid">
@@ -182,7 +198,8 @@
       <p>Pajar Sports adalah portal informasi bola yang menyajikan berita terkini, video menarik, serta jadwal pertandingan lengkap dari berbagai liga dunia.</p>
       <p>Follow Instagram: <a href="https://www.instagram.com/pajarpirmansyah_?igsh=eGx6a3NjcWs0Y2kx" target="_blank">@pajarpirmansyah_</a></p>
     </section>
-  </main>  <script>
+  </main>
+  <script>
     function showSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
       document.getElementById(id).style.display = 'block';
@@ -216,5 +233,6 @@
     function toggleDarkMode() {
       document.body.classList.toggle('dark');
     }
-  </script></body>
+  </script>
+</body>
 </html>
