@@ -16,60 +16,14 @@
       background: #dcefe9;
       color: #111;
     }
-    .page {
-      padding: 20px;
-      display: none;
-    }
+    .page { padding: 20px; display: none; }
     #beranda { display: block; }
-    .modal, .sidemenu {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-    .modal-box, .sidemenu-box {
-      background: #222;
-      padding: 20px;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 400px;
-      position: relative;
-    }
-    .modal-box input {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 8px;
-    }
-    .modal-box button {
-      margin: 5px 0;
-      width: 100%;
-      padding: 10px;
-      background: #44bbaa;
-      border: none;
-      color: white;
-      font-weight: bold;
-    }
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      cursor: pointer;
-    }
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: #1a1a1a;
       padding: 10px 20px;
-    }
-    .nav-left, .nav-right {
-      display: flex;
-      align-items: center;
     }
     .nav button {
       background: transparent;
@@ -78,14 +32,9 @@
       font-size: 14px;
       margin: 0 5px;
       padding: 8px;
-      font-weight: 500;
       border-radius: 30px;
-      transition: 0.3s;
     }
-    .nav button:hover, .nav button.active {
-      background: #7fc7bd;
-      color: black;
-    }
+    .nav button.active { background: #7fc7bd; color: black; }
     #logoTitle {
       font-family: 'Pacifico', cursive;
       font-size: 26px;
@@ -94,10 +43,7 @@
       margin-right: 10px;
     }
     #profileImgHeader {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin-left: 10px;
+      width: 30px; height: 30px; border-radius: 50%; margin-left: 10px;
     }
     #searchBox {
       padding: 5px;
@@ -105,18 +51,24 @@
       border: none;
       margin-left: 10px;
     }
-    .nav-right img.icon {
-      width: 24px;
-      height: 24px;
-      margin-left: 12px;
-      cursor: pointer;
-      filter: brightness(0) invert(1);
+    .icon { width: 24px; height: 24px; filter: brightness(0) invert(1); cursor: pointer; }
+    .modal, .sidemenu {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none; justify-content: center; align-items: center;
+      z-index: 999;
     }
-    .sidemenu.show { display: flex; align-items: flex-start; justify-content: flex-start; }
+    .modal-box {
+      background: #222; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; position: relative;
+    }
+    .modal-box input { width: 100%; margin: 10px 0; padding: 8px; }
+    .modal-box button { width: 100%; margin: 5px 0; padding: 10px; background: #44bbaa; border: none; color: white; font-weight: bold; }
+    .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; }
   </style>
 </head>
 <body><div class="nav">
-  <div class="nav-left">
+  <div>
     <span id="logoTitle">PP SPORTS</span>
     <button onclick="toggleSideMenu()">☰</button>
     <button onclick="showPage('beranda')">Beranda</button>
@@ -124,21 +76,96 @@
     <button onclick="showPage('jadwal')">Jadwal</button>
     <button onclick="showPage('streaming')">Streaming</button>
   </div>
-  <div class="nav-right">
-    <img src="https://www.svgrepo.com/show/488200/search.svg" class="icon" onclick="toggleSearch()" title="Cari">
+  <div>
+    <img src="https://www.svgrepo.com/show/488200/search.svg" class="icon" onclick="toggleSearch()">
     <input id="searchBox" type="text" placeholder="Cari..." onkeydown="searchNews(event)" style="display:none">
-    <img src="https://www.svgrepo.com/show/512399/email.svg" class="icon" title="Email">
-    <img id="profileImgHeader" onclick="openLoginOrProfile()" src="https://www.svgrepo.com/show/452251/account.svg" class="icon"/>
+    <img src="https://www.svgrepo.com/show/452251/account.svg" id="profileImgHeader" class="icon" onclick="openLoginOrProfile()">
   </div>
-</div><!-- Side Menu --><div id="sidemenu" class="sidemenu" onclick="this.classList.remove('show')">
-  <div class="sidemenu-box" onclick="event.stopPropagation()">
-    <span class="close-btn" onclick="document.getElementById('sidemenu').classList.remove('show')">×</span>
-    <h3>Menu</h3>
-    <button onclick="toggleTheme()">Mode Terang / Gelap</button>
-    <button onclick="showPage('tentang')">Tentang Saya</button>
-    <button onclick="alert('Belum ada pengaturan lanjutan.')">Pengaturan</button>
+</div><section id="beranda" class="page">
+  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
+    <iframe id="ytplayer" src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
   </div>
-</div><!-- Tambahan halaman Tentang --><section id="tentang" class="page" style="display:none">
-  <h2>Tentang Saya</h2>
-  <p>Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> sebagai portal berita sepak bola terkini. Selamat datang!</p>
-</section>
+</section><section id="berita" class="page" style="display:none">
+  <h2>Berita Bola</h2>
+  <iframe src="https://pajarsport.vercel.app/berita.html" style="width:100%;height:600px;border:none"></iframe>
+</section><section id="jadwal" class="page" style="display:none">
+  <h2>Jadwal Bola</h2>
+  <iframe src="https://www.livescore.com/en/football/live/" style="width:100%;height:600px;border:none"></iframe>
+</section><section id="streaming" class="page" style="display:none">
+  <h2>Streaming Bola</h2>
+  <iframe src="https://www.rbtvplus01.com/id/football.html" style="width:100%;height:600px;border:none" allowfullscreen></iframe>
+</section><section id="profil" class="page" style="display:none">
+  <div class="modal-box">
+    <span class="close-btn" onclick="showPage('beranda')">×</span>
+    <h3>Profil Saya</h3>
+    <img id="profileImgDisplay" src="https://www.svgrepo.com/show/452251/account.svg" style="width:100px;height:100px;border-radius:50%">
+    <p id="profileEmail">Belum Login</p>
+    <button onclick="logout()">Hapus Profil</button>
+  </div>
+</section><div id="loginModal" class="modal">
+  <div class="modal-box">
+    <span class="close-btn" onclick="document.getElementById('loginModal').style.display='none'">×</span>
+    <h3>Login</h3>
+    <input type="text" id="loginEmail" placeholder="Email / No HP">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <input type="file" id="loginPhoto" accept="image/*">
+    <button onclick="submitLogin()">Masuk</button>
+  </div>
+</div><script>
+  const pages = document.querySelectorAll('.page');
+  function showPage(id) {
+    pages.forEach(p => p.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    document.getElementById('ytplayer').src = (id === 'beranda') ? 'https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&modestbranding=1&rel=0' : '';
+  }
+  function toggleSideMenu() {
+    alert('Menu: Mode Terang/Gelap, Tentang Kami, Pengaturan');
+  }
+  function toggleSearch() {
+    const s = document.getElementById('searchBox');
+    s.style.display = (s.style.display === 'none') ? 'inline' : 'none';
+    s.focus();
+  }
+  function searchNews(e) {
+    if (e.key === 'Enter') {
+      showPage('berita');
+      document.getElementById('berita').innerHTML = `<iframe src='https://www.google.com/search?q=${e.target.value}+site:bolanet.com' style='width:100%;height:600px;border:none'></iframe>`;
+    }
+  }
+  function openLoginOrProfile() {
+    document.getElementById('loginModal').style.display = 'flex';
+  }
+  function submitLogin() {
+    const email = document.getElementById('loginEmail').value;
+    const pass = document.getElementById('loginPassword').value;
+    const photo = document.getElementById('loginPhoto').files[0];
+    if (!email || !pass) return alert('Lengkapi semua data');
+    if (photo) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = reader.result;
+        localStorage.setItem('user', JSON.stringify({ email, image: img }));
+        document.getElementById('profileImgHeader').src = img;
+        document.getElementById('profileImgDisplay').src = img;
+        document.getElementById('profileEmail').innerText = email;
+        document.getElementById('loginModal').style.display = 'none';
+      };
+      reader.readAsDataURL(photo);
+    }
+  }
+  function logout() {
+    localStorage.removeItem('user');
+    document.getElementById('profileImgHeader').src = 'https://www.svgrepo.com/show/452251/account.svg';
+    document.getElementById('profileImgDisplay').src = 'https://www.svgrepo.com/show/452251/account.svg';
+    document.getElementById('profileEmail').innerText = 'Belum Login';
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.image) {
+      document.getElementById('profileImgHeader').src = user.image;
+      document.getElementById('profileImgDisplay').src = user.image;
+      document.getElementById('profileEmail').innerText = user.email;
+    }
+  });
+</script></body>
+</html>
