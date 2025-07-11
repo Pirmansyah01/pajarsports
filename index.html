@@ -1,241 +1,230 @@
 <!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PP SPORTS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
-    :root {
-      --primary: #7fc7bd;
-      --background: #111;
-      --text: #fff;
-    }
     * {
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;
     }
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background: var(--background);
-      color: var(--text);
+    body {
+      background: #111;
+      color: white;
+    }
+    body.light {
+      background: #fff;
+      color: #222;
     }
     header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
+      align-items: center;
+      padding: 10px 15px;
       background: #000;
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
     }
-    #logo {
-      font-family: 'Pacifico', cursive;
-      font-size: 20px;
-      color: var(--primary);
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #7fe0d6;
     }
-    .icons {
+    .header-icons {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
     }
-    .icons i {
+    .material-icons {
       color: white;
-      font-size: 18px;
+      font-size: 28px;
       cursor: pointer;
     }
-    .langganan {
-      background: #f90;
-      color: black;
-      padding: 5px 8px;
-      font-weight: bold;
-      border-radius: 6px;
-      font-size: 11px;
-    }
-    #searchBox {
-      display: none;
-      width: calc(100% - 32px);
-      margin: 10px 16px;
-      padding: 8px;
-      font-size: 14px;
-      background: #222;
-      border: 1px solid var(--primary);
-      border-radius: 6px;
-      color: white;
-    }
-    main {
-      padding-bottom: 60px;
-    }
-    iframe {
-      width: 100%;
-      height: 220px;
-      border: none;
-      border-radius: 8px;
-    }
-    section {
-      display: none;
-      padding: 16px;
-    }
-    section.active {
-      display: block;
-    }
-    .bottom-nav {
+    nav.bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
-      width: 100%;
+      right: 0;
       background: #000;
       display: flex;
       justify-content: space-around;
       border-top: 1px solid #333;
       z-index: 999;
     }
-    .bottom-nav a {
-      color: #999;
-      text-decoration: none;
+    nav.bottom-nav a {
+      color: white;
       text-align: center;
-      font-size: 11px;
-      padding: 6px 0;
-      flex: 1;
+      padding: 8px 0;
+      font-size: 12px;
+      text-decoration: none;
+      flex-grow: 1;
     }
-    .bottom-nav a.active {
-      color: white;
+    nav.bottom-nav a.active {
+      background: #333;
     }
-    .bottom-nav i {
-      font-size: 18px;
+    section {
+      padding: 80px 15px 60px;
+      display: none;
+    }
+    section.active {
       display: block;
-      margin-bottom: 2px;
-    }
-    #sideMenu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: #222;
-      width: 200px;
-      height: 100vh;
-      transform: translateX(-100%);
-      transition: 0.3s;
-      z-index: 1001;
-      padding: 16px;
-    }
-    #sideMenu.show {
-      transform: translateX(0);
-    }
-    #sideMenu h3 {
-      margin-top: 0;
-      font-size: 16px;
-    }
-    #sideMenu ul {
-      list-style: none;
-      padding: 0;
-    }
-    #sideMenu ul li {
-      padding: 10px 0;
-      cursor: pointer;
-    }
-    #sideMenu ul li:hover {
-      color: var(--primary);
-    }
-    #closeMenuBtn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      color: white;
     }
     footer {
       text-align: center;
       font-size: 10px;
-      color: #888;
-      margin: 20px 0;
+      padding: 5px;
+      color: gray;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+    #searchBox {
+      display: none;
+      position: fixed;
+      top: 55px;
+      right: 15px;
+      background: #000;
+      border: 1px solid #555;
+      padding: 5px;
+      z-index: 1001;
+    }
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      color: white;
+    }
+    .modal-box input {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      background: #333;
+      border: none;
+      color: white;
+    }
+    .modal-box button {
+      padding: 8px 12px;
+      background: #7fe0d6;
+      border: none;
+      cursor: pointer;
+    }
+    .close-btn {
+      float: right;
+      cursor: pointer;
+      font-size: 22px;
     }
   </style>
 </head>
 <body>
   <header>
-    <i class="fas fa-bars" onclick="toggleSideMenu()"></i>
-    <div id="logo">PP SPORTS</div>
-    <div class="icons">
-      <span class="langganan">LANGGANAN</span>
-      <i class="fas fa-search" onclick="toggleSearchBox()"></i>
-      <i class="fas fa-user-circle"></i>
+    <span class="logo">PP SPORTS</span>
+    <div class="header-icons">
+      <span class="material-icons" onclick="toggleSearch()">search</span>
+      <span class="material-icons" onclick="openLoginOrProfile()">account_circle</span>
     </div>
-  </header>
-  <input type="text" id="searchBox" placeholder="Cari berita..." onkeypress="searchNews(event)">  <div id="sideMenu">
-    <span id="closeMenuBtn" onclick="toggleSideMenu()">×</span>
-    <h3>Menu</h3>
-    <ul>
-      <li onclick="navigateFake('berita')">Berita</li>
-      <li onclick="navigateFake('jadwal')">Jadwal</li>
-      <li onclick="navigateFake('live')">Streaming</li>
-      <li onclick="toggleTheme()">Mode Gelap/Terang</li>
-      <li onclick="alert('Pengaturan belum tersedia')">Pengaturan</li>
-    </ul>
-  </div>  <main>
-    <section id="beranda" class="active">
-      <iframe src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&modestbranding=1&rel=0" allow="autoplay"></iframe>
-    </section><section id="live">
-  <h2>Streaming Langsung</h2>
-  <iframe src="https://www.rbtvplus01.com/id/football.html" allowfullscreen></iframe>
-</section>
-
-<section id="berita">
-  <h2>Berita Bola</h2>
-  <iframe src="https://www.google.com/search?q=site:bola.net+berita+sepak+bola"></iframe>
-</section>
-
-<section id="jadwal">
-  <h2>Jadwal Pertandingan</h2>
-  <iframe src="https://www.goal.com/en/live-scores"></iframe>
-</section>
-
-  </main>  <nav class="bottom-nav">
-    <a href="#beranda" class="active" onclick="navigate(event, 'beranda')">
-      <i class="fas fa-home"></i>
-      Beranda
-    </a>
-    <a href="#live" onclick="navigate(event, 'live')">
-      <i class="fas fa-tv"></i>
-      Live
-    </a>
-    <a href="#berita" onclick="navigate(event, 'berita')">
-      <i class="fas fa-newspaper"></i>
-      Berita
-    </a>
-    <a href="#jadwal" onclick="navigate(event, 'jadwal')">
-      <i class="fas fa-calendar"></i>
-      Jadwal
-    </a>
-  </nav>  <footer>
+    <input type="text" id="searchBox" placeholder="Cari berita bola..." onkeydown="searchNews(event)" />
+  </header>  <section id="beranda" class="active">
+    <h2>Streaming Bola Favoritmu</h2>
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+  </section>  <section id="live">
+    <h2>Streaming Langsung</h2>
+    <iframe src="https://www.rbtvplus01.com/id/football.html" allowfullscreen></iframe>
+  </section>  <section id="berita">
+    <h2>Berita Bola</h2>
+    <div id="news-feed">
+      <iframe src="https://pajarsport.vercel.app/berita.html"></iframe>
+    </div>
+  </section>  <section id="jadwal">
+    <h2>Jadwal Pertandingan</h2>
+    <iframe src="https://www.livescore.com/en/football/live/"></iframe>
+  </section>  <footer>
     &copy; Pajar Pirmansyaah
-  </footer>  <script>
-    function navigate(e, id) {
-      e.preventDefault();
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.bottom-nav a').forEach(a => a.classList.remove('active'));
-      e.currentTarget.classList.add('active');
+  </footer>  <nav class="bottom-nav">
+    <a href="#" onclick="navigate('beranda')"><span class="material-icons">home</span><br>Beranda</a>
+    <a href="#" onclick="navigate('live')"><span class="material-icons">tv</span><br>Live</a>
+    <a href="#" onclick="navigate('berita')"><span class="material-icons">newspaper</span><br>Berita</a>
+    <a href="#" onclick="navigate('jadwal')"><span class="material-icons">event</span><br>Jadwal</a>
+    <a href="#" onclick="openLoginOrProfile()"><span class="material-icons">person</span><br>Akun</a>
+  </nav>  <div id="loginModal" class="modal" style="display:none;">
+    <div class="modal-box">
+      <span class="material-icons close-btn" onclick="document.getElementById('loginModal').style.display='none'">close</span>
+      <h3>Login</h3>
+      <input type="text" id="loginEmail" placeholder="Email / No HP">
+      <input type="password" id="loginPassword" placeholder="Password">
+      <label>Foto Profil:</label>
+      <input type="file" id="loginPhoto" accept="image/*">
+      <button onclick="submitLogin()">Masuk</button>
+      <button onclick="logout()">Hapus Profil</button>
+    </div>
+  </div>  <script>
+    function navigate(pageId) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      [...document.querySelectorAll('nav a')].find(a => a.innerText.toLowerCase().includes(pageId)).classList.add('active');
     }
-    function navigateFake(id) {
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-    function toggleSideMenu() {
-      document.getElementById('sideMenu').classList.toggle('show');
-    }
-    function toggleSearchBox() {
+    function toggleSearch() {
       const box = document.getElementById('searchBox');
-      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+      box.style.display = box.style.display === 'none' ? 'inline' : 'none';
       box.focus();
     }
-    function searchNews(e) {
-      if (e.key === 'Enter') {
-        const query = e.target.value;
-        window.open(`https://www.google.com/search?q=${query}+site:bola.net`, '_self');
+    function searchNews(event) {
+      if (event.key === 'Enter') {
+        const query = event.target.value;
+        navigate('berita');
+        document.getElementById('news-feed').innerHTML = `<iframe src='https://www.google.com/search?q=${query}+site:bolanet.com' style='width:100%;height:500px;border:none'></iframe>`;
       }
     }
+    function openLoginOrProfile() {
+      document.getElementById('loginModal').style.display = 'flex';
+    }
+    function submitLogin() {
+      const email = document.getElementById('loginEmail').value;
+      const pass = document.getElementById('loginPassword').value;
+      const photo = document.getElementById('loginPhoto').files[0];
+      if (!email || !pass) return alert("Lengkapi semua data.");
+      if (photo) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const image = reader.result;
+          localStorage.setItem('user', JSON.stringify({ email, image }));
+          document.querySelector('.material-icons[onclick*="openLoginOrProfile"]').innerHTML = `<img src="${image}" style="width:28px;height:28px;border-radius:50%;">`;
+          document.getElementById('loginModal').style.display = 'none';
+        }
+        reader.readAsDataURL(photo);
+      } else {
+        localStorage.setItem('user', JSON.stringify({ email, image: null }));
+        document.getElementById('loginModal').style.display = 'none';
+      }
+    }
+    function logout() {
+      localStorage.removeItem('user');
+      document.querySelector('.material-icons[onclick*="openLoginOrProfile"]').innerText = 'person';
+      document.getElementById('loginModal').style.display = 'none';
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user && user.image) {
+        document.querySelector('.material-icons[onclick*="openLoginOrProfile"]').innerHTML = `<img src="${user.image}" style="width:28px;height:28px;border-radius:50%;">`;
+      }
+    });
   </script></body>
 </html>
