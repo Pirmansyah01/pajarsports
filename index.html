@@ -1,13 +1,13 @@
 <!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PP SPORTS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: #111;
       color: #fff;
       transition: background 0.3s, color 0.3s;
@@ -36,6 +36,7 @@
       border-radius: 8px;
       width: 90%;
       max-width: 400px;
+      position: relative;
     }
     .modal-box input {
       display: block;
@@ -77,6 +78,7 @@
       font-size: 14px;
       margin: 0 5px;
       padding: 8px;
+      font-weight: 500;
       border-radius: 30px;
       transition: 0.3s;
     }
@@ -86,8 +88,9 @@
     }
     #logoTitle {
       font-family: 'Pacifico', cursive;
-      font-size: 20px;
+      font-size: 26px;
       color: #7fc7bd;
+      font-weight: bold;
       margin-right: 10px;
     }
     #profileImgHeader {
@@ -102,6 +105,13 @@
       border: none;
       margin-left: 10px;
     }
+    .nav-right img.icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 12px;
+      cursor: pointer;
+      filter: brightness(0) invert(1);
+    }
     .sidemenu.show { display: flex; align-items: flex-start; justify-content: flex-start; }
   </style>
 </head>
@@ -115,110 +125,20 @@
     <button onclick="showPage('streaming')">Streaming</button>
   </div>
   <div class="nav-right">
-    <input id="searchBox" type="text" placeholder="Cari..." onkeydown="searchNews(event)">
-    <img id="profileImgHeader" onclick="openLoginOrProfile()" src="https://www.svgrepo.com/show/452251/account.svg" style="cursor:pointer"/>
+    <img src="https://www.svgrepo.com/show/488200/search.svg" class="icon" onclick="toggleSearch()" title="Cari">
+    <input id="searchBox" type="text" placeholder="Cari..." onkeydown="searchNews(event)" style="display:none">
+    <img src="https://www.svgrepo.com/show/512399/email.svg" class="icon" title="Email">
+    <img id="profileImgHeader" onclick="openLoginOrProfile()" src="https://www.svgrepo.com/show/452251/account.svg" class="icon"/>
   </div>
-</div><section id="beranda" class="page">
-  <div style="text-align:center;margin:20px auto;font-size:1.2em;color:#ccc">
-    <p></p>
-  </div>
-  <div id="berandaVideo" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
-    <iframe id="ytplayer" src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&showinfo=0&modestbranding=1&rel=0&disablekb=1&fs=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-  </div>
-</section><section id="berita" class="page" style="display:none">
-  <h2>Berita Bola</h2>
-  <div id="news-feed">
-    <iframe src="https://pajarsport.vercel.app/berita.html" style="width:100%;height:600px;border:none"></iframe>
-  </div>
-</section><section id="jadwal" class="page" style="display:none">
-  <h2>Jadwal Bola</h2>
-  <iframe src="https://www.livescore.com/en/football/live/" style="width:100%;height:600px;border:none"></iframe>
-</section><section id="streaming" class="page" style="display:none">
-  <h2>Streaming Bola</h2>
-  <iframe src="https://www.rbtvplus01.com/id/football.html" style="width:100%;height:600px;border:none" allowfullscreen></iframe>
-</section><div id="loginModal" class="modal">
-  <div class="modal-box">
-    <span class="close-btn" onclick="document.getElementById('loginModal').style.display='none'">×</span>
-    <h3>Login</h3>
-    <input type="text" id="loginEmail" placeholder="Email / No HP">
-    <input type="password" id="loginPassword" placeholder="Password">
-    <label>Foto Profil:</label>
-    <input type="file" id="loginPhoto" accept="image/*">
-    <button onclick="submitLogin()">Masuk</button>
-    <button onclick="logout()">Hapus Profil</button>
-  </div>
-</div><div id="sidemenu" class="sidemenu">
-  <div class="sidemenu-box">
-    <span class="close-btn" onclick="toggleSideMenu()">×</span>
+</div><!-- Side Menu --><div id="sidemenu" class="sidemenu" onclick="this.classList.remove('show')">
+  <div class="sidemenu-box" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="document.getElementById('sidemenu').classList.remove('show')">×</span>
+    <h3>Menu</h3>
     <button onclick="toggleTheme()">Mode Terang / Gelap</button>
-    <button onclick="alert('Fitur pengaturan segera tersedia')">Pengaturan</button>
-    <button onclick="alert('Tentang PP Sports: situs bola by Pajar Pirmansyah')">Tentang Saya</button>
+    <button onclick="showPage('tentang')">Tentang Saya</button>
+    <button onclick="alert('Belum ada pengaturan lanjutan.')">Pengaturan</button>
   </div>
-</div><script>
-  const pages = document.querySelectorAll('.page');
-
-  function showPage(id) {
-    pages.forEach(p => p.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-    const ytPlayer = document.getElementById('ytplayer');
-    if (ytPlayer) {
-      ytPlayer.src = (id === 'beranda')
-        ? 'https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&showinfo=0&modestbranding=1&rel=0&disablekb=1&fs=0'
-        : '';
-    }
-  }
-
-  function toggleSideMenu() {
-    document.getElementById('sidemenu').classList.toggle('show');
-  }
-
-  function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-  }
-
-  function searchNews(event) {
-    if (event.key === 'Enter') {
-      const query = event.target.value;
-      showPage('berita');
-      document.getElementById('news-feed').innerHTML = `<iframe src='https://www.google.com/search?q=${query}+site:bolanet.com' style='width:100%;height:600px;border:none'></iframe>`;
-    }
-  }
-
-  function openLoginOrProfile() {
-    document.getElementById('loginModal').style.display = 'flex';
-  }
-
-  function submitLogin() {
-    const email = document.getElementById('loginEmail').value;
-    const pass = document.getElementById('loginPassword').value;
-    const photo = document.getElementById('loginPhoto').files[0];
-    if (!email || !pass) return alert("Lengkapi semua data.");
-    if (photo) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const image = reader.result;
-        localStorage.setItem('user', JSON.stringify({ email, image }));
-        document.getElementById('profileImgHeader').src = image;
-        document.getElementById('loginModal').style.display = 'none';
-      }
-      reader.readAsDataURL(photo);
-    } else {
-      localStorage.setItem('user', JSON.stringify({ email, image: null }));
-      document.getElementById('loginModal').style.display = 'none';
-    }
-  }
-
-  function logout() {
-    localStorage.removeItem('user');
-    document.getElementById('profileImgHeader').src = 'https://www.svgrepo.com/show/452251/account.svg';
-    document.getElementById('loginModal').style.display = 'none';
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.image) {
-      document.getElementById('profileImgHeader').src = user.image;
-    }
-  });
-</script></body>
-</html>
+</div><!-- Tambahan halaman Tentang --><section id="tentang" class="page" style="display:none">
+  <h2>Tentang Saya</h2>
+  <p>Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> sebagai portal berita sepak bola terkini. Selamat datang!</p>
+</section>
