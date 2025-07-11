@@ -3,7 +3,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PP SPORTS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     :root {
       --telur-asin: #A3D2CA;
@@ -17,7 +17,7 @@
       padding: 0;
     }
     html, body {
-      font-family: 'Inter', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: var(--gelap);
       color: var(--putih);
       transition: 0.3s;
@@ -26,7 +26,7 @@
       background-color: var(--putih);
       color: var(--gelap);
     }
-    body.light header, body.light nav {
+    body.light header, body.light nav, body.light .sidemenu {
       background-color: var(--telur-asin);
     }
     header {
@@ -36,23 +36,53 @@
       padding: 1rem;
       background-color: var(--abu);
     }
-    .title {
+    .menu-toggle {
       font-size: 1.5rem;
-      font-weight: bold;
+      color: var(--putih);
+      cursor: pointer;
+    }
+    .title {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
       color: var(--telur-asin);
+      text-align: center;
+      flex: 1;
     }
     .nav-icons {
       display: flex;
-      gap: 1rem;
+      align-items: center;
+      gap: 0.8rem;
     }
     .nav-icons img {
       width: 30px;
       height: 30px;
       border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .sidemenu {
+      position: fixed;
+      top: 0; left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: var(--abu);
+      padding: 1rem;
+      transition: left 0.3s;
+      z-index: 999;
+    }
+    .sidemenu a {
+      display: block;
+      color: var(--putih);
+      text-decoration: none;
+      margin: 1rem 0;
+    }
+    .sidemenu.show {
+      left: 0;
     }
     nav {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 1rem;
       padding: 0.5rem;
       background-color: var(--abu);
@@ -61,7 +91,7 @@
       color: var(--putih);
       text-decoration: none;
       font-size: 0.9rem;
-      padding: 0.3rem 0.6rem;
+      padding: 0.4rem 0.8rem;
       border-radius: 20px;
       transition: 0.3s;
     }
@@ -83,67 +113,43 @@
       font-size: 0.8rem;
       color: gray;
     }
-    #loginModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-    .modal-box {
-      background: #222;
-      color: white;
-      padding: 1rem;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-    }
-    .modal-box input, .modal-box button {
-      width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.5rem;
-      border: none;
+    .search {
+      background: none;
+      border: 1px solid var(--putih);
       border-radius: 5px;
+      color: var(--putih);
+      padding: 0.3rem 0.5rem;
     }
-    .modal-box button {
-      background: var(--telur-asin);
-      color: black;
-      cursor: pointer;
-    }
-    #profileImgHeader {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      object-fit: cover;
+    body.light .search {
+      border-color: var(--gelap);
+      color: var(--gelap);
     }
   </style>
 </head>
 <body>
-  <header>
+  <div class="sidemenu" id="sidemenu">
+    <a href="#" onclick="toggleTheme()">🌗 Mode Terang/Gelap</a>
+    <a href="#" onclick="alert('Pengaturan akan datang')">⚙️ Pengaturan</a>
+    <a href="#" onclick="toggleMenu()">🔙 Kembali</a>
+    <a href="#" onclick="showPage('tentang')">Tentang Kami</a>
+  </div>  <header>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <div class="title">PP SPORTS</div>
     <div class="nav-icons">
-      <button onclick="toggleTheme()">🌓</button>
+      <input class="search" type="text" placeholder="Cari..." onkeyup="searchNews(event)">
       <img id="profileImgHeader" src="https://via.placeholder.com/30" onclick="openLoginOrProfile()" />
     </div>
   </header>  <nav>
     <a href="#" onclick="showPage('beranda')">Beranda</a>
-    <a href="#" onclick="showPage('berita')">Berita</a>
+    <a href="https://www.bola.net" target="_blank">Berita</a>
     <a href="#" onclick="showPage('skor')">Skor</a>
     <a href="#" onclick="showPage('streaming')">Streaming</a>
-    <a href="#" onclick="showPage('tentang')">Tentang</a>
+    <a href="https://www.livescore.com" target="_blank">Jadwal Bola</a>
   </nav>  <main>
     <section id="beranda" class="page">
       <h2>Selamat Datang di PP SPORTS</h2>
-      <p>Sumber utama untuk skor bola, berita terbaru, dan streaming langsung.</p>
-    </section><section id="berita" class="page" style="display:none">
-  <h2>Berita Bola</h2>
-  <div id="news-feed">Memuat berita...</div>
-</section>
-
-<section id="skor" class="page" style="display:none">
+      <p>Informasi lengkap seputar sepak bola untuk para pecinta bola Indonesia.</p>
+    </section><section id="skor" class="page" style="display:none">
   <h2>Skor Langsung</h2>
   <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
 </section>
@@ -155,79 +161,42 @@
 
 <section id="tentang" class="page" style="display:none">
   <h2>Tentang Kami</h2>
-  <p>Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> untuk menyajikan informasi sepak bola secara real-time.</p>
+  <p>Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> sebagai portal informasi sepak bola terbaik.</p>
 </section>
 
   </main>  <footer>
     &copy; 2025 Pajar Pirmansyah. All rights reserved.
-  </footer>  <div id="loginModal" class="modal">
-    <div class="modal-box">
-      <h3>Login</h3>
-      <input type="text" id="loginEmail" placeholder="Email / No HP">
-      <input type="password" id="loginPassword" placeholder="Password">
-      <label>Foto Profil:</label>
-      <input type="file" id="loginPhoto" accept="image/*">
-      <button onclick="submitLogin()">Masuk</button>
-    </div>
-  </div>  <script>
+  </footer>  <script>
     const pages = document.querySelectorAll('.page');
-
     function showPage(id) {
       pages.forEach(p => p.style.display = 'none');
       document.getElementById(id).style.display = 'block';
     }
-
+    function toggleMenu() {
+      document.getElementById('sidemenu').classList.toggle('show');
+    }
     function toggleTheme() {
       document.body.classList.toggle('light');
     }
-
     function openLoginOrProfile() {
       const user = JSON.parse(localStorage.getItem('user'));
       if (user && user.image) {
         alert('Halo ' + user.email);
       } else {
-        document.getElementById('loginModal').style.display = 'flex';
+        alert('Fitur login belum aktif. (Simulasi)');
       }
     }
-
-    function submitLogin() {
-      const email = document.getElementById('loginEmail').value;
-      const pass = document.getElementById('loginPassword').value;
-      const photo = document.getElementById('loginPhoto').files[0];
-      if (!email || !pass) return alert("Lengkapi semua data.");
-
-      if (photo) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const image = reader.result;
-          localStorage.setItem('user', JSON.stringify({ email, image }));
-          document.getElementById('profileImgHeader').src = image;
-          document.getElementById('loginModal').style.display = 'none';
-        }
-        reader.readAsDataURL(photo);
-      } else {
-        localStorage.setItem('user', JSON.stringify({ email, image: null }));
-        document.getElementById('loginModal').style.display = 'none';
+    function searchNews(event) {
+      if (event.key === 'Enter') {
+        const query = event.target.value;
+        window.open(`https://www.google.com/search?q=${query}+site:bola.net`, '_blank');
       }
     }
-
     window.addEventListener('DOMContentLoaded', () => {
       const user = JSON.parse(localStorage.getItem('user'));
       if (user && user.image) {
         document.getElementById('profileImgHeader').src = user.image;
       }
     });
-
-    fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola")
-      .then(res => res.json())
-      .then(data => {
-        const feed = document.getElementById("news-feed");
-        data.items.slice(0, 5).forEach(item => {
-          const a = document.createElement("a");
-          a.href = item.link; a.textContent = item.title; a.target = '_blank';
-          a.style.display = 'block'; a.style.margin = '0.5rem 0';
-          feed.appendChild(a);
-        });
-      });
   </script></body>
 </html>
