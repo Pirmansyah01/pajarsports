@@ -3,6 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PP SPORTS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -12,7 +13,7 @@
       transition: background 0.3s, color 0.3s;
     }
     .light-mode {
-      background: #e6f0eb;
+      background: #dcefe9;
       color: #111;
     }
     .page {
@@ -63,7 +64,7 @@
       justify-content: space-between;
       align-items: center;
       background: #1a1a1a;
-      padding: 10px;
+      padding: 10px 20px;
     }
     .nav-left, .nav-right {
       display: flex;
@@ -76,11 +77,18 @@
       font-size: 14px;
       margin: 0 5px;
       padding: 8px;
-      border-radius: 50px;
+      border-radius: 30px;
+      transition: 0.3s;
     }
     .nav button:hover, .nav button.active {
-      background: #44bbaa;
+      background: #7fc7bd;
       color: black;
+    }
+    #logoTitle {
+      font-family: 'Pacifico', cursive;
+      font-size: 20px;
+      color: #7fc7bd;
+      margin-right: 10px;
     }
     #profileImgHeader {
       width: 30px;
@@ -92,13 +100,14 @@
       padding: 5px;
       border-radius: 4px;
       border: none;
-      margin-left: 5px;
+      margin-left: 10px;
     }
     .sidemenu.show { display: flex; align-items: flex-start; justify-content: flex-start; }
   </style>
 </head>
 <body><div class="nav">
   <div class="nav-left">
+    <span id="logoTitle">PP SPORTS</span>
     <button onclick="toggleSideMenu()">☰</button>
     <button onclick="showPage('beranda')">Beranda</button>
     <button onclick="showPage('berita')">Berita</button>
@@ -111,7 +120,7 @@
   </div>
 </div><section id="beranda" class="page">
   <div style="text-align:center;margin:20px auto;font-size:1.2em;color:#ccc">
-    <p>Platform sepak bola digital yang menyajikan skor langsung, berita terkini, dan layanan streaming berkualitas.</p>
+    <p></p>
   </div>
   <div id="berandaVideo" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
     <iframe id="ytplayer" src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&showinfo=0&modestbranding=1&rel=0&disablekb=1&fs=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
