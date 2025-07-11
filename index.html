@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pajar Sports</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --light-bg: #ffffff;
@@ -73,6 +73,7 @@ body.dark header {
 .search-container {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
 .search-container input {
   padding: 5px 10px;
@@ -85,38 +86,48 @@ body.dark header {
   color: white;
   cursor: pointer;
 }
-
+.menu-toggle {
+  margin-left: 20px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
 .sidebar {
   display: none;
   position: absolute;
-  top: 50px;
-  left: 10px;
+  top: 60px;
+  left: 20px;
   background: #fff;
   border-radius: 8px;
   border: 1px solid #ccc;
   padding: 10px;
   z-index: 10;
-  width: 160px;
+  width: 180px;
 }
 body.dark .sidebar {
   background: #2a2a2a;
+  border-color: #444;
 }
 .sidebar a {
   display: block;
-  padding: 8px 12px;
+  padding: 10px 12px;
   font-size: 14px;
   text-decoration: none;
   color: inherit;
   border-bottom: 1px solid #ccc;
+  transition: background 0.3s;
 }
-.sidebar a:last-child {
-  border-bottom: none;
+.sidebar a:hover {
+  background-color: #f0f0f0;
+}
+body.dark .sidebar a:hover {
+  background-color: #333;
 }
 nav {
   background-color: white;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   padding: 10px;
 }
 body.dark nav {
@@ -126,14 +137,18 @@ nav a {
   text-decoration: none;
   color: inherit;
   font-weight: 600;
-  font-size: 14px;
-  position: relative;
-  padding: 5px 10px;
+  font-size: 13.5px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 6px 14px;
   border-radius: 20px;
   transition: 0.3s;
 }
-nav a:focus, nav a:hover {
-  background-color: var(--light-accent);
+nav a:hover {
+  background: var(--light-accent);
+  color: #fff;
+}
+body.dark nav a:hover {
+  background: var(--dark-accent);
   color: #fff;
 }
 main {
@@ -164,11 +179,13 @@ footer {
 </head>
 <body>
   <div class="top-bar">
+    <div class="menu-toggle" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Cari di Google..." onkeypress="handleSearch(event)" />
       <i class="fas fa-search" onclick="toggleSearch()"></i>
     </div>
-    <div class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars" style="color:white;"></i></div>
   </div>  <header>
     <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola" />
     <h1 class="judul">Pajar Sports</h1>
@@ -232,4 +249,4 @@ footer {
       document.body.classList.toggle('dark');
     }
   </script></body>
-</html>
+  </html>
