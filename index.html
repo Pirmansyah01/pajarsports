@@ -20,6 +20,7 @@
     #beranda { display: block; }
     .nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       background: #1a1a1a;
@@ -32,6 +33,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
     }
     .nav button {
       background: transparent;
@@ -97,21 +99,38 @@
       cursor: pointer;
     }
     .sidemenu-box h3 { margin-top: 0; color: #7fc7bd; }
+    footer {
+      text-align: center;
+      font-size: 10px;
+      color: #888;
+      margin: 20px 0;
+    }
+    @media (max-width: 768px) {
+      .nav-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .nav button {
+        font-size: 13px;
+        padding: 4px 8px;
+      }
+    }
   </style>
 </head>
 <body><div class="nav">
   <div class="nav-left">
     <span id="logoTitle">PP SPORTS</span>
-    <img src="https://www.svgrepo.com/show/533329/menu.svg" class="icon" onclick="toggleSideMenu()">
+    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon" onclick="toggleSideMenu()" alt="menu">
     <button onclick="showPage('beranda')" id="nav-beranda" class="active">Beranda</button>
     <button onclick="showPage('berita')" id="nav-berita">Berita</button>
     <button onclick="showPage('jadwal')" id="nav-jadwal">Jadwal</button>
     <button onclick="showPage('streaming')" id="nav-streaming">Streaming</button>
   </div>
   <div>
-    <img src="https://www.svgrepo.com/show/499793/search.svg" class="icon" onclick="toggleSearch()">
+    <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" class="icon" onclick="toggleSearch()">
     <input id="searchBox" type="text" placeholder="Cari..." onkeydown="searchNews(event)" style="display:none">
-    <img src="https://www.svgrepo.com/show/452251/account.svg" id="profileImgHeader" class="icon" onclick="openLoginOrProfile()">
+    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" id="profileImgHeader" class="icon" onclick="openLoginOrProfile()" alt="profil">
   </div>
 </div><section id="beranda" class="page">
   <div id="berandaVideo" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
@@ -148,7 +167,7 @@
 </div><section id="tentang" class="page" style="display:none">
   <h2>Tentang Kami</h2>
   <p>Website ini dikelola oleh Pajar Pirmansyah. Menyediakan informasi sepak bola akurat dan streaming langsung terpercaya.</p>
-</section><script>
+</section><footer>© Pajar Pirmansyaah</footer><script>
   const pages = document.querySelectorAll('.page');
   function showPage(id) {
     pages.forEach(p => p.style.display = 'none');
@@ -203,7 +222,7 @@
   }
   function logout() {
     localStorage.removeItem('user');
-    document.getElementById('profileImgHeader').src = 'https://www.svgrepo.com/show/452251/account.svg';
+    document.getElementById('profileImgHeader').src = 'https://cdn-icons-png.flaticon.com/512/847/847969.png';
     document.getElementById('loginModal').style.display = 'none';
   }
   window.addEventListener('DOMContentLoaded', () => {
