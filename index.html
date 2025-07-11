@@ -33,19 +33,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 1rem;
+      padding: 1rem 1.5rem;
       border-bottom: 2px solid #00bfa6;
     }
     .site-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #00bfa6;
       letter-spacing: 2px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .site-title img {
-      height: 30px;
     }
     .menu-icon, .search-icon {
       font-size: 1.5rem;
@@ -53,34 +47,39 @@
       cursor: pointer;
     }
 
-    /* Navigasi Sticky */
+    /* Navigasi Terpisah dan Rapi */
     nav.horizontal-nav {
       position: sticky;
       top: 0;
       z-index: 900;
       background-color: #0d0d0d;
-      display: flex;
-      justify-content: center;
       border-bottom: 2px solid #00bfa6;
     }
-    nav.horizontal-nav a {
-      padding: 1rem 1.5rem;
+    nav.horizontal-nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 1rem;
+      gap: 30px;
+    }
+    nav.horizontal-nav ul li a {
       color: white;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       transition: 0.3s;
       position: relative;
     }
-    nav.horizontal-nav a:hover,
-    nav.horizontal-nav a.active {
+    nav.horizontal-nav ul li a:hover,
+    nav.horizontal-nav ul li a.active {
       color: #00bfa6;
     }
-    nav.horizontal-nav a.active::after,
-    nav.horizontal-nav a:hover::after {
+    nav.horizontal-nav ul li a.active::after,
+    nav.horizontal-nav ul li a:hover::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: -5px;
       height: 3px;
       width: 100%;
       background-color: #00bfa6;
@@ -128,11 +127,11 @@
     body.dark-mode nav.horizontal-nav {
       background-color: #eeeeee;
     }
-    body.dark-mode nav.horizontal-nav a {
+    body.dark-mode nav.horizontal-nav ul li a {
       color: #000000;
     }
-    body.dark-mode nav.horizontal-nav a.active::after,
-    body.dark-mode nav.horizontal-nav a:hover::after {
+    body.dark-mode nav.horizontal-nav ul li a.active::after,
+    body.dark-mode nav.horizontal-nav ul li a:hover::after {
       background-color: #00bfa6;
     }
   </style>
@@ -144,19 +143,18 @@
   <!-- Header -->
   <header>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <div class="site-title">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Soccer_ball_2.svg" alt="Logo">
-      PP SPORT
-    </div>
+    <div class="site-title">PP SPORT</div>
     <div class="search-icon">🔍</div>
   </header>
 
   <!-- Navigasi Terpisah -->
   <nav class="horizontal-nav">
-    <a href="#berita" class="nav-link active">Berita</a>
-    <a href="#skor" class="nav-link">Skor</a>
-    <a href="#tv-streaming" class="nav-link">Streaming</a>
-    <a href="#tentang" class="nav-link">Tentang</a>
+    <ul>
+      <li><a href="#berita" class="nav-link active">Berita</a></li>
+      <li><a href="#skor" class="nav-link">Skor</a></li>
+      <li><a href="#tv-streaming" class="nav-link">Streaming</a></li>
+      <li><a href="#tentang" class="nav-link">Tentang</a></li>
+    </ul>
   </nav>
 
   <!-- Sidebar -->
@@ -168,7 +166,7 @@
     </ul>
   </nav>
 
-  <!-- Konten Utama -->
+  <!-- Konten -->
   <main>
     <section id="berita">
       <h3>Berita Sepak Bola</h3>
@@ -192,7 +190,6 @@
   </main>
 
   <script>
-    // Splash
     window.onload = () => {
       setTimeout(() => {
         document.getElementById("splash").style.display = "none";
@@ -213,7 +210,6 @@
       document.body.classList.toggle("dark-mode");
     }
 
-    // Aktifkan highlight menu
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function () {
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -221,7 +217,6 @@
       });
     });
 
-    // Ambil berita dari Google News
     function fetchNews() {
       const url = "https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola&hl=id&gl=ID&ceid=ID:id";
       fetch(url)
