@@ -34,10 +34,15 @@
       align-items: center;
       gap: 1rem;
     }
-    .icon {
-      font-size: 1.3rem;
-      color: white;
+    .icon-btn {
+      background: none;
+      border: none;
       cursor: pointer;
+    }
+    .icon-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: white;
     }
     #searchBox {
       display: none;
@@ -86,22 +91,6 @@
     nav a:hover::after,
     nav a.active::after {
       transform: scaleX(1);
-    }
-    nav a:active::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      width: 200%;
-      height: 200%;
-      background: rgba(0, 191, 166, 0.2);
-      border-radius: 50%;
-      z-index: -1;
-      transition: transform 0.4s ease;
-    }
-    nav a:active::before {
-      transform: translate(-50%, -50%) scale(1);
     }
 
     .content {
@@ -185,11 +174,17 @@
 <body>
 
 <header>
-  <div class="icon" onclick="toggleMenu()">☰</div>
+  <div class="icon-btn" onclick="toggleMenu()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+  </div>
   <div class="title">PP SPORTS</div>
   <div class="icons">
-    <div class="icon" onclick="toggleSearch()">🔍</div>
-    <a href="langganan.html" class="icon" title="Langganan">👤</a>
+    <button class="icon-btn" onclick="toggleSearch()" title="Cari">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34C15.15 5.59 12.16 3 8.5 3S1.85 5.59 1.85 8.39c0 2.8 2.99 5.39 6.65 5.39a6.5 6.5 0 005.34-1.48l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-7 0C5.01 14 3 11.99 3 9.5S5.01 5 7.5 5 12 7.01 12 9.5 9.99 14 7.5 14z"/></svg>
+    </button>
+    <a class="icon-btn" href="langganan.html" title="Langganan">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+    </a>
   </div>
 </header>
 
@@ -287,7 +282,7 @@ function handleSearch(e) {
   if (e.key === "Enter") {
     const keyword = e.target.value.toLowerCase();
     alert("Hasil pencarian untuk: " + keyword);
-    // Bisa dikembangkan jadi filter konten atau buka halaman pencarian khusus
+    // Bisa diarahkan ke sistem pencarian nanti
   }
 }
 </script>
