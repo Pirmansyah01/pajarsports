@@ -1,191 +1,101 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PP SPORT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PP SPORTS</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Bebas Neue', sans-serif;
-      background: #0d0d0d;
-      color: white;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    header {
-      background: #0d0d0d;
-      padding: 1rem;
-      text-align: center;
-      font-size: 2rem;
-      color: #00bfa6;
-      border-bottom: 2px solid #00bfa6;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      background: #1a1a1a;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 2px solid #00bfa6;
-    }
-
-    nav a {
-      position: relative;
-      padding: 0.7rem 1.2rem;
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      overflow: hidden;
-      transition: color 0.3s ease;
-    }
-
-    nav a.active,
-    nav a:hover {
-      color: #00bfa6;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      top: 50%;
-      left: 50%;
-      background: rgba(0, 191, 166, 0.2);
-      transform: translate(-50%, -50%) scale(0);
-      border-radius: 50%;
-      z-index: -1;
-      transition: transform 0.4s ease;
-    }
-
-    nav a:active::after {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .content {
-      display: none;
-      padding: 2rem 1rem;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .content.active {
-      display: block;
-    }
-
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      margin-top: 1rem;
-    }
-
-    h2 {
-      color: #00bfa6;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      margin: 3rem 0 1rem;
-      color: #888;
-      font-size: 0.9rem;
-    }
-
-    a.news-link {
-      display: block;
-      margin-bottom: 10px;
-      color: #00bfa6;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
-    @media (max-width: 600px) {
-      nav {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Bebas Neue',sans-serif;background:#0d0d0d;color:#fff;transition:0.3s}
+    header{position:sticky;top:0;z-index:1000;background:#1a1a1a;display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1rem;border-bottom:2px solid #00bfa6}
+    .title{font-size:1.6rem;color:#00bfa6}
+    .icons{display:flex;gap:1rem}
+    .icon{font-size:1.4rem;color:#fff;cursor:pointer}
+    nav{display:flex;justify-content:center;gap:1rem;background:#1a1a1a;padding:0.5rem 0;border-bottom:1px solid #333}
+    nav a{position:relative;color:#fff;text-decoration:none;font-size:0.95rem;padding:0.5rem 1rem;overflow:hidden;transition:color 0.3s}
+    nav a::after{content:"";position:absolute;width:100%;height:2px;left:0;bottom:0;background:#00bfa6;transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+    nav a:hover::after,nav a.active::after{transform:scaleX(1)}
+    nav a:active::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:200%;height:200%;background:rgba(0,191,166,0.2);border-radius:50%;transition:transform 0.4s;z-index:-1}
+    nav a:active::before{transform:translate(-50%,-50%) scale(1)}
+    .content{display:none;padding:2rem 1rem;max-width:800px;margin:auto}
+    .content.active{display:block}
+    iframe{width:100%;height:500px;border:none;margin-top:1rem}
+    h2{text-align:center;color:#00bfa6;margin-bottom:1rem}
+    footer{text-align:center;padding:1rem;color:#888;font-size:0.85rem}
+    #side-menu{position:fixed;top:0;left:-260px;width:260px;height:100%;background:#1a1a1a;color:#fff;padding:1rem;transition:left 0.3s;z-index:1001}
+    #side-menu button{display:block;margin:1rem 0;padding:0.6rem;border:none;background:none;color:#00bfa6;font-size:1rem;cursor:pointer;text-align:left}
+    body.light{background:#f9f9f9;color:#111}
+    body.light header,body.light nav{background:#fff}
+    body.light nav a{color:#111}
+    body.light footer{color:#555}
   </style>
 </head>
 <body>
 
-  <header>PP SPORT</header>
+<header>
+  <div class="icon" onclick="toggleMenu()">☰</div>
+  <div class="title">PP SPORTS</div>
+  <div class="icons"><div class="icon">🔍</div></div>
+</header>
 
-  <nav>
-    <a href="#" onclick="showPage('home')">Home</a>
-    <a href="#" onclick="showPage('berita')">Berita</a>
-    <a href="#" onclick="showPage('skor')">Skor</a>
-    <a href="#" onclick="showPage('streaming')">Streaming</a>
-    <a href="#" onclick="showPage('tentang')">Tentang</a>
-  </nav>
+<nav>
+  <a href="#" onclick="show('home')">Home</a>
+  <a href="#" onclick="show('berita')">Berita</a>
+  <a href="#" onclick="show('skor')">Skor</a>
+  <a href="#" onclick="show('streaming')">Streaming</a>
+  <a href="#" onclick="show('tentang')">Tentang</a>
+</nav>
 
-  <div id="home" class="content active">
-    <h2>Selamat datang di PP SPORT</h2>
-    <p style="text-align:center;">Platform sepak bola modern buatan Pajar Pirmansyah. Klik menu di atas untuk mulai!</p>
-  </div>
+<div id="home" class="content active">
+  <h2>Selamat datang di PP SPORTS</h2>
+  <p style="text-align:center;">Platform bola sporty oleh Pajar Pirmansyah. Klik menu di atas!</p>
+</div>
+<div id="berita" class="content"><h2>Berita Sepak Bola</h2><div id="news-feed">Memuat...</div></div>
+<div id="skor" class="content"><h2>Live Skor</h2><iframe src="https://www.scorebat.com/embed/livescore/"></iframe></div>
+<div id="streaming" class="content"><h2>Streaming Bola</h2><iframe src="https://www.rbtvplus01.com/id/football.html"></iframe></div>
+<div id="tentang" class="content"><h2>Tentang Kami</h2><p style="text-align:center;">PP SPORTS oleh <strong>Pajar Pirmansyah</strong>: berita, skor & streaming dengan tampilan modern & clean.</p></div>
 
-  <div id="berita" class="content">
-    <h2>Berita Sepak Bola</h2>
-    <div id="news-feed">Memuat berita...</div>
-  </div>
+<div id="side-menu">
+  <button onclick="toggleTheme()">Toggle Mode Terang</button>
+  <button onclick="toggleMenu()">Tutup</button>
+</div>
 
-  <div id="skor" class="content">
-    <h2>Live Skor</h2>
-    <iframe src="https://www.scorebat.com/embed/livescore/"></iframe>
-  </div>
+<footer>© 2025 Pajar Pirmansyah. All rights reserved.</footer>
 
-  <div id="streaming" class="content">
-    <h2>Streaming Bola</h2>
-    <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
-  </div>
+<script>
+function show(id){
+  document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+  event.target.classList.add('active');
 
-  <div id="tentang" class="content">
-    <h2>Tentang Kami</h2>
-    <p style="text-align:center;">PP SPORT adalah platform sepak bola terkini buatan <strong>Pajar Pirmansyah</strong>, menyajikan berita, skor, dan streaming pertandingan dengan tampilan stylish dan responsif.</p>
-  </div>
+  if(id==='berita' && !document.getElementById('news-feed').hasChildNodes()){
+    fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola&hl=id&gl=ID&ceid=ID:id")
+      .then(r=>r.json()).then(d=>{
+        const f=document.getElementById('news-feed');
+        f.innerHTML='';
+        d.items.slice(0,5).forEach(i=>{
+          const a=document.createElement('a');
+          a.href=i.link;
+          a.target='_blank';
+          a.textContent=i.title;
+          a.className='news-link';
+          f.appendChild(a);
+        });
+      }).catch(_=>document.getElementById('news-feed').textContent='Gagal memuat berita.');
+  }
+}
 
-  <footer>
-    © 2025 Pajar Pirmansyah. All rights reserved.
-  </footer>
+function toggleMenu(){
+  const m=document.getElementById('side-menu');
+  m.style.left = m.style.left==='0px'?'-260px':'0px';
+}
 
-  <script>
-    function showPage(id) {
-      document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-      event.target.classList.add('active');
-
-      if (id === 'berita' && !document.getElementById("news-feed").hasChildNodes()) {
-        fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola&hl=id&gl=ID&ceid=ID:id")
-          .then(res => res.json())
-          .then(data => {
-            const feed = document.getElementById("news-feed");
-            feed.innerHTML = "";
-            data.items.slice(0, 5).forEach(item => {
-              const link = document.createElement("a");
-              link.href = item.link;
-              link.target = "_blank";
-              link.textContent = item.title;
-              link.className = "news-link";
-              feed.appendChild(link);
-            });
-          })
-          .catch(() => {
-            document.getElementById("news-feed").innerText = "Gagal memuat berita.";
-          });
-      }
-    }
-  </script>
+function toggleTheme(){
+  document.body.classList.toggle('light');
+}
+</script>
 
 </body>
 </html>
