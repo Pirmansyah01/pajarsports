@@ -1,347 +1,235 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PP SPORTS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --telur-asin: #A3D2CA;
+      --gelap: #0d0d0d;
+      --abu: #1a1a1a;
+      --putih: #ffffff;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     html, body {
-      width: 100%; height: 100%;
-      font-family: sans-serif;
-      background: #0d0d0d; color: white;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--gelap);
+      color: var(--putih);
       transition: 0.3s;
     }
+    body.light {
+      background-color: var(--putih);
+      color: var(--gelap);
+    }
+    body.light header, body.light nav {
+      background-color: var(--telur-asin);
+    }
     header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.8rem 1rem;
-      background: #1a1a1a;
-      border-bottom: 2px solid #00bfa6;
-      position: sticky; top: 0; z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: var(--abu);
     }
     .title {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.6rem;
-      color: #00bfa6;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--telur-asin);
     }
-    .icons {
-      display: flex; align-items: center; gap: 1rem;
+    .nav-icons {
+      display: flex;
+      gap: 1rem;
     }
-    .icon-btn {
-      background: none; border: none; cursor: pointer;
-    }
-    .icon-btn svg {
-      width: 22px; height: 22px; fill: white;
-    }
-    #searchBox {
-      display: none;
-      position: absolute;
-      top: 60px; right: 70px;
-      background: white; padding: 5px 10px;
-      border-radius: 5px;
-    }
-    #searchBox input {
-      border: none; outline: none; padding: 5px;
+    .nav-icons img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
     }
     nav {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 1rem;
-      background: #1a1a1a;
       padding: 0.5rem;
-      border-bottom: 1px solid #333;
+      background-color: var(--abu);
     }
     nav a {
-      color: white; text-decoration: none;
-      font-size: 0.9rem; position: relative;
-      padding: 0.6rem 0.8rem;
+      color: var(--putih);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 20px;
+      transition: 0.3s;
     }
-    nav a::after {
-      content: "";
-      position: absolute; width: 100%; height: 2px;
-      left: 0; bottom: 0;
-      background: #00bfa6;
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s ease;
+    nav a:hover, nav a.active {
+      background-color: var(--telur-asin);
+      color: var(--gelap);
     }
-    nav a:hover::after, nav a.active::after {
-      transform: scaleX(1);
-    }
-    .content {
-      display: none;
+    main {
       padding: 1rem;
-      max-width: 1000px;
-      margin: auto;
     }
-    .content.active { display: block; }
     iframe {
-      width: 100%; min-height: 500px;
-      border: none; margin-top: 1rem;
+      width: 100%;
+      height: 600px;
+      border: none;
     }
     footer {
       text-align: center;
-      padding: 2rem 0 1rem;
-      font-size: 0.85rem;
-      color: #888;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: gray;
     }
-    #side-menu {
+    #profileModal, #loginModal {
+      display: none;
       position: fixed;
-      top: 0; left: -260px;
-      width: 260px; height: 100%;
-      background: #1a1a1a; color: white;
-      padding: 1rem; transition: left 0.3s;
-      z-index: 2000;
-    }
-    #side-menu button {
-      display: flex; align-items: center;
-      gap: 10px; margin: 1rem 0;
-      background: none; border: none;
-      font-size: 1rem; color: #00bfa6;
-      cursor: pointer;
-    }
-    h2 {
-      text-align: center;
-      color: #00bfa6;
-      margin-bottom: 1rem;
-      font-size: 1.4rem;
-    }
-    .news-link {
-      display: block;
-      margin-bottom: 10px;
-      color: #00bfa6;
-      text-decoration: none;
-    }
-    #loginModal {
-      display: none; position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 3000; justify-content: center;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
       align-items: center;
+      z-index: 999;
     }
-    .login-box {
-      background: #1e1e1e;
-      padding: 20px; border-radius: 10px;
-      width: 90%; max-width: 400px;
+    .modal-box {
+      background: #222;
       color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
     }
-    .login-box h3 {
-      margin-bottom: 15px;
-      text-align: center;
-      color: #00bfa6;
+    .modal-box input, .modal-box button {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.5rem;
+      border: none;
+      border-radius: 5px;
     }
-    .login-box input {
-      width: 100%; margin: 10px 0;
-      padding: 10px;
-      border: none; border-radius: 5px;
-    }
-    .login-box button {
-      width: 100%; padding: 10px;
-      margin-top: 10px;
-      background: #00bfa6; color: white;
-      border: none; border-radius: 5px;
+    .modal-box button {
+      background: var(--telur-asin);
+      color: black;
       cursor: pointer;
     }
-    .login-box button:hover {
-      background: #009e8a;
-    }
-    .profile-box {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .profile-box img {
-      width: 100px; height: 100px;
-      border-radius: 50%; object-fit: cover;
-      margin-bottom: 10px;
-    }
-    .profile-box h3, .profile-box p {
-      margin: 5px 0;
-    }
-    .profile-box button {
-      margin-top: 10px;
-      background: #00bfa6;
-      border: none; padding: 8px 16px;
-      border-radius: 6px;
-      color: white;
-      cursor: pointer;
-    }
-    @media screen and (max-width: 768px) {
-      .title { font-size: 1.3rem; }
-      nav a { font-size: 0.85rem; }
+    #profileImgHeader {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <div class="icon-btn" onclick="toggleMenu()">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
-  </div>
-  <div class="title">PP SPORTS</div>
-  <div class="icons">
-    <button class="icon-btn" onclick="toggleSearch()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34C15.15 5.59 12.16 3 8.5 3S1.85 5.59 1.85 8.39c0 2.8 2.99 5.39 6.65 5.39a6.5 6.5 0 005.34-1.48l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-7 0C5.01 14 3 11.99 3 9.5S5.01 5 7.5 5 12 7.01 12 9.5 9.99 14 7.5 14z"/></svg>
-    </button>
-    <button class="icon-btn" onclick="openLoginOrProfile()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-    </button>
-  </div>
-</header>
-
-<div id="searchBox">
-  <input type="text" id="searchInput" placeholder="Cari di PP SPORTS..." onkeydown="handleSearch(event)" />
-</div>
-
-<nav>
-  <a href="#" onclick="show('home')">Home</a>
-  <a href="#" onclick="show('berita')">Berita</a>
-  <a href="#" onclick="show('skor')">Skor</a>
-  <a href="#" onclick="show('streaming')">Streaming</a>
-  <a href="#" onclick="show('tentang')">Tentang</a>
-</nav>
-
-<div id="side-menu">
-  <button onclick="toggleTheme()">🌗 Mode Terang/Gelap</button>
-  <button onclick="show('pengaturan')">⚙️ Pengaturan</button>
-  <button onclick="toggleMenu()">❌ Tutup</button>
-</div>
-
-<div id="loginModal">
-  <div class="login-box">
-    <h3>Masuk ke PP SPORTS</h3>
-    <input type="text" id="loginInput" placeholder="Email / Nomor Telepon" />
-    <input type="password" id="passwordInput" placeholder="Kata Sandi" />
-    <label>Foto Profil:</label>
-    <input type="file" id="photoInput" accept="image/*" />
-    <button onclick="submitLogin()">Masuk</button>
-    <button onclick="closeLogin()" style="background:#444;margin-top:10px;">Batal</button>
-  </div>
-</div>
-
-<div id="home" class="content active">
-  <h2>Video TikTok Populer</h2>
-  <iframe src="https://www.tiktok.com/embed" allowfullscreen></iframe>
-</div>
-
-<div id="berita" class="content">
+  <header>
+    <div class="title">PP SPORTS</div>
+    <div class="nav-icons">
+      <button onclick="toggleTheme()">🌓</button>
+      <img id="profileImgHeader" src="https://via.placeholder.com/30" onclick="openLoginOrProfile()" />
+    </div>
+  </header>  <nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('berita')">Berita</a>
+    <a href="#" onclick="showPage('skor')">Skor</a>
+    <a href="#" onclick="showPage('streaming')">Streaming</a>
+    <a href="#" onclick="showPage('tentang')">Tentang</a>
+  </nav>  <main>
+    <section id="home" class="page">
+      <h2>Home - TikTok</h2>
+      <iframe src="https://www.tiktok.com" allowfullscreen></iframe>
+    </section><section id="berita" class="page" style="display:none">
   <h2>Berita Bola</h2>
   <div id="news-feed">Memuat berita...</div>
-</div>
+</section>
 
-<div id="skor" class="content">
+<section id="skor" class="page" style="display:none">
   <h2>Skor Langsung</h2>
-  <iframe src="https://www.scorebat.com/embed/livescore/"></iframe>
-</div>
+  <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
+</section>
 
-<div id="streaming" class="content">
+<section id="streaming" class="page" style="display:none">
   <h2>Streaming Bola</h2>
-  <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
-</div>
+  <iframe src="https://www.rbtvplus01.com/id/football.html" allowfullscreen></iframe>
+</section>
 
-<div id="tentang" class="content">
+<section id="tentang" class="page" style="display:none">
   <h2>Tentang Kami</h2>
-  <p style="text-align:center">Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> sebagai media informasi bola real-time dan terpercaya.</p>
-</div>
+  <p>Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> untuk menyajikan informasi sepak bola secara real-time.</p>
+</section>
 
-<div id="pengaturan" class="content">
-  <h2>Pengaturan</h2>
-  <p style="text-align:center">Pengaturan akan segera tersedia.</p>
-</div>
+  </main>  <footer>
+    &copy; 2025 Pajar Pirmansyah. All rights reserved.
+  </footer>  <div id="loginModal" class="modal">
+    <div class="modal-box">
+      <h3>Login</h3>
+      <input type="text" id="loginEmail" placeholder="Email / No HP">
+      <input type="password" id="loginPassword" placeholder="Password">
+      <label>Foto Profil:</label>
+      <input type="file" id="loginPhoto" accept="image/*">
+      <button onclick="submitLogin()">Masuk</button>
+    </div>
+  </div>  <script>
+    const pages = document.querySelectorAll('.page');
 
-<div id="profile" class="content">
-  <div class="profile-box">
-    <img id="profileImage" src="" alt="Foto Profil">
-    <h3 id="profileName"></h3>
-    <p id="profileEmail"></p>
-    <button onclick="logout()">Logout</button>
-  </div>
-</div>
+    function showPage(id) {
+      pages.forEach(p => p.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
 
-<footer>
-  © 2025 Pajar Pirmansyah. All rights reserved.
-</footer>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
 
-<script>
-function show(id) {
-  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  toggleMenu();
-}
+    function openLoginOrProfile() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user && user.image) {
+        alert('Halo ' + user.email);
+      } else {
+        document.getElementById('loginModal').style.display = 'flex';
+      }
+    }
 
-function toggleMenu() {
-  const menu = document.getElementById('side-menu');
-  menu.style.left = (menu.style.left === '0px') ? '-260px' : '0px';
-}
+    function submitLogin() {
+      const email = document.getElementById('loginEmail').value;
+      const pass = document.getElementById('loginPassword').value;
+      const photo = document.getElementById('loginPhoto').files[0];
+      if (!email || !pass) return alert("Lengkapi semua data.");
 
-function toggleSearch() {
-  const box = document.getElementById('searchBox');
-  box.style.display = (box.style.display === 'block') ? 'none' : 'block';
-  document.getElementById('searchInput').focus();
-}
+      if (photo) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const image = reader.result;
+          localStorage.setItem('user', JSON.stringify({ email, image }));
+          document.getElementById('profileImgHeader').src = image;
+          document.getElementById('loginModal').style.display = 'none';
+        }
+        reader.readAsDataURL(photo);
+      } else {
+        localStorage.setItem('user', JSON.stringify({ email, image: null }));
+        document.getElementById('loginModal').style.display = 'none';
+      }
+    }
 
-function handleSearch(e) {
-  if (e.key === "Enter") alert("Hasil pencarian: " + e.target.value);
-}
-
-function openLoginOrProfile() {
-  const user = localStorage.getItem('pp_user');
-  if (user) {
-    const data = JSON.parse(user);
-    document.getElementById("profileName").innerText = data.name;
-    document.getElementById("profileEmail").innerText = data.email;
-    document.getElementById("profileImage").src = data.image || 'https://via.placeholder.com/100';
-    show('profile');
-  } else {
-    document.getElementById("loginModal").style.display = "flex";
-  }
-}
-
-function closeLogin() {
-  document.getElementById("loginModal").style.display = "none";
-}
-
-function submitLogin() {
-  const email = document.getElementById("loginInput").value;
-  const pass = document.getElementById("passwordInput").value;
-  const photo = document.getElementById("photoInput").files[0];
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const image = e.target.result;
-    localStorage.setItem("pp_user", JSON.stringify({name: email, email: email, image}));
-    closeLogin(); show('profile');
-    openLoginOrProfile();
-  }
-  if (photo) reader.readAsDataURL(photo);
-  else {
-    localStorage.setItem("pp_user", JSON.stringify({name: email, email: email, image: null}));
-    closeLogin(); show('profile'); openLoginOrProfile();
-  }
-}
-
-function logout() {
-  localStorage.removeItem('pp_user');
-  alert("Berhasil keluar.");
-  show('home');
-}
-
-fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola")
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById("news-feed");
-    container.innerHTML = "";
-    data.items.slice(0, 5).forEach(item => {
-      const el = document.createElement("a");
-      el.href = item.link; el.target = "_blank";
-      el.textContent = item.title;
-      el.className = "news-link";
-      container.appendChild(el);
+    // Tampilkan kembali foto profil jika sudah login sebelumnya
+    window.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user && user.image) {
+        document.getElementById('profileImgHeader').src = user.image;
+      }
     });
-  })
-  .catch(() => {
-    document.getElementById("news-feed").innerText = "Gagal memuat berita.";
-  });
-</script>
 
-</body>
+    // Berita Otomatis (Google News)
+    fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola")
+      .then(res => res.json())
+      .then(data => {
+        const feed = document.getElementById("news-feed");
+        data.items.slice(0, 5).forEach(item => {
+          const a = document.createElement("a");
+          a.href = item.link; a.textContent = item.title; a.target = '_blank';
+          a.style.display = 'block'; a.style.margin = '0.5rem 0';
+          feed.appendChild(a);
+        });
+      });
+  </script></body>
 </html>
