@@ -6,7 +6,7 @@
   <title>PP SPORTS</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {margin:0;padding:0;box-sizing:border-box}
     body {
       font-family: sans-serif;
       background: #0d0d0d;
@@ -31,12 +31,27 @@
     }
     .icons {
       display: flex;
+      align-items: center;
       gap: 1rem;
     }
     .icon {
       font-size: 1.3rem;
       color: white;
       cursor: pointer;
+    }
+    #searchBox {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 70px;
+      background: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    #searchBox input {
+      border: none;
+      outline: none;
+      padding: 5px;
     }
 
     nav {
@@ -148,7 +163,6 @@
       text-decoration: none;
     }
 
-    /* Light mode */
     body.light {
       background: #f9f9f9;
       color: #111;
@@ -160,11 +174,11 @@
     body.light nav a {
       color: #111;
     }
-    body.light nav a::after {
-      background: #00bfa6;
-    }
     body.light footer {
       color: #555;
+    }
+    body.light #searchBox {
+      background: #eee;
     }
   </style>
 </head>
@@ -174,9 +188,14 @@
   <div class="icon" onclick="toggleMenu()">☰</div>
   <div class="title">PP SPORTS</div>
   <div class="icons">
-    <div class="icon">🔍</div>
+    <div class="icon" onclick="toggleSearch()">🔍</div>
+    <a href="langganan.html" class="icon" title="Langganan">👤</a>
   </div>
 </header>
+
+<div id="searchBox">
+  <input type="text" id="searchInput" placeholder="Cari di PP SPORTS..." onkeydown="handleSearch(event)">
+</div>
 
 <nav>
   <a href="#" onclick="show('home')">Home</a>
@@ -256,6 +275,20 @@ function toggleMenu() {
 
 function toggleTheme() {
   document.body.classList.toggle("light");
+}
+
+function toggleSearch() {
+  const box = document.getElementById("searchBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+  document.getElementById("searchInput").focus();
+}
+
+function handleSearch(e) {
+  if (e.key === "Enter") {
+    const keyword = e.target.value.toLowerCase();
+    alert("Hasil pencarian untuk: " + keyword);
+    // Bisa dikembangkan jadi filter konten atau buka halaman pencarian khusus
+  }
 }
 </script>
 
