@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pajar Sports</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -77,15 +78,16 @@ header {
 nav {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   background-color: white;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
-  gap: 0.5rem;
   max-width: 100%;
+  gap: 0.5rem;
 }
 nav a {
   color: black;
@@ -102,6 +104,24 @@ nav a.active-link {
   background-color: orange;
   color: white;
   border-color: orange;
+}
+.search-box {
+  margin-left: auto;
+  position: relative;
+}
+.search-box input {
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  padding-left: 30px;
+  font-size: 0.9rem;
+  display: none;
+}
+.search-box i {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  cursor: pointer;
 }
 
 .section {
@@ -152,8 +172,12 @@ footer {
     <a onclick="showSection('berita', this)">Berita</a>
     <a onclick="showSection('jadwal', this)">Jadwal</a>
     <a onclick="showSection('tentang', this)">Tentang Kami</a>
+    <div class="search-box">
+      <i class="fas fa-search" onclick="toggleSearch()"></i>
+      <input type="text" id="searchInput" placeholder="Cari klub..." oninput="searchClub()">
+    </div>
   </nav>  <div class="section" id="beranda">
-    <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
+    <iframe id="liveFrame" src="https://www.rbtvplus01.com/id/football.html"></iframe>
   </div>
   <div class="section" id="berita">
     <iframe src="https://www.bola.net/bola/"></iframe>
@@ -176,7 +200,6 @@ footer {
   </div>  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer><audio id="nav-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_4017cd16df.mp3"></audio>
 
   <script>
-    // Aktifkan suara setelah klik pertama di mana pun di layar
     document.body.addEventListener("click", function playOnce() {
       const sound = document.getElementById("nav-sound");
       sound.play().catch(() => {});
@@ -191,6 +214,21 @@ footer {
 
       const navSound = document.getElementById("nav-sound");
       if (navSound) navSound.play().catch(() => {});
+    }
+
+    function toggleSearch() {
+      const input = document.getElementById('searchInput');
+      input.style.display = input.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function searchClub() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const iframe = document.getElementById("liveFrame");
+      if (query.length > 1) {
+        iframe.src = `https://www.google.com/search?q=${encodeURIComponent(query)}+live+score`;
+      } else {
+        iframe.src = "https://www.rbtvplus01.com/id/football.html";
+      }
     }
 
     window.addEventListener("DOMContentLoaded", () => {
