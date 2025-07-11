@@ -33,13 +33,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
+      padding: 0.8rem 1rem;
       border-bottom: 2px solid #00bfa6;
     }
     .site-title {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #00bfa6;
       letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .site-title img {
+      height: 30px;
     }
     .menu-icon, .search-icon {
       font-size: 1.5rem;
@@ -47,8 +53,11 @@
       cursor: pointer;
     }
 
-    /* Navigasi Horizontal */
+    /* Navigasi Sticky */
     nav.horizontal-nav {
+      position: sticky;
+      top: 0;
+      z-index: 900;
       background-color: #0d0d0d;
       display: flex;
       justify-content: center;
@@ -102,7 +111,6 @@
       cursor: pointer;
     }
 
-    /* Konten */
     main {padding: 1.5rem;}
     section {margin-bottom: 2.5rem;}
     section h3 {
@@ -136,11 +144,14 @@
   <!-- Header -->
   <header>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <h2 class="site-title">PP SPORT</h2>
+    <div class="site-title">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Soccer_ball_2.svg" alt="Logo">
+      PP SPORT
+    </div>
     <div class="search-icon">🔍</div>
   </header>
 
-  <!-- Menu Navigasi Terpisah -->
+  <!-- Navigasi Terpisah -->
   <nav class="horizontal-nav">
     <a href="#berita" class="nav-link active">Berita</a>
     <a href="#skor" class="nav-link">Skor</a>
@@ -157,7 +168,7 @@
     </ul>
   </nav>
 
-  <!-- Konten -->
+  <!-- Konten Utama -->
   <main>
     <section id="berita">
       <h3>Berita Sepak Bola</h3>
@@ -176,12 +187,12 @@
 
     <section id="tentang">
       <h3>Tentang Kami</h3>
-      <p>PP SPORT adalah platform sepak bola modern buatan Pajar Pirmansyah. Kami hadir untuk menyajikan info bola terkini, skor real-time, streaming, dan tampilan yang sporty abis!</p>
+      <p>PP SPORT adalah platform sepak bola modern buatan Pajar Pirmansyah. Kami menyajikan info bola terkini, skor real-time, streaming, dan tampilan yang sporty abis!</p>
     </section>
   </main>
 
   <script>
-    // Splash screen
+    // Splash
     window.onload = () => {
       setTimeout(() => {
         document.getElementById("splash").style.display = "none";
@@ -202,7 +213,7 @@
       document.body.classList.toggle("dark-mode");
     }
 
-    // Highlight navigasi aktif
+    // Aktifkan highlight menu
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function () {
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -210,7 +221,7 @@
       });
     });
 
-    // Fetch berita
+    // Ambil berita dari Google News
     function fetchNews() {
       const url = "https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola&hl=id&gl=ID&ceid=ID:id";
       fetch(url)
