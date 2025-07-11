@@ -178,4 +178,74 @@
   <button onclick="toggleMenu()">
     ❌ Tutup
   </button>
-</div><!-- Lanjutkan bagian konten dan script jika perlu -->
+</div><div id="home" class="content active">
+  <h2>Selamat Datang di PP SPORTS</h2>
+  <p style="text-align:center">Situs resmi berita, skor, dan streaming bola oleh <strong>Pajar Pirmansyah</strong>.</p>
+</div><div id="berita" class="content">
+  <h2>Berita Bola</h2>
+  <div id="news-feed">Memuat berita...</div>
+</div><div id="skor" class="content">
+  <h2>Skor Langsung</h2>
+  <iframe src="https://www.scorebat.com/embed/livescore/"></iframe>
+</div><div id="streaming" class="content">
+  <h2>Streaming Bola</h2>
+  <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
+</div><div id="tentang" class="content">
+  <h2>Tentang Kami</h2>
+  <p style="text-align:center">Website ini dikembangkan oleh <strong>Pajar Pirmansyah</strong> untuk menyajikan konten bola yang up-to-date dan menarik.</p>
+</div><div id="pengaturan" class="content">
+  <h2>Pengaturan</h2>
+  <p style="text-align:center">Pengaturan fitur akan tersedia di sini.</p>
+</div><footer>
+  © 2025 Pajar Pirmansyah. All rights reserved.
+</footer><script>
+function show(id) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('side-menu').style.left = '-260px';
+}
+
+function toggleMenu() {
+  const menu = document.getElementById('side-menu');
+  menu.style.left = menu.style.left === '0px' ? '-260px' : '0px';
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('light');
+}
+
+function toggleSearch() {
+  const box = document.getElementById("searchBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+  document.getElementById("searchInput").focus();
+}
+
+function handleSearch(e) {
+  if (e.key === "Enter") {
+    const keyword = e.target.value.toLowerCase();
+    alert("Hasil pencarian untuk: " + keyword);
+  }
+}
+
+// Ambil berita
+if (document.getElementById("news-feed")) {
+  fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola")
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById("news-feed");
+      container.innerHTML = "";
+      data.items.slice(0, 5).forEach(item => {
+        const el = document.createElement("a");
+        el.href = item.link;
+        el.target = "_blank";
+        el.textContent = item.title;
+        el.className = "news-link";
+        container.appendChild(el);
+      });
+    })
+    .catch(() => {
+      document.getElementById("news-feed").innerText = "Gagal memuat berita.";
+    });
+}
+</script></body>
+</html>
