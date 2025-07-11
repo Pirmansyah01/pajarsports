@@ -138,6 +138,50 @@
       nav a { font-size: 0.85rem; }
       iframe { min-height: 300px; }
     }
+
+    /* Modal Login */
+    #loginModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+    }
+    .login-box {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      color: white;
+    }
+    .login-box h3 {
+      margin-bottom: 15px;
+      text-align: center;
+      color: #00bfa6;
+    }
+    .login-box input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #00bfa6;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .login-box button:hover {
+      background: #009e8a;
+    }
   </style>
 </head>
 <body>
@@ -151,7 +195,7 @@
     <button class="icon-btn" onclick="toggleSearch()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34C15.15 5.59 12.16 3 8.5 3S1.85 5.59 1.85 8.39c0 2.8 2.99 5.39 6.65 5.39a6.5 6.5 0 005.34-1.48l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-7 0C5.01 14 3 11.99 3 9.5S5.01 5 7.5 5 12 7.01 12 9.5 9.99 14 7.5 14z"/></svg>
     </button>
-    <a class="icon-btn" href="langganan.html">
+    <a class="icon-btn" href="#" onclick="openLogin()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
     </a>
   </div>
@@ -173,6 +217,19 @@
   <button onclick="toggleTheme()">🌗 Mode Terang/Gelap</button>
   <button onclick="show('pengaturan')">⚙️ Pengaturan</button>
   <button onclick="toggleMenu()">❌ Tutup</button>
+</div>
+
+<!-- Modal Login -->
+<div id="loginModal">
+  <div class="login-box">
+    <h3>Masuk ke PP SPORTS</h3>
+    <input type="text" placeholder="Email Google atau No. Telepon" id="loginInput" />
+    <input type="password" placeholder="Kata Sandi" id="passwordInput" />
+    <label style="margin-top: 10px; display: block;">Foto Profil:</label>
+    <input type="file" accept="image/*" />
+    <button onclick="submitLogin()">Masuk</button>
+    <button onclick="closeLogin()" style="background: #555; margin-top: 10px;">Batal</button>
+  </div>
 </div>
 
 <!-- Konten Halaman -->
@@ -234,8 +291,19 @@ function handleSearch(e) {
     alert("Hasil pencarian untuk: " + keyword);
   }
 }
+function openLogin() {
+  document.getElementById("loginModal").style.display = "flex";
+}
+function closeLogin() {
+  document.getElementById("loginModal").style.display = "none";
+}
+function submitLogin() {
+  const user = document.getElementById("loginInput").value;
+  const pass = document.getElementById("passwordInput").value;
+  alert("Selamat datang, " + user + "! (simulasi login)");
+  closeLogin();
+}
 
-// Ambil berita bola dari Google News RSS
 fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola")
   .then(res => res.json())
   .then(data => {
