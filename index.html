@@ -5,45 +5,42 @@
   <title>Pajar Sports</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-messaging.js"></script>
   <style>
     :root {
       --bg: #ffffff;
       --text: #000000;
-      --nav-bg: #ffffff;
-      --nav-text: #000000;
       --accent: #FFA500;
     }
-    body.dark {
-      --bg: #121212;
-      --text: #ffffff;
-      --nav-bg: #1e1e1e;
-      --nav-text: #ffffff;
-      --accent: #3cb4e7;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
     }
     header {
-      background: linear-gradient(to bottom, var(--accent), var(--bg));
-      padding: 40px 20px 80px;
-      text-align: center;
       position: relative;
+      height: 200px;
+      background: linear-gradient(to bottom, var(--accent), var(--bg));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
     }
     .bola {
-      width: 60px;
+      width: 50px;
       position: absolute;
       top: 50%;
-      left: -80px;
+      left: -60px;
       animation: bolaMasuk 2s ease forwards;
     }
     @keyframes bolaMasuk {
-      0% { left: -80px; transform: rotate(0); opacity: 1; }
+      0% { left: -60px; transform: rotate(0); opacity: 1; }
       100% { left: 50%; transform: translateX(-50%) rotate(720deg); opacity: 0; }
     }
     .judul {
@@ -54,16 +51,45 @@
       animation: fadeIn 2s ease 2s forwards;
     }
     @keyframes fadeIn { to { opacity: 1; } }
+    .top-bar {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .language-switcher, .menu-toggle {
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .search-header {
+      display: flex;
+      align-items: center;
+    }
+    .search-header input {
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .search-header i {
+      margin-left: 10px;
+      cursor: pointer;
+    }
     nav {
-      background-color: var(--nav-bg);
+      background-color: white;
       display: flex;
       justify-content: center;
       gap: 25px;
       padding: 10px;
     }
     nav a {
-      color: var(--nav-text);
       text-decoration: none;
+      color: #333;
       font-weight: 600;
       position: relative;
     }
@@ -80,6 +106,21 @@
     nav a:hover::after {
       width: 100%;
     }
+    .sidebar {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .sidebar a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
+    }
     main {
       padding: 20px;
     }
@@ -93,55 +134,31 @@
       height: 200px;
       border: none;
     }
-    .search-header {
-      position: absolute;
-      top: 20px;
-      right: 100px;
-      display: flex;
-      align-items: center;
-    }
-    .search-header input {
-      padding: 6px 10px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      font-size: 0.9rem;
-      display: none;
-      color: black;
-    }
-    .search-header i {
-      margin-left: 10px;
-      cursor: pointer;
-      color: white;
-    }
-    .language-switcher {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      color: white;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="language-switcher" onclick="toggleLang()">🇮🇩</div>
+    <div class="top-bar">
+      <div class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+      <div class="search-header">
+        <input type="text" id="searchInput" placeholder="Cari klub..." oninput="searchClub()">
+        <i class="fas fa-search" onclick="toggleSearch()"></i>
+      </div>
+      <div class="language-switcher" onclick="toggleLang()">🇮🇩</div>
+    </div>
     <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola">
     <h1 class="judul" data-id="Pajar Sports" data-en="Pajar Sports">Pajar Sports</h1>
-    <div class="search-header">
-      <input type="text" id="searchInput" placeholder="Cari klub..." oninput="searchClub()">
-      <i class="fas fa-search" onclick="toggleSearch()"></i>
-    </div>
-  </header>
-  <nav>
-    <a onclick="showSection('beranda')">Beranda</a>
-    <a onclick="showSection('berita')">Berita</a>
-    <a onclick="showSection('jadwal')">Jadwal</a>
-    <a onclick="showSection('live')">Live</a>
-  </nav>
-  <main>
+  </header>  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="showSection('tentang')">Tentang Kami</a>
+    <a href="#" onclick="toggleDarkMode()">Mode Gelap</a>
+  </div>  <nav>
+    <a href="#" onclick="showSection('beranda')">Beranda</a>
+    <a href="#" onclick="showSection('berita')">Berita</a>
+    <a href="#" onclick="showSection('jadwal')">Jadwal</a>
+    <a href="#" onclick="showSection('live')">Live</a>
+  </nav>  <main>
     <section id="beranda" class="section">
-      <h2 data-id="Video Terbaru" data-en="Latest Videos">Video Terbaru</h2>
+      <h2>Video Terbaru</h2>
       <div class="video-grid">
         <iframe src="https://www.youtube.com/embed/MEA46lrg-io" allowfullscreen></iframe>
         <iframe src="https://www.youtube.com/embed/1dk2OeMD4Mo" allowfullscreen></iframe>
@@ -160,47 +177,44 @@
     <section id="live" class="section" style="display:none">
       <iframe id="liveFrame" src="https://www.rbtvplus01.com/id/football.html" width="100%" height="600"></iframe>
     </section>
-  </main>
-  <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const messaging = firebase.messaging();
-    messaging.requestPermission()
-      .then(() => messaging.getToken())
-      .then(token => console.log('Notification Token:', token))
-      .catch(err => console.error('Permission denied', err));function showSection(id) {
-  document.querySelectorAll(".section").forEach(sec => sec.style.display = "none");
-  document.getElementById(id).style.display = "block";
-}
-function toggleSearch() {
-  const input = document.getElementById('searchInput');
-  input.style.display = input.style.display === 'block' ? 'none' : 'block';
-  if (input.style.display === 'block') input.focus();
-}
-function searchClub() {
-  const query = document.getElementById("searchInput").value.toLowerCase();
-  const iframe = document.getElementById("liveFrame");
-  if (query.length > 1) {
-    iframe.src = `https://www.google.com/search?q=${encodeURIComponent(query)}+live+score`;
-  } else {
-    iframe.src = "https://www.rbtvplus01.com/id/football.html";
-  }
-}
-function toggleLang() {
-  const switcher = document.querySelector(".language-switcher");
-  const toLang = switcher.textContent === '🇮🇩' ? 'en' : 'id';
-  switcher.textContent = toLang === 'id' ? '🇮🇩' : '🇬🇧';
-  document.querySelectorAll("[data-" + toLang + "]").forEach(el => {
-    el.textContent = el.getAttribute("data-" + toLang);
-  });
-}
-
-  </script>
-</body>
+    <section id="tentang" class="section" style="display:none">
+      <h2>Tentang Kami</h2>
+      <p>Pajar Sports adalah portal informasi bola yang menyajikan berita terkini, video menarik, serta jadwal pertandingan lengkap dari berbagai liga dunia.</p>
+      <p>Follow Instagram: <a href="https://www.instagram.com/pajarpirmansyah_?igsh=eGx6a3NjcWs0Y2kx" target="_blank">@pajarpirmansyah_</a></p>
+    </section>
+  </main>  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+    function toggleSearch() {
+      const input = document.getElementById('searchInput');
+      input.style.display = input.style.display === 'block' ? 'none' : 'block';
+      if (input.style.display === 'block') input.focus();
+    }
+    function searchClub() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const iframe = document.getElementById("liveFrame");
+      if (query.length > 1) {
+        iframe.src = `https://www.google.com/search?q=${encodeURIComponent(query)}+live+score`;
+      } else {
+        iframe.src = "https://www.rbtvplus01.com/id/football.html";
+      }
+    }
+    function toggleLang() {
+      const switcher = document.querySelector(".language-switcher");
+      const toLang = switcher.textContent === '🇮🇩' ? 'en' : 'id';
+      switcher.textContent = toLang === 'id' ? '🇮🇩' : '🇬🇧';
+      document.querySelectorAll("[data-" + toLang + "]").forEach(el => {
+        el.textContent = el.getAttribute("data-" + toLang);
+      });
+    }
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+  </script></body>
 </html>
