@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +84,7 @@
       font-size: 0.8rem;
       color: gray;
     }
-    #profileModal, #loginModal {
+    #loginModal {
       display: none;
       position: fixed;
       top: 0; left: 0;
@@ -128,39 +129,48 @@
       <button onclick="toggleTheme()">🌓</button>
       <img id="profileImgHeader" src="https://via.placeholder.com/30" onclick="openLoginOrProfile()" />
     </div>
-  </header>  <nav>
-    <a href="#" onclick="showPage('home')">Home</a>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showPage('beranda')">Beranda</a>
     <a href="#" onclick="showPage('berita')">Berita</a>
     <a href="#" onclick="showPage('skor')">Skor</a>
     <a href="#" onclick="showPage('streaming')">Streaming</a>
     <a href="#" onclick="showPage('tentang')">Tentang</a>
-  </nav>  <main>
-    <section id="home" class="page">
-      <h2>Home - TikTok</h2>
-      <iframe src="https://www.tiktok.com" allowfullscreen></iframe>
-    </section><section id="berita" class="page" style="display:none">
-  <h2>Berita Bola</h2>
-  <div id="news-feed">Memuat berita...</div>
-</section>
+  </nav>
 
-<section id="skor" class="page" style="display:none">
-  <h2>Skor Langsung</h2>
-  <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
-</section>
+  <main>
+    <section id="beranda" class="page">
+      <h2>Selamat Datang di PP SPORTS</h2>
+      <p>Sumber utama untuk skor bola, berita terbaru, dan streaming langsung.</p>
+    </section>
 
-<section id="streaming" class="page" style="display:none">
-  <h2>Streaming Bola</h2>
-  <iframe src="https://www.rbtvplus01.com/id/football.html" allowfullscreen></iframe>
-</section>
+    <section id="berita" class="page" style="display:none">
+      <h2>Berita Bola</h2>
+      <div id="news-feed">Memuat berita...</div>
+    </section>
 
-<section id="tentang" class="page" style="display:none">
-  <h2>Tentang Kami</h2>
-  <p>Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> untuk menyajikan informasi sepak bola secara real-time.</p>
-</section>
+    <section id="skor" class="page" style="display:none">
+      <h2>Skor Langsung</h2>
+      <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
+    </section>
 
-  </main>  <footer>
+    <section id="streaming" class="page" style="display:none">
+      <h2>Streaming Bola</h2>
+      <iframe src="https://www.rbtvplus01.com/id/football.html" allowfullscreen></iframe>
+    </section>
+
+    <section id="tentang" class="page" style="display:none">
+      <h2>Tentang Kami</h2>
+      <p>Website ini dibuat oleh <strong>Pajar Pirmansyah</strong> untuk menyajikan informasi sepak bola secara real-time.</p>
+    </section>
+  </main>
+
+  <footer>
     &copy; 2025 Pajar Pirmansyah. All rights reserved.
-  </footer>  <div id="loginModal" class="modal">
+  </footer>
+
+  <div id="loginModal" class="modal">
     <div class="modal-box">
       <h3>Login</h3>
       <input type="text" id="loginEmail" placeholder="Email / No HP">
@@ -169,7 +179,9 @@
       <input type="file" id="loginPhoto" accept="image/*">
       <button onclick="submitLogin()">Masuk</button>
     </div>
-  </div>  <script>
+  </div>
+
+  <script>
     const pages = document.querySelectorAll('.page');
 
     function showPage(id) {
@@ -211,7 +223,6 @@
       }
     }
 
-    // Tampilkan kembali foto profil jika sudah login sebelumnya
     window.addEventListener('DOMContentLoaded', () => {
       const user = JSON.parse(localStorage.getItem('user'));
       if (user && user.image) {
@@ -219,7 +230,6 @@
       }
     });
 
-    // Berita Otomatis (Google News)
     fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola")
       .then(res => res.json())
       .then(data => {
@@ -231,5 +241,6 @@
           feed.appendChild(a);
         });
       });
-  </script></body>
+  </script>
+</body>
 </html>
