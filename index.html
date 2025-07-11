@@ -16,8 +16,7 @@
       font-family: 'Montserrat', sans-serif;
       background: #fff;
       overflow-x: hidden;
-    }/* Splash Screen */
-#splash {
+    }#splash {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
@@ -41,7 +40,6 @@
   to { opacity: 0; visibility: hidden; }
 }
 
-/* Header */
 header {
   height: 188px;
   width: 100%;
@@ -76,13 +74,12 @@ header {
   to { opacity: 1; }
 }
 
-/* Navigasi */
 nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   background-color: white;
-  padding: 1rem;
+  padding: 0.5rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
@@ -93,12 +90,12 @@ nav {
 nav a {
   color: black;
   text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 20px;
+  padding: 6px 12px;
+  border-radius: 16px;
   font-weight: 600;
   border: 2px solid transparent;
   transition: 0.3s;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 nav a.active-link {
@@ -107,7 +104,6 @@ nav a.active-link {
   border-color: orange;
 }
 
-/* Konten */
 .section {
   display: none;
   padding: 2rem 5%;
@@ -180,13 +176,19 @@ footer {
   </div>  <footer>&copy; 2025 Pajar Sports. All rights reserved.</footer><audio id="nav-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_4017cd16df.mp3"></audio>
 
   <script>
+    // Aktifkan suara setelah klik pertama di mana pun di layar
+    document.body.addEventListener("click", function playOnce() {
+      const sound = document.getElementById("nav-sound");
+      sound.play().catch(() => {});
+      document.body.removeEventListener("click", playOnce);
+    });
+
     function showSection(id, el = null) {
       document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
       document.getElementById(id).classList.add("active");
       document.querySelectorAll("#main-nav a").forEach(link => link.classList.remove("active-link"));
       if (el) el.classList.add("active-link");
 
-      // Mainkan efek suara saat klik navigasi
       const navSound = document.getElementById("nav-sound");
       if (navSound) navSound.play().catch(() => {});
     }
