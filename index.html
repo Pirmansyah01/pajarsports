@@ -3,164 +3,155 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pajar Sports</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #000000;
-      --accent: #ffa500;
-      --nav-bg: #ffffff;
-      --nav-text: #000000;
-    }
-    body.dark {
-      --bg: #121212;
-      --text: #ffffff;
-      --accent: #3cb4e7;
-      --nav-bg: #1e1e1e;
-      --nav-text: #ffffff;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      transition: background 0.3s, color 0.3s;
-    }
-    header {
-      position: relative;
-      background: linear-gradient(to bottom, var(--accent), var(--bg));
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    .top-bar {
-      position: absolute;
-      top: 10px;
-      width: 100%;
-      padding: 0 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .language-switcher, .menu-toggle {
-      color: white;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-    .search-header {
-      display: flex;
-      align-items: center;
-    }
-    .search-header input {
-      padding: 5px 10px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      font-size: 0.9rem;
-      display: none;
-    }
-    .search-header i {
-      margin-left: 10px;
-      cursor: pointer;
-      color: white;
-    }
-    .bola {
-      width: 50px;
-      position: absolute;
-      top: 50%;
-      left: -60px;
-      animation: bolaMasuk 2s ease forwards;
-    }
-    @keyframes bolaMasuk {
-      0% { left: -60px; transform: rotate(0); opacity: 1; }
-      100% { left: 50%; transform: translateX(-50%) rotate(720deg); opacity: 0; }
-    }
-    .judul {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: white;
-      opacity: 0;
-      animation: fadeIn 2s ease 2s forwards;
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    .sidebar {
-      display: none;
-      position: absolute;
-      top: 60px;
-      left: 10px;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-      z-index: 10;
-    }
-    .sidebar a {
-      display: block;
-      margin-bottom: 10px;
-      text-decoration: none;
-      color: #333;
-    }
-    nav {
-      background-color: var(--nav-bg);
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      padding: 10px;
-    }
-    nav a {
-      text-decoration: none;
-      color: var(--nav-text);
-      font-weight: 600;
-      position: relative;
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      background: var(--accent);
-      left: 0;
-      bottom: -5px;
-      transition: width 0.3s;
-    }
-    nav a:hover::after {
-      width: 100%;
-    }
-    main {
-      padding: 20px;
-    }
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    iframe {
-      width: 100%;
-      height: 200px;
-      border: none;
-    }
+      --bg-light: #ffffff;
+      --text-light: #000000;
+      --accent-light: #f5a623;
+      --bg-dark: #121212;
+      --text-dark: #ffffff;
+      --accent-dark: #3cb4e7;
+    }* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+body.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+header {
+  position: relative;
+  background: linear-gradient(to bottom, var(--accent-light), var(--bg-light));
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.bola {
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: -60px;
+  animation: bolaMasuk 2s ease forwards;
+}
+@keyframes bolaMasuk {
+  0% { left: -60px; transform: rotate(0); opacity: 1; }
+  100% { left: 50%; transform: translateX(-50%) rotate(720deg); opacity: 0; }
+}
+.judul {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  opacity: 0;
+  animation: fadeIn 2s ease 2s forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+.top-bar {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+}
+.search-container input {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  display: none;
+}
+.search-container i {
+  margin-left: 10px;
+  color: white;
+  cursor: pointer;
+}
+nav {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 10px;
+}
+nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  position: relative;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: var(--accent-light);
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s;
+}
+nav a:hover::after {
+  width: 100%;
+}
+main {
+  padding: 20px;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+}
+.sidebar {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10;
+}
+.sidebar a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
   </style>
 </head>
 <body>
   <header>
     <div class="top-bar">
-      <div class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
-      <div class="search-header">
+      <div class="search-container">
         <input type="text" id="searchInput" placeholder="Cari klub..." oninput="searchClub()" />
         <i class="fas fa-search" onclick="toggleSearch()"></i>
       </div>
-      <div class="language-switcher" onclick="toggleLang()">🇮🇩</div>
+      <div class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
     </div>
     <img src="https://cdn-icons-png.flaticon.com/512/2769/2769339.png" alt="Bola" class="bola" />
-    <h1 class="judul" data-id="Pajar Sports" data-en="Pajar Sports">Pajar Sports</h1>
+    <h1 class="judul">Pajar Sports</h1>
   </header>
   <div class="sidebar" id="sidebar">
     <a href="#" onclick="showSection('tentang')">Tentang Kami</a>
@@ -179,9 +170,8 @@
         <iframe src="https://www.youtube.com/embed/MEA46lrg-io" allowfullscreen></iframe>
         <iframe src="https://www.youtube.com/embed/1dk2OeMD4Mo" allowfullscreen></iframe>
         <iframe src="https://www.youtube.com/embed/tqpDc90n55g" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/GzWMgu1KMv8" allowfullscreen></iframe>
         <iframe src="https://www.youtube.com/embed/CkntMmzfrAc" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/kBldak2Tw-4" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/GzWMgu1KMv8" allowfullscreen></iframe>
       </div>
     </section>
     <section id="berita" class="section" style="display:none">
@@ -217,14 +207,6 @@
       } else {
         iframe.src = "https://www.rbtvplus01.com/id/football.html";
       }
-    }
-    function toggleLang() {
-      const switcher = document.querySelector(".language-switcher");
-      const toLang = switcher.textContent === '🇮🇩' ? 'en' : 'id';
-      switcher.textContent = toLang === 'id' ? '🇮🇩' : '🇬🇧';
-      document.querySelectorAll("[data-" + toLang + "]").forEach(el => {
-        el.textContent = el.getAttribute("data-" + toLang);
-      });
     }
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
