@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>PP SPORTS</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <style>
@@ -12,7 +12,6 @@
       font-family: sans-serif;
       background: #0d0d0d; color: white;
       transition: 0.3s;
-      overflow-x: hidden;
     }
     header {
       display: flex; justify-content: space-between; align-items: center;
@@ -39,8 +38,7 @@
       display: none;
       position: absolute;
       top: 60px; right: 70px;
-      background: white;
-      padding: 5px 10px;
+      background: white; padding: 5px 10px;
       border-radius: 5px;
     }
     #searchBox input {
@@ -56,24 +54,19 @@
       border-bottom: 1px solid #333;
     }
     nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.9rem;
-      position: relative;
+      color: white; text-decoration: none;
+      font-size: 0.9rem; position: relative;
       padding: 0.6rem 0.8rem;
     }
     nav a::after {
       content: "";
-      position: absolute;
-      width: 100%; height: 2px;
+      position: absolute; width: 100%; height: 2px;
       left: 0; bottom: 0;
       background: #00bfa6;
-      transform: scaleX(0);
-      transform-origin: left;
+      transform: scaleX(0); transform-origin: left;
       transition: transform 0.3s ease;
     }
-    nav a:hover::after,
-    nav a.active::after {
+    nav a:hover::after, nav a.active::after {
       transform: scaleX(1);
     }
     .content {
@@ -82,14 +75,10 @@
       max-width: 1000px;
       margin: auto;
     }
-    .content.active {
-      display: block;
-    }
+    .content.active { display: block; }
     iframe {
-      width: 100%;
-      min-height: 400px;
-      border: none;
-      margin-top: 1rem;
+      width: 100%; min-height: 500px;
+      border: none; margin-top: 1rem;
     }
     footer {
       text-align: center;
@@ -99,27 +88,18 @@
     }
     #side-menu {
       position: fixed;
-      top: 0;
-      left: -260px;
-      width: 260px;
-      height: 100%;
-      background: #1a1a1a;
-      color: white;
-      padding: 1rem;
-      transition: left 0.3s;
+      top: 0; left: -260px;
+      width: 260px; height: 100%;
+      background: #1a1a1a; color: white;
+      padding: 1rem; transition: left 0.3s;
       z-index: 2000;
     }
     #side-menu button {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 1rem 0;
-      background: none;
-      border: none;
-      font-size: 1rem;
-      color: #00bfa6;
+      display: flex; align-items: center;
+      gap: 10px; margin: 1rem 0;
+      background: none; border: none;
+      font-size: 1rem; color: #00bfa6;
       cursor: pointer;
-      text-align: left;
     }
     h2 {
       text-align: center;
@@ -133,28 +113,17 @@
       color: #00bfa6;
       text-decoration: none;
     }
-    @media screen and (max-width: 768px) {
-      .title { font-size: 1.3rem; }
-      nav a { font-size: 0.85rem; }
-      iframe { min-height: 300px; }
-    }
-
-    /* Modal Login */
     #loginModal {
-      display: none;
-      position: fixed;
+      display: none; position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.7);
-      z-index: 3000;
-      justify-content: center;
+      z-index: 3000; justify-content: center;
       align-items: center;
     }
     .login-box {
       background: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
+      padding: 20px; border-radius: 10px;
+      width: 90%; max-width: 400px;
       color: white;
     }
     .login-box h3 {
@@ -163,24 +132,43 @@
       color: #00bfa6;
     }
     .login-box input {
-      width: 100%;
-      margin: 10px 0;
+      width: 100%; margin: 10px 0;
       padding: 10px;
-      border: none;
-      border-radius: 5px;
+      border: none; border-radius: 5px;
     }
     .login-box button {
-      width: 100%;
-      padding: 10px;
+      width: 100%; padding: 10px;
       margin-top: 10px;
-      background: #00bfa6;
-      color: white;
-      border: none;
-      border-radius: 5px;
+      background: #00bfa6; color: white;
+      border: none; border-radius: 5px;
       cursor: pointer;
     }
     .login-box button:hover {
       background: #009e8a;
+    }
+    .profile-box {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .profile-box img {
+      width: 100px; height: 100px;
+      border-radius: 50%; object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .profile-box h3, .profile-box p {
+      margin: 5px 0;
+    }
+    .profile-box button {
+      margin-top: 10px;
+      background: #00bfa6;
+      border: none; padding: 8px 16px;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+    @media screen and (max-width: 768px) {
+      .title { font-size: 1.3rem; }
+      nav a { font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -195,9 +183,9 @@
     <button class="icon-btn" onclick="toggleSearch()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34C15.15 5.59 12.16 3 8.5 3S1.85 5.59 1.85 8.39c0 2.8 2.99 5.39 6.65 5.39a6.5 6.5 0 005.34-1.48l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-7 0C5.01 14 3 11.99 3 9.5S5.01 5 7.5 5 12 7.01 12 9.5 9.99 14 7.5 14z"/></svg>
     </button>
-    <a class="icon-btn" href="#" onclick="openLogin()">
+    <button class="icon-btn" onclick="openLoginOrProfile()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-    </a>
+    </button>
   </div>
 </header>
 
@@ -219,23 +207,21 @@
   <button onclick="toggleMenu()">❌ Tutup</button>
 </div>
 
-<!-- Modal Login -->
 <div id="loginModal">
   <div class="login-box">
     <h3>Masuk ke PP SPORTS</h3>
-    <input type="text" placeholder="Email Google atau No. Telepon" id="loginInput" />
-    <input type="password" placeholder="Kata Sandi" id="passwordInput" />
-    <label style="margin-top: 10px; display: block;">Foto Profil:</label>
-    <input type="file" accept="image/*" />
+    <input type="text" id="loginInput" placeholder="Email / Nomor Telepon" />
+    <input type="password" id="passwordInput" placeholder="Kata Sandi" />
+    <label>Foto Profil:</label>
+    <input type="file" id="photoInput" accept="image/*" />
     <button onclick="submitLogin()">Masuk</button>
-    <button onclick="closeLogin()" style="background: #555; margin-top: 10px;">Batal</button>
+    <button onclick="closeLogin()" style="background:#444;margin-top:10px;">Batal</button>
   </div>
 </div>
 
-<!-- Konten Halaman -->
 <div id="home" class="content active">
-  <h2>Selamat Datang di PP SPORTS</h2>
-  <p style="text-align:center">Website olahraga terkini oleh <strong>Pajar Pirmansyah</strong>.</p>
+  <h2>Video TikTok Populer</h2>
+  <iframe src="https://www.tiktok.com/embed" allowfullscreen></iframe>
 </div>
 
 <div id="berita" class="content">
@@ -260,7 +246,16 @@
 
 <div id="pengaturan" class="content">
   <h2>Pengaturan</h2>
-  <p style="text-align:center">Mode, privasi, dan fitur lanjutan akan ditambahkan.</p>
+  <p style="text-align:center">Pengaturan akan segera tersedia.</p>
+</div>
+
+<div id="profile" class="content">
+  <div class="profile-box">
+    <img id="profileImage" src="" alt="Foto Profil">
+    <h3 id="profileName"></h3>
+    <p id="profileEmail"></p>
+    <button onclick="logout()">Logout</button>
+  </div>
 </div>
 
 <footer>
@@ -271,37 +266,63 @@
 function show(id) {
   document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.getElementById('side-menu').style.left = '-260px';
+  toggleMenu();
 }
+
 function toggleMenu() {
   const menu = document.getElementById('side-menu');
-  menu.style.left = menu.style.left === '0px' ? '-260px' : '0px';
+  menu.style.left = (menu.style.left === '0px') ? '-260px' : '0px';
 }
-function toggleTheme() {
-  document.body.classList.toggle('light');
-}
+
 function toggleSearch() {
-  const box = document.getElementById("searchBox");
-  box.style.display = box.style.display === "block" ? "none" : "block";
-  document.getElementById("searchInput").focus();
+  const box = document.getElementById('searchBox');
+  box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+  document.getElementById('searchInput').focus();
 }
+
 function handleSearch(e) {
-  if (e.key === "Enter") {
-    const keyword = e.target.value.toLowerCase();
-    alert("Hasil pencarian untuk: " + keyword);
+  if (e.key === "Enter") alert("Hasil pencarian: " + e.target.value);
+}
+
+function openLoginOrProfile() {
+  const user = localStorage.getItem('pp_user');
+  if (user) {
+    const data = JSON.parse(user);
+    document.getElementById("profileName").innerText = data.name;
+    document.getElementById("profileEmail").innerText = data.email;
+    document.getElementById("profileImage").src = data.image || 'https://via.placeholder.com/100';
+    show('profile');
+  } else {
+    document.getElementById("loginModal").style.display = "flex";
   }
 }
-function openLogin() {
-  document.getElementById("loginModal").style.display = "flex";
-}
+
 function closeLogin() {
   document.getElementById("loginModal").style.display = "none";
 }
+
 function submitLogin() {
-  const user = document.getElementById("loginInput").value;
+  const email = document.getElementById("loginInput").value;
   const pass = document.getElementById("passwordInput").value;
-  alert("Selamat datang, " + user + "! (simulasi login)");
-  closeLogin();
+  const photo = document.getElementById("photoInput").files[0];
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const image = e.target.result;
+    localStorage.setItem("pp_user", JSON.stringify({name: email, email: email, image}));
+    closeLogin(); show('profile');
+    openLoginOrProfile();
+  }
+  if (photo) reader.readAsDataURL(photo);
+  else {
+    localStorage.setItem("pp_user", JSON.stringify({name: email, email: email, image: null}));
+    closeLogin(); show('profile'); openLoginOrProfile();
+  }
+}
+
+function logout() {
+  localStorage.removeItem('pp_user');
+  alert("Berhasil keluar.");
+  show('home');
 }
 
 fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola")
@@ -311,8 +332,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/
     container.innerHTML = "";
     data.items.slice(0, 5).forEach(item => {
       const el = document.createElement("a");
-      el.href = item.link;
-      el.target = "_blank";
+      el.href = item.link; el.target = "_blank";
       el.textContent = item.title;
       el.className = "news-link";
       container.appendChild(el);
