@@ -1,235 +1,241 @@
 <!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>PP SPORTS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
+    :root {
+      --primary: #7fc7bd;
+      --background: #111;
+      --text: #fff;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
       margin: 0;
+      padding: 0;
       font-family: 'Roboto', sans-serif;
-      background: #111;
-      color: #fff;
-      transition: background 0.3s, color 0.3s;
+      background: var(--background);
+      color: var(--text);
     }
-    .light-mode {
-      background: #eaf7f3;
-      color: #111;
-    }
-    .page { padding: 20px; display: none; }
-    #beranda { display: block; }
-    .nav {
+    header {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
       align-items: center;
-      background: #1a1a1a;
-      padding: 10px 20px;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #000;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    .nav-left {
+    #logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 20px;
+      color: var(--primary);
+    }
+    .icons {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 10px;
     }
-    .nav button {
-      background: transparent;
+    .icons i {
       color: white;
-      border: none;
-      font-family: 'Roboto', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 6px 10px;
-      border-radius: 20px;
-      transition: background 0.3s;
-    }
-    .nav button:hover, .nav button.active {
-      background: #7fc7bd;
-      color: black;
-    }
-    #logoTitle {
-      font-family: 'Pacifico', cursive;
-      font-size: 24px;
-      color: #7fc7bd;
-      font-weight: bold;
-    }
-    #profileImgHeader {
-      width: 30px; height: 30px; border-radius: 50%; margin-left: 10px; cursor: pointer; background-color: #ccc; object-fit: cover;
-    }
-    #searchBox {
-      padding: 5px;
-      border-radius: 4px;
-      border: none;
-      margin-left: 10px;
-    }
-    .icon {
-      width: 22px; height: 22px; cursor: pointer; margin-left: 10px;
-    }
-    .modal, .sidemenu {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: none; justify-content: center; align-items: center;
-      z-index: 999;
-    }
-    .sidemenu.show { display: flex; }
-    .sidemenu-box {
-      background: #222; padding: 20px; width: 220px; height: auto; position: relative; border-radius: 10px;
-    }
-    .modal-box {
-      background: #222; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; position: relative;
-    }
-    .modal-box input { width: 100%; margin: 10px 0; padding: 8px; }
-    .modal-box button { width: 100%; margin: 5px 0; padding: 10px; background: #44bbaa; border: none; color: white; font-weight: bold; }
-    .close-btn {
-      position: absolute; top: 10px; right: 10px; font-size: 24px; cursor: pointer; color: white;
-    }
-    .sidemenu-box button {
-      display: block;
-      width: 100%;
-      background: none;
-      color: white;
-      border: none;
-      padding: 10px;
-      text-align: left;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
     }
-    .sidemenu-box h3 { margin-top: 0; color: #7fc7bd; }
+    .langganan {
+      background: #f90;
+      color: black;
+      padding: 5px 8px;
+      font-weight: bold;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+    #searchBox {
+      display: none;
+      width: calc(100% - 32px);
+      margin: 10px 16px;
+      padding: 8px;
+      font-size: 14px;
+      background: #222;
+      border: 1px solid var(--primary);
+      border-radius: 6px;
+      color: white;
+    }
+    main {
+      padding-bottom: 60px;
+    }
+    iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+      border-radius: 8px;
+    }
+    section {
+      display: none;
+      padding: 16px;
+    }
+    section.active {
+      display: block;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #333;
+      z-index: 999;
+    }
+    .bottom-nav a {
+      color: #999;
+      text-decoration: none;
+      text-align: center;
+      font-size: 11px;
+      padding: 6px 0;
+      flex: 1;
+    }
+    .bottom-nav a.active {
+      color: white;
+    }
+    .bottom-nav i {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    #sideMenu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #222;
+      width: 200px;
+      height: 100vh;
+      transform: translateX(-100%);
+      transition: 0.3s;
+      z-index: 1001;
+      padding: 16px;
+    }
+    #sideMenu.show {
+      transform: translateX(0);
+    }
+    #sideMenu h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+    #sideMenu ul {
+      list-style: none;
+      padding: 0;
+    }
+    #sideMenu ul li {
+      padding: 10px 0;
+      cursor: pointer;
+    }
+    #sideMenu ul li:hover {
+      color: var(--primary);
+    }
+    #closeMenuBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      color: white;
+    }
     footer {
       text-align: center;
       font-size: 10px;
       color: #888;
       margin: 20px 0;
     }
-    @media (max-width: 768px) {
-      .nav-left {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-      }
-      .nav button {
-        font-size: 13px;
-        padding: 4px 8px;
-      }
-    }
   </style>
 </head>
-<body><div class="nav">
-  <div class="nav-left">
-    <span id="logoTitle">PP SPORTS</span>
-    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon" onclick="toggleSideMenu()" alt="menu">
-    <button onclick="showPage('beranda')" id="nav-beranda" class="active">Beranda</button>
-    <button onclick="showPage('berita')" id="nav-berita">Berita</button>
-    <button onclick="showPage('jadwal')" id="nav-jadwal">Jadwal</button>
-    <button onclick="showPage('streaming')" id="nav-streaming">Streaming</button>
-  </div>
-  <div>
-    <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" class="icon" onclick="toggleSearch()">
-    <input id="searchBox" type="text" placeholder="Cari..." onkeydown="searchNews(event)" style="display:none">
-    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" id="profileImgHeader" class="icon" onclick="openLoginOrProfile()" alt="profil">
-  </div>
-</div><section id="beranda" class="page">
-  <div id="berandaVideo" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;">
-    <iframe id="ytplayer" src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&volume=0.5&loop=1&playlist=KfJt6B5Ed1U&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-  </div>
-</section><section id="berita" class="page" style="display:none">
-  <h2>Berita Bola</h2>
-  <iframe src="https://pajarsport.vercel.app/berita.html" style="width:100%;height:600px;border:none"></iframe>
-</section><section id="jadwal" class="page" style="display:none">
-  <h2>Jadwal Bola</h2>
-  <iframe src="https://www.livescore.com/en/football/live/" style="width:100%;height:600px;border:none"></iframe>
-</section><section id="streaming" class="page" style="display:none">
-  <h2>Streaming Bola</h2>
-  <iframe src="https://www.rbtvplus01.com/id/football.html" style="width:100%;height:600px;border:none" allowfullscreen></iframe>
-</section><div id="loginModal" class="modal" style="display:none;">
-  <div class="modal-box">
-    <span class="close-btn" onclick="document.getElementById('loginModal').style.display='none'">×</span>
-    <h3>Login</h3>
-    <input type="text" id="loginEmail" placeholder="Email / No HP">
-    <input type="password" id="loginPassword" placeholder="Password">
-    <label>Foto Profil:</label>
-    <input type="file" id="loginPhoto" accept="image/*">
-    <button onclick="submitLogin()">Masuk</button>
-    <button onclick="logout()">Hapus Profil</button>
-  </div>
-</div><div id="sidemenu" class="sidemenu">
-  <div class="sidemenu-box">
-    <span class="close-btn" onclick="toggleSideMenu()">×</span>
+<body>
+  <header>
+    <i class="fas fa-bars" onclick="toggleSideMenu()"></i>
+    <div id="logo">PP SPORTS</div>
+    <div class="icons">
+      <span class="langganan">LANGGANAN</span>
+      <i class="fas fa-search" onclick="toggleSearchBox()"></i>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
+  <input type="text" id="searchBox" placeholder="Cari berita..." onkeypress="searchNews(event)">  <div id="sideMenu">
+    <span id="closeMenuBtn" onclick="toggleSideMenu()">×</span>
     <h3>Menu</h3>
-    <button onclick="toggleTheme()">Mode Terang / Gelap</button>
-    <button onclick="showPage('tentang')">Tentang Kami</button>
-    <button onclick="alert('Pengaturan belum tersedia.')">Pengaturan</button>
-  </div>
-</div><section id="tentang" class="page" style="display:none">
-  <h2>Tentang Kami</h2>
-  <p>Website ini dikelola oleh Pajar Pirmansyah. Menyediakan informasi sepak bola akurat dan streaming langsung terpercaya.</p>
-</section><footer>© Pajar Pirmansyaah</footer><script>
-  const pages = document.querySelectorAll('.page');
-  function showPage(id) {
-    pages.forEach(p => p.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-    const ytPlayer = document.getElementById('ytplayer');
-    if (ytPlayer) {
-      ytPlayer.src = (id === 'beranda') ? ytPlayer.src : '';
+    <ul>
+      <li onclick="navigateFake('berita')">Berita</li>
+      <li onclick="navigateFake('jadwal')">Jadwal</li>
+      <li onclick="navigateFake('live')">Streaming</li>
+      <li onclick="toggleTheme()">Mode Gelap/Terang</li>
+      <li onclick="alert('Pengaturan belum tersedia')">Pengaturan</li>
+    </ul>
+  </div>  <main>
+    <section id="beranda" class="active">
+      <iframe src="https://www.youtube.com/embed/KfJt6B5Ed1U?autoplay=1&mute=0&loop=1&playlist=KfJt6B5Ed1U&controls=0&modestbranding=1&rel=0" allow="autoplay"></iframe>
+    </section><section id="live">
+  <h2>Streaming Langsung</h2>
+  <iframe src="https://www.rbtvplus01.com/id/football.html" allowfullscreen></iframe>
+</section>
+
+<section id="berita">
+  <h2>Berita Bola</h2>
+  <iframe src="https://www.google.com/search?q=site:bola.net+berita+sepak+bola"></iframe>
+</section>
+
+<section id="jadwal">
+  <h2>Jadwal Pertandingan</h2>
+  <iframe src="https://www.goal.com/en/live-scores"></iframe>
+</section>
+
+  </main>  <nav class="bottom-nav">
+    <a href="#beranda" class="active" onclick="navigate(event, 'beranda')">
+      <i class="fas fa-home"></i>
+      Beranda
+    </a>
+    <a href="#live" onclick="navigate(event, 'live')">
+      <i class="fas fa-tv"></i>
+      Live
+    </a>
+    <a href="#berita" onclick="navigate(event, 'berita')">
+      <i class="fas fa-newspaper"></i>
+      Berita
+    </a>
+    <a href="#jadwal" onclick="navigate(event, 'jadwal')">
+      <i class="fas fa-calendar"></i>
+      Jadwal
+    </a>
+  </nav>  <footer>
+    &copy; Pajar Pirmansyaah
+  </footer>  <script>
+    function navigate(e, id) {
+      e.preventDefault();
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.bottom-nav a').forEach(a => a.classList.remove('active'));
+      e.currentTarget.classList.add('active');
     }
-    document.querySelectorAll('.nav button').forEach(btn => btn.classList.remove('active'));
-    const activeBtn = document.getElementById('nav-' + id);
-    if (activeBtn) activeBtn.classList.add('active');
-  }
-  function toggleSideMenu() {
-    document.getElementById('sidemenu').classList.toggle('show');
-  }
-  function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-  }
-  function toggleSearch() {
-    const box = document.getElementById('searchBox');
-    box.style.display = box.style.display === 'none' ? 'inline' : 'none';
-    box.focus();
-  }
-  function searchNews(event) {
-    if (event.key === 'Enter') {
-      const query = event.target.value;
-      showPage('berita');
-      document.getElementById('berita').innerHTML = `<iframe src='https://www.google.com/search?q=${query}+site:bolanet.com' style='width:100%;height:600px;border:none'></iframe>`;
+    function navigateFake(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
-  }
-  function openLoginOrProfile() {
-    document.getElementById('loginModal').style.display = 'flex';
-  }
-  function submitLogin() {
-    const email = document.getElementById('loginEmail').value;
-    const pass = document.getElementById('loginPassword').value;
-    const photo = document.getElementById('loginPhoto').files[0];
-    if (!email || !pass) return alert("Lengkapi semua data.");
-    if (photo) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const image = reader.result;
-        localStorage.setItem('user', JSON.stringify({ email, image }));
-        document.getElementById('profileImgHeader').src = image;
-        document.getElementById('loginModal').style.display = 'none';
+    function toggleSideMenu() {
+      document.getElementById('sideMenu').classList.toggle('show');
+    }
+    function toggleSearchBox() {
+      const box = document.getElementById('searchBox');
+      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+      box.focus();
+    }
+    function searchNews(e) {
+      if (e.key === 'Enter') {
+        const query = e.target.value;
+        window.open(`https://www.google.com/search?q=${query}+site:bola.net`, '_self');
       }
-      reader.readAsDataURL(photo);
-    } else {
-      localStorage.setItem('user', JSON.stringify({ email, image: null }));
-      document.getElementById('loginModal').style.display = 'none';
     }
-  }
-  function logout() {
-    localStorage.removeItem('user');
-    document.getElementById('profileImgHeader').src = 'https://cdn-icons-png.flaticon.com/512/847/847969.png';
-    document.getElementById('loginModal').style.display = 'none';
-  }
-  window.addEventListener('DOMContentLoaded', () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.image) {
-      document.getElementById('profileImgHeader').src = user.image;
-    }
-  });
-</script></body>
+  </script></body>
 </html>
