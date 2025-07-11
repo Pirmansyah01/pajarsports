@@ -1,239 +1,142 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PP SPORT</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     * {margin: 0; padding: 0; box-sizing: border-box;}
-    html {scroll-behavior: smooth;}
     body {
       font-family: 'Bebas Neue', sans-serif;
       background-color: #0d0d0d;
-      color: #ffffff;
-    }
-
-    /* Splash */
-    #splash {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: #000;
-      color: #00bfa6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 3rem;
-      z-index: 9999;
-    }
-
-    /* Header */
-    header {
-      background-color: #1a1a1a;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      border-bottom: 2px solid #00bfa6;
-    }
-    .site-title {
-      font-size: 2rem;
-      color: #00bfa6;
-      letter-spacing: 2px;
-    }
-    .menu-icon, .search-icon {
-      font-size: 1.5rem;
-      color: #ffffff;
-      cursor: pointer;
-    }
-
-    /* Navigasi Terpisah dan Rapi */
-    nav.horizontal-nav {
-      position: sticky;
-      top: 0;
-      z-index: 900;
-      background-color: #0d0d0d;
-      border-bottom: 2px solid #00bfa6;
-    }
-    nav.horizontal-nav ul {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      list-style: none;
-      padding: 1rem;
-      gap: 30px;
-    }
-    nav.horizontal-nav ul li a {
       color: white;
-      text-decoration: none;
-      font-size: 1.4rem;
-      transition: 0.3s;
-      position: relative;
+      min-height: 100vh;
     }
-    nav.horizontal-nav ul li a:hover,
-    nav.horizontal-nav ul li a.active {
-      color: #00bfa6;
-    }
-    nav.horizontal-nav ul li a.active::after,
-    nav.horizontal-nav ul li a:hover::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      height: 3px;
-      width: 100%;
-      background-color: #00bfa6;
-    }
-
-    /* Sidebar */
-    #side-menu {
-      position: fixed;
-      top: 0; left: -250px;
-      width: 250px;
-      height: 100%;
+    header {
       background: #1a1a1a;
       padding: 1rem;
-      transition: left 0.3s ease;
-      z-index: 1000;
-    }
-    #side-menu ul li {
-      list-style: none;
-      margin: 1rem 0;
-    }
-    #side-menu ul li a,
-    #side-menu ul li button {
+      text-align: center;
+      border-bottom: 2px solid #00bfa6;
+      font-size: 2rem;
       color: #00bfa6;
-      font-size: 1.2rem;
+    }
+    nav {
+      background: #0d0d0d;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      border-bottom: 2px solid #00bfa6;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+    nav a {
+      color: white;
+      font-size: 1.3rem;
       text-decoration: none;
-      background: none;
+      transition: 0.3s;
+    }
+    nav a:hover, nav a.active {
+      color: #00bfa6;
+    }
+    .content {
+      display: none;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .content.active {
+      display: block;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
       border: none;
-      cursor: pointer;
     }
-
-    main {padding: 1.5rem;}
-    section {margin-bottom: 2.5rem;}
-    section h3 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #1ecbe1;
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      padding: 1rem;
+      border-top: 1px solid #333;
+      color: #888;
     }
-
-    /* Mode Gelap */
-    body.dark-mode {
-      background-color: #ffffff;
-      color: #000000;
-    }
-    body.dark-mode header,
-    body.dark-mode nav.horizontal-nav {
-      background-color: #eeeeee;
-    }
-    body.dark-mode nav.horizontal-nav ul li a {
-      color: #000000;
-    }
-    body.dark-mode nav.horizontal-nav ul li a.active::after,
-    body.dark-mode nav.horizontal-nav ul li a:hover::after {
-      background-color: #00bfa6;
+    a.back-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #00bfa6;
     }
   </style>
 </head>
 <body>
-  <!-- Splash -->
-  <div id="splash">PP SPORT</div>
 
-  <!-- Header -->
-  <header>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <div class="site-title">PP SPORT</div>
-    <div class="search-icon">🔍</div>
-  </header>
+  <header>PP SPORT</header>
 
-  <!-- Navigasi Terpisah -->
-  <nav class="horizontal-nav">
-    <ul>
-      <li><a href="#berita" class="nav-link active">Berita</a></li>
-      <li><a href="#skor" class="nav-link">Skor</a></li>
-      <li><a href="#tv-streaming" class="nav-link">Streaming</a></li>
-      <li><a href="#tentang" class="nav-link">Tentang</a></li>
-    </ul>
+  <nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('berita')">Berita</a>
+    <a href="#" onclick="showPage('skor')">Skor</a>
+    <a href="#" onclick="showPage('streaming')">Streaming</a>
+    <a href="#" onclick="showPage('tentang')">Tentang</a>
   </nav>
 
-  <!-- Sidebar -->
-  <nav id="side-menu">
-    <ul>
-      <li onclick="closeMenu()">❌</li>
-      <li><a href="#tentang">Tentang Kami</a></li>
-      <li><button onclick="toggleDarkMode()">Mode Gelap</button></li>
-    </ul>
-  </nav>
+  <div id="home" class="content active">
+    <h2 style="text-align:center">Selamat datang di PP SPORT</h2>
+    <p style="text-align:center">Klik menu di atas untuk mulai menjelajah konten kami.</p>
+  </div>
 
-  <!-- Konten -->
-  <main>
-    <section id="berita">
-      <h3>Berita Sepak Bola</h3>
-      <div id="news-feed">Memuat berita...</div>
-    </section>
+  <div id="berita" class="content">
+    <h2>Berita Sepak Bola</h2>
+    <div id="news-feed">Memuat berita...</div>
+  </div>
 
-    <section id="skor">
-      <h3>Live Skor</h3>
-      <iframe src="https://www.scorebat.com/embed/livescore/" frameborder="0" width="100%" height="400" allowfullscreen></iframe>
-    </section>
+  <div id="skor" class="content">
+    <h2>Live Skor</h2>
+    <iframe src="https://www.scorebat.com/embed/livescore/"></iframe>
+  </div>
 
-    <section id="tv-streaming">
-      <h3>Streaming Bola</h3>
-      <iframe src="https://www.rbtvplus01.com/id/football.html" frameborder="0" width="100%" height="600" allowfullscreen></iframe>
-    </section>
+  <div id="streaming" class="content">
+    <h2>Streaming Bola</h2>
+    <iframe src="https://www.rbtvplus01.com/id/football.html"></iframe>
+  </div>
 
-    <section id="tentang">
-      <h3>Tentang Kami</h3>
-      <p>PP SPORT adalah platform sepak bola modern buatan Pajar Pirmansyah. Kami menyajikan info bola terkini, skor real-time, streaming, dan tampilan yang sporty abis!</p>
-    </section>
-  </main>
+  <div id="tentang" class="content">
+    <h2>Tentang Kami</h2>
+    <p>PP SPORT adalah platform bola buatan <strong>Pajar Pirmansyah</strong> yang menyajikan berita, skor, dan streaming bola terkini dengan desain sporty & profesional.</p>
+  </div>
+
+  <footer>
+    © 2025 Pajar Pirmansyah. All rights reserved.
+  </footer>
 
   <script>
-    window.onload = () => {
-      setTimeout(() => {
-        document.getElementById("splash").style.display = "none";
-      }, 2000);
-      fetchNews();
-    };
+    function showPage(pageId) {
+      document.querySelectorAll('.content').forEach(div => div.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
 
-    function toggleMenu() {
-      const menu = document.getElementById("side-menu");
-      menu.style.left = menu.style.left === "0px" ? "-250px" : "0px";
+      document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
     }
 
-    function closeMenu() {
-      document.getElementById("side-menu").style.left = "-250px";
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function () {
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    function fetchNews() {
-      const url = "https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola&hl=id&gl=ID&ceid=ID:id";
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          const container = document.getElementById("news-feed");
-          container.innerHTML = "";
-          data.items.slice(0, 5).forEach(item => {
-            const el = document.createElement("div");
-            el.innerHTML = `<a href="${item.link}" target="_blank" style="color:#ffffff;text-decoration:none;display:block;margin-bottom:10px;">${item.title}</a>`;
-            container.appendChild(el);
+    // Load berita saat masuk ke menu berita
+    document.querySelector("a[onclick=\"showPage('berita')\"]").addEventListener("click", function () {
+      if (!document.getElementById("news-feed").hasChildNodes()) {
+        fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=sepak+bola&hl=id&gl=ID&ceid=ID:id")
+          .then(res => res.json())
+          .then(data => {
+            const container = document.getElementById("news-feed");
+            container.innerHTML = "";
+            data.items.slice(0, 5).forEach(item => {
+              const el = document.createElement("div");
+              el.innerHTML = `<a href="${item.link}" target="_blank" style="color:#00bfa6;">${item.title}</a>`;
+              container.appendChild(el);
+            });
+          })
+          .catch(() => {
+            document.getElementById("news-feed").innerText = "Gagal memuat berita.";
           });
-        })
-        .catch(() => {
-          document.getElementById("news-feed").innerText = "Gagal memuat berita.";
-        });
-    }
+      }
+    });
   </script>
+
 </body>
 </html>
