@@ -1,105 +1,103 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PP SPORTS</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
+      background-color: #000;
+      color: #fff;
     }
+
     header {
-      background: #000;
+      background-color: #111;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 10px;
-    }
-    .logo {
-      color: #65f0c5;
-      font-size: 1.5em;
-      font-family: 'Brush Script MT', cursive;
-    }
-    .menu-icon, .search-icon, .profile-icon {
-      font-size: 20px;
-      color: white;
-      margin: 0 5px;
-    }
-    .langganan-btn {
-      background: orange;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      color: black;
-      font-weight: bold;
-    }
-    .main {
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
       align-items: center;
+      padding: 10px 16px;
+      border-bottom: 2px solid #0f0;
     }
-    iframe {
-      width: 100%;
-      max-width: 500px;
-      aspect-ratio: 16/9;
-      border: none;
-      border-radius: 10px;
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0f0;
     }
-    footer {
-      color: #888;
-      font-size: 12px;
-      text-align: center;
-      margin: 20px 0 70px;
-    }
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #000;
+
+    nav ul {
+      list-style: none;
       display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #222;
+      margin: 0;
+      padding: 0;
     }
-    .bottom-nav a {
-      flex: 1;
-      text-align: center;
-      padding: 8px 0;
+
+    nav li {
+      margin: 0 10px;
+    }
+
+    nav a {
       color: white;
       text-decoration: none;
-      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: background-color 0.3s ease;
     }
-    .bottom-nav a i {
-      display: block;
-      font-size: 20px;
-      margin-bottom: 2px;
+
+    nav a:hover {
+      background-color: #0f0;
+      color: #000;
+    }
+
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #111;
+      padding: 16px;
+      text-align: center;
+      font-size: 14px;
+      border-top: 1px solid #333;
+      color: #aaa;
+    }
+
+    @media screen and (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav li {
+        margin: 5px 0;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <i class="fas fa-bars menu-icon"></i>
     <div class="logo">PP SPORTS</div>
-    <div>
-      <button class="langganan-btn">LANGGANAN</button>
-      <i class="fas fa-search search-icon"></i>
-      <i class="fas fa-user profile-icon"></i>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="berita.html">Berita</a></li>
+        <li><a href="skor.html">Skor</a></li>
+        <li><a href="https://www.rbtvplus01.com/id/football.html" target="_blank" rel="noopener noreferrer">Live</a></li>
+        <li><a href="tentang.html">Tentang</a></li>
+      </ul>
+    </nav>
   </header>
-  <main class="main">
-    <iframe src="https://www.youtube.com/embed/x1C5l5QwaUo?autoplay=1&mute=1&controls=1" allowfullscreen></iframe>
+
+  <main>
+    <h1>Selamat Datang di PP SPORTS</h1>
+    <p>Portal terbaik untuk skor langsung, berita bola terbaru, dan streaming pertandingan!</p>
   </main>
+
   <footer>
-    © Pajar Pirmansyaah
+    &copy; 2025 Pajar Pirmansyah. Semua Hak Dilindungi.
   </footer>
-  <nav class="bottom-nav">
-    <a href="#"><i class="fas fa-home"></i>Beranda</a>
-    <a href="#"><i class="fas fa-tv"></i>Live</a>
-    <a href="#"><i class="fas fa-newspaper"></i>Berita</a>
-    <a href="#"><i class="fas fa-calendar-alt"></i>Jadwal</a>
-  </nav>
 </body>
 </html>
