@@ -10,6 +10,9 @@
       --bg-color: #000;
       --text-color: #fff;
     }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
@@ -17,48 +20,62 @@
       color: var(--text-color);
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
     }
     header {
       background-color: #111;
+      flex-shrink: 0;
     }
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 15px 0;
+      padding: 10px 20px;
     }
     .logo img {
-      height: 90px;
-      margin-top: 5px;
+      height: 60px;
     }
     .icons {
       display: flex;
-      gap: 10px;
+      gap: 15px;
       align-items: center;
     }
     .icon-button {
       background: none;
       border: none;
       color: var(--text-color);
-      font-size: 20px;
+      font-size: 22px;
       cursor: pointer;
     }
-    nav {
+    nav.navbar {
       display: flex;
-      gap: 20px;
-      padding: 10px 15px;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      padding: 10px 0;
+      background-color: #111;
       border-top: 1px solid #333;
       border-bottom: 1px solid #333;
     }
-    nav a {
+    nav.navbar a {
       color: var(--text-color);
       text-decoration: none;
       font-size: 16px;
-      padding: 8px 0;
+      font-weight: 500;
+      position: relative;
     }
-    nav a:hover {
-      border-bottom: 2px solid #fff;
+    nav.navbar a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: transparent;
+      transition: background-color 0.3s;
+    }
+    nav.navbar a:hover::after {
+      background-color: #fff;
     }
     .search-bar {
       display: none;
@@ -112,10 +129,13 @@
     }
     .video-container {
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
     .video-container iframe {
       width: 100%;
-      height: calc(100vh - 180px);
+      height: 100%;
+      flex: 1;
       border: none;
     }
     footer {
@@ -137,6 +157,14 @@
       font-size: 18px;
       margin-bottom: 5px;
     }
+    @media (max-width: 768px) {
+      .logo img {
+        height: 50px;
+      }
+      nav.navbar {
+        gap: 15px;
+      }
+    }
   </style>
 </head>
 <body onload="loadHome()">
@@ -151,7 +179,7 @@
         <button class="icon-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
       </div>
     </div>
-    <nav>
+    <nav class="navbar">
       <a onclick="loadHome()">Beranda</a>
       <a onclick="loadLive()">Live</a>
       <a onclick="loadBerita()">Berita</a>
