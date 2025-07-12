@@ -18,13 +18,16 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
+      overflow: hidden;
     }
     header {
+      flex-shrink: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: #111;
       padding: 10px 15px;
+      z-index: 1001;
     }
     .logo {
       font-weight: 700;
@@ -39,6 +42,7 @@
       text-decoration: none;
       font-size: 16px;
       padding: 5px 10px;
+      cursor: pointer;
     }
     nav a:hover {
       background-color: #333;
@@ -66,7 +70,7 @@
       display: none;
       flex-direction: column;
       padding: 20px;
-      z-index: 999;
+      z-index: 9999;
       overflow-y: auto;
     }
     .menu-panel.active, .profile-panel.active {
@@ -74,9 +78,11 @@
     }
     .close-btn {
       align-self: flex-end;
-      font-size: 24px;
+      font-size: 28px;
       color: white;
       cursor: pointer;
+      background: none;
+      border: none;
     }
     .menu-panel button, .profile-panel button {
       margin-top: 10px;
@@ -103,10 +109,10 @@
     }
     .video-container iframe {
       width: 100%;
-      height: 100vh;
-      pointer-events: none;
+      height: calc(100vh - 120px);
     }
     footer {
+      flex-shrink: 0;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -138,10 +144,10 @@
   <header>
     <div class="logo">Pajar Sports</div>
     <nav>
-      <a href="#" onclick="loadHome()">Home</a>
-      <a href="#" onclick="loadLive()">Live</a>
-      <a href="#" onclick="loadBerita()">Berita</a>
-      <a href="#" onclick="loadJadwal()">Jadwal</a>
+      <a onclick="loadHome()">Home</a>
+      <a onclick="loadLive()">Live</a>
+      <a onclick="loadBerita()">Berita</a>
+      <a onclick="loadJadwal()">Jadwal</a>
     </nav>
     <div class="icons">
       <button class="icon-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
@@ -153,11 +159,11 @@
       <input type="text" id="searchQuery" placeholder="Cari di Google...">
     </form>
   </div>  <div class="menu-panel" id="menuPanel">
-    <div class="close-btn" onclick="toggleMenu()">&times;</div>
+    <button class="close-btn" onclick="toggleMenu()">&times;</button>
     <button onclick="setLightMode()">Mode Terang</button>
     <button onclick="setDarkMode()">Mode Gelap</button>
   </div>  <div class="profile-panel" id="profilePanel">
-    <div class="close-btn" onclick="toggleProfile()">&times;</div>
+    <button class="close-btn" onclick="toggleProfile()">&times;</button>
     <div class="profile-panel-content">
       <p><strong>Pengaturan Profil</strong></p>
       <p>- Ganti Nama</p>
@@ -167,19 +173,19 @@
   </div>  <div class="video-container">
     <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay"></iframe>
   </div>  <footer>
-    <a href="#" onclick="loadHome()">
+    <a onclick="loadHome()">
       <i class="fas fa-home"></i>
       Beranda
     </a>
-    <a href="#" onclick="loadLive()">
+    <a onclick="loadLive()">
       <i class="fas fa-broadcast-tower"></i>
       Live
     </a>
-    <a href="#" onclick="loadBerita()">
+    <a onclick="loadBerita()">
       <i class="fas fa-newspaper"></i>
       Berita
     </a>
-    <a href="#" onclick="loadJadwal()">
+    <a onclick="loadJadwal()">
       <i class="fas fa-calendar-alt"></i>
       Jadwal
     </a>
@@ -193,10 +199,14 @@
     function setLightMode() {
       document.documentElement.style.setProperty('--bg-color', '#fff');
       document.documentElement.style.setProperty('--text-color', '#000');
+      document.querySelector('body').style.backgroundColor = '#fff';
+      document.querySelector('body').style.color = '#000';
     }
     function setDarkMode() {
       document.documentElement.style.setProperty('--bg-color', '#000');
       document.documentElement.style.setProperty('--text-color', '#fff');
+      document.querySelector('body').style.backgroundColor = '#000';
+      document.querySelector('body').style.color = '#fff';
     }
     function toggleSearch() {
       const bar = document.querySelector('.search-bar');
