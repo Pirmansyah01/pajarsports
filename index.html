@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pajarsports</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     :root {
       --bg-color: #ffffff;
       --text-color: #ff0000;
+      --logo-filter: none;
     }
 
     body {
@@ -37,8 +38,9 @@
     }
 
     .logo img {
-      height: 30px;
+      height: 32px;
       transition: filter 0.3s ease;
+      filter: var(--logo-filter);
     }
 
     .icons {
@@ -166,8 +168,9 @@
         gap: 15px;
         font-size: 14px;
       }
+
       .logo img {
-        height: 26px;
+        height: 28px;
       }
     }
   </style>
@@ -177,7 +180,7 @@
   <header>
     <div class="topbar">
       <div class="logo">
-        <img src="logo-pajar.png" alt="Logo" class="logo-img" id="mainLogo">
+        <img src="logo-pajar.png" alt="Logo" id="mainLogo">
       </div>
       <div class="icons">
         <button class="icon-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
@@ -265,32 +268,15 @@
     function setLightMode() {
       document.documentElement.style.setProperty('--bg-color', '#ffffff');
       document.documentElement.style.setProperty('--text-color', '#ff0000');
-      document.body.style.backgroundColor = '#ffffff';
-      document.body.style.color = '#ff0000';
-
-      const logo = document.getElementById('mainLogo');
-      if (logo) logo.style.filter = 'brightness(0) saturate(100%) invert(22%) sepia(96%) saturate(5064%) hue-rotate(357deg) brightness(103%) contrast(113%)';
-
-      document.querySelectorAll('footer, nav.navbar, header, .icon-button, footer i, footer a, nav.navbar a').forEach(el => {
-        el.style.backgroundColor = '#ffffff';
-        el.style.color = '#ff0000';
-      });
+      document.documentElement.style.setProperty('--logo-filter', 'none');
     }
 
     function setDarkMode() {
       document.documentElement.style.setProperty('--bg-color', '#000000');
       document.documentElement.style.setProperty('--text-color', '#ffffff');
-      document.body.style.backgroundColor = '#000000';
-      document.body.style.color = '#ffffff';
-
-      const logo = document.getElementById('mainLogo');
-      if (logo) logo.style.filter = 'invert(1)';
-
-      document.querySelectorAll('footer, nav.navbar, header, .icon-button, footer i, footer a, nav.navbar a').forEach(el => {
-        el.style.backgroundColor = '#111111';
-        el.style.color = '#ffffff';
-      });
+      document.documentElement.style.setProperty('--logo-filter', 'invert(1)');
     }
   </script>
+
 </body>
 </html>
