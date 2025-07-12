@@ -42,6 +42,7 @@
 
     .logo img {
       height: 28px;
+      transition: all 0.3s ease;
     }
 
     .icons {
@@ -82,63 +83,6 @@
       font-weight: 500;
     }
 
-    .search-bar {
-      display: none;
-      padding: 10px;
-    }
-
-    .search-bar input {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    .menu-panel, .profile-panel {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 85%;
-      max-width: 340px;
-      height: 100vh;
-      background-color: var(--panel-bg);
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      z-index: 9999;
-      transition: left 0.3s ease;
-      border-top-right-radius: 16px;
-      border-bottom-right-radius: 16px;
-      overflow-y: auto;
-    }
-
-    .menu-panel.active, .profile-panel.active {
-      left: 0;
-    }
-
-    .close-btn {
-      align-self: flex-end;
-      font-size: 24px;
-      color: var(--close-color);
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-
-    .mode-toggle {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--button-bg);
-      padding: 12px 18px;
-      border-radius: 12px;
-      margin-top: 16px;
-    }
-
-    .video-container {
-      flex-grow: 1;
-    }
-
     .video-container iframe {
       width: 100%;
       height: calc(100vh - 160px);
@@ -167,63 +111,107 @@
       margin-bottom: 5px;
     }
 
-    .profile-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      padding-top: 10px;
+    /* ======= LANGGANAN (SOCIALS) ====== */
+    .subscribe-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--panel-bg);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      z-index: 99999;
+      display: none;
+      width: 280px;
+      text-align: center;
     }
 
-    .profile-card img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--text-color);
+    .subscribe-popup.active {
+      display: block;
     }
 
-    .form-group {
-      width: 100%;
-      margin-top: 8px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background-color: var(--button-bg);
+    .subscribe-popup h3 {
+      margin-top: 0;
       color: var(--text-color);
     }
 
-    .form-group label {
+    .subscribe-popup a {
       display: block;
-      font-size: 13px;
-      margin-bottom: 4px;
-      color: #666;
+      margin: 10px 0;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 16px;
+      font-weight: 500;
     }
 
-    .save-btn, .delete-btn {
-      width: 100%;
+    .subscribe-popup a i {
+      margin-right: 8px;
+    }
+
+    /* ======= PROFIL PANEL ====== */
+    .profile-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 360px;
+      background-color: var(--panel-bg);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      z-index: 99999;
+      display: none;
+      text-align: center;
+    }
+
+    .profile-panel.active {
+      display: block;
+    }
+
+    .profile-panel input[type="text"],
+    .profile-panel textarea {
+      width: 90%;
+      margin: 10px auto;
       padding: 10px;
-      font-size: 14px;
-      border: none;
       border-radius: 8px;
-      font-weight: bold;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .profile-panel input[type="file"] {
+      margin-top: 10px;
+    }
+
+    .profile-panel img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .profile-panel button {
+      margin-top: 10px;
+      background: var(--text-color);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
       cursor: pointer;
     }
 
-    .save-btn {
-      background-color: var(--text-color);
-      color: white;
-    }
-
-    .delete-btn {
-      background-color: gray;
-      color: white;
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--close-color);
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -235,7 +223,7 @@
       </div>
       <div class="icons">
         <button class="icon-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
-        <a href="#" class="subscribe-btn">Langganan</a>
+        <button class="subscribe-btn" onclick="toggleSubscribe()">Langganan</button>
         <button class="icon-button" onclick="toggleProfile()"><i class="fas fa-user"></i></button>
         <button class="icon-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
       </div>
@@ -248,42 +236,8 @@
     </nav>
   </header>
 
-  <div class="search-bar">
-    <form onsubmit="event.preventDefault(); searchGoogle()">
-      <input type="text" id="searchQuery" placeholder="Cari di Google...">
-    </form>
-  </div>
-
-  <div class="menu-panel" id="menuPanel">
-    <button class="close-btn" onclick="toggleMenu()">&times;</button>
-    <div class="mode-toggle" onclick="setLightMode()">
-      <span>Mode Terang</span><i class="fas fa-sun"></i>
-    </div>
-    <div class="mode-toggle" onclick="setDarkMode()">
-      <span>Mode Gelap</span><i class="fas fa-moon"></i>
-    </div>
-  </div>
-
-  <div class="profile-panel" id="profilePanel">
-    <button class="close-btn" onclick="toggleProfile()">&times;</button>
-    <form class="profile-card" id="profileForm">
-      <img id="profilePreview" src="" alt="Foto Profil" />
-      <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto()" />
-      <div class="form-group">
-        <label for="nameInput">Nama</label>
-        <input type="text" id="nameInput" />
-      </div>
-      <div class="form-group">
-        <label for="bioInput">Bio</label>
-        <textarea id="bioInput" rows="2"></textarea>
-      </div>
-      <button type="submit" class="save-btn">Simpan</button>
-      <button type="button" class="delete-btn" onclick="deleteProfile()">Hapus Profil</button>
-    </form>
-  </div>
-
   <div class="video-container">
-    <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay"></iframe>
+    <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0" allow="autoplay"></iframe>
   </div>
 
   <footer>
@@ -293,82 +247,77 @@
     <a onclick="loadJadwal()"><i class="fas fa-calendar-alt"></i> Jadwal</a>
   </footer>
 
+  <!-- LANGGANAN POPUP -->
+  <div class="subscribe-popup" id="subscribePopup">
+    <button class="close-btn" onclick="toggleSubscribe()">&times;</button>
+    <h3>Ikuti PajarSports</h3>
+    <a href="https://www.youtube.com/@Pajar-Sports" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="https://www.instagram.com/pajarsports.id" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.tiktok.com/@pajarsports.id?_t=ZS-8xyUy43yZB2&_r=1" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+    <a href="https://whatsapp.com/channel/0029Vb66XHX4o7qM6xSJv70x" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+
+  <!-- PROFIL POPUP -->
+  <div class="profile-panel" id="profilePanel">
+    <button class="close-btn" onclick="toggleProfile()">&times;</button>
+    <img id="previewImage" src="https://via.placeholder.com/80" alt="Foto Profil">
+    <input type="file" accept="image/*" onchange="previewProfile(this)">
+    <input type="text" placeholder="Nama kamu..." id="profileName">
+    <textarea rows="2" placeholder="Bio kamu..." id="profileBio"></textarea>
+    <button onclick="saveProfile()">Simpan</button>
+    <button onclick="resetProfile()" style="background:#999;">Hapus Profil</button>
+  </div>
+
   <script>
-    function toggleMenu() {
-      document.getElementById('menuPanel').classList.toggle('active');
+    function toggleSearch() {
+      alert("Fitur pencarian aktif");
     }
+
+    function toggleSubscribe() {
+      document.getElementById('subscribePopup').classList.toggle('active');
+    }
+
     function toggleProfile() {
       document.getElementById('profilePanel').classList.toggle('active');
     }
-    function toggleSearch() {
-      const bar = document.querySelector('.search-bar');
-      bar.style.display = (bar.style.display === 'none' || bar.style.display === '') ? 'block' : 'none';
-    }
-    function searchGoogle() {
-      const query = document.getElementById('searchQuery').value;
-      const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-      document.getElementById('mainFrame').src = url;
-    }
-    function loadHome() {
-      document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0';
-    }
-    function loadLive() {
-      document.getElementById('mainFrame').src = 'https://www.rbtvplus01.com/id/football.html';
-    }
-    function loadBerita() {
-      document.getElementById('mainFrame').src = 'https://www.bolasport.com/';
-    }
-    function loadJadwal() {
-      document.getElementById('mainFrame').src = 'https://sport.detik.com/sepakbola/jadwal';
-    }
-    function setLightMode() {
-      document.documentElement.style.setProperty('--bg-color', '#ffffff');
-      document.documentElement.style.setProperty('--text-color', '#d60000');
-      document.getElementById('mainLogo').src = 'logo-pajar-merah.png';
-    }
-    function setDarkMode() {
-      document.documentElement.style.setProperty('--bg-color', '#000000');
-      document.documentElement.style.setProperty('--text-color', '#ffffff');
-      document.getElementById('mainLogo').src = 'logo-pajar-putih.png';
-    }
 
-    function previewPhoto() {
-      const file = document.getElementById('photoInput').files[0];
+    function previewProfile(input) {
+      const file = input.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = () => {
-          document.getElementById('profilePreview').src = reader.result;
-          localStorage.setItem('profilePhoto', reader.result);
-        };
+        reader.onload = function(e) {
+          document.getElementById('previewImage').src = e.target.result;
+        }
         reader.readAsDataURL(file);
       }
     }
 
-    function deleteProfile() {
-      localStorage.removeItem('profileName');
-      localStorage.removeItem('profileBio');
-      localStorage.removeItem('profilePhoto');
-      document.getElementById('nameInput').value = '';
-      document.getElementById('bioInput').value = '';
-      document.getElementById('profilePreview').src = '';
-      alert('Profil berhasil dihapus!');
+    function saveProfile() {
+      alert("Profil disimpan!");
     }
 
-    document.getElementById('profileForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      localStorage.setItem('profileName', document.getElementById('nameInput').value);
-      localStorage.setItem('profileBio', document.getElementById('bioInput').value);
-      alert('Profil disimpan!');
-    });
+    function resetProfile() {
+      document.getElementById('profileName').value = "";
+      document.getElementById('profileBio').value = "";
+      document.getElementById('previewImage').src = "https://via.placeholder.com/80";
+      alert("Profil dihapus.");
+    }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedPhoto = localStorage.getItem('profilePhoto');
-      const savedName = localStorage.getItem('profileName');
-      const savedBio = localStorage.getItem('profileBio');
-      if (savedPhoto) document.getElementById('profilePreview').src = savedPhoto;
-      if (savedName) document.getElementById('nameInput').value = savedName;
-      if (savedBio) document.getElementById('bioInput').value = savedBio;
-    });
+    function loadHome() {
+      document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0';
+    }
+
+    function loadLive() {
+      document.getElementById('mainFrame').src = 'https://www.rbtvplus01.com/id/football.html';
+    }
+
+    function loadBerita() {
+      document.getElementById('mainFrame').src = 'https://www.bolasport.com/';
+    }
+
+    function loadJadwal() {
+      document.getElementById('mainFrame').src = 'https://sport.detik.com/sepakbola/jadwal';
+    }
   </script>
 </body>
-  </html>
+</html>
