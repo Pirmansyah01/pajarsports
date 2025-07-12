@@ -83,6 +83,9 @@
       padding: 10px;
       font-size: 16px;
       cursor: pointer;
+      background: #222;
+      color: white;
+      border: none;
     }
     .search-bar {
       padding: 10px;
@@ -93,10 +96,15 @@
       padding: 10px;
       font-size: 16px;
     }
-    iframe {
+    iframe, .video-container {
       flex-grow: 1;
       width: 100%;
       border: none;
+    }
+    .video-container iframe {
+      width: 100%;
+      height: 100vh;
+      pointer-events: none;
     }
     footer {
       display: flex;
@@ -116,37 +124,19 @@
       font-size: 18px;
       margin-bottom: 5px;
     }
-    .profile-info {
-      text-align: left;
-      margin-top: 20px;
-    }
-    .profile-info label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    .profile-info input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      background-color: #222;
-      border: none;
+    .profile-panel-content {
       color: white;
+      padding: 10px;
+      font-size: 18px;
     }
-    .profile-photo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background-size: cover;
-      background-position: center;
-      margin: auto;
-      margin-top: 20px;
+    .profile-panel-content p {
+      margin: 10px 0;
     }
   </style>
 </head>
-<body>
+<body onload="loadHome()">
   <header>
-    <div class="logo">Pajar</div>
+    <div class="logo">Pajar Sports</div>
     <nav>
       <a href="#" onclick="loadHome()">Home</a>
       <a href="#" onclick="loadLive()">Live</a>
@@ -168,18 +158,15 @@
     <button onclick="setDarkMode()">Mode Gelap</button>
   </div>  <div class="profile-panel" id="profilePanel">
     <div class="close-btn" onclick="toggleProfile()">&times;</div>
-    <div class="profile-photo" id="photoPreview" style="background-image: url('https://via.placeholder.com/100')"></div>
-    <div class="profile-info">
-      <label for="name">Nama</label>
-      <input type="text" id="name" value="Pajar pirmansyah">
-      <label for="about">Tentang</label>
-      <input type="text" id="about" value="New WhatsApp">
-      <label for="phone">Telepon</label>
-      <input type="text" id="phone" value="+62 831-2999-1108">
-      <label for="link">Tautan</label>
-      <input type="text" id="link" value="">
+    <div class="profile-panel-content">
+      <p><strong>Pengaturan Profil</strong></p>
+      <p>- Ganti Nama</p>
+      <p>- Ganti Foto</p>
+      <p>- Logout Akun</p>
     </div>
-  </div>  <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1"></iframe>  <footer>
+  </div>  <div class="video-container">
+    <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay"></iframe>
+  </div>  <footer>
     <a href="#" onclick="loadHome()">
       <i class="fas fa-home"></i>
       Beranda
@@ -221,7 +208,7 @@
       document.getElementById('mainFrame').src = url;
     }
     function loadHome() {
-      document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1';
+      document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0';
     }
     function loadLive() {
       document.getElementById('mainFrame').src = 'https://www.rbtvplus01.com/id/football.html';
