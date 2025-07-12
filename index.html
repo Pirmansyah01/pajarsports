@@ -9,7 +9,10 @@
   <style>
     :root {
       --bg-color: #ffffff;
-      --text-color: #ff0000;
+      --text-color: #d60000;
+      --panel-bg: #f5f5f5;
+      --button-bg: #eeeeee;
+      --close-color: #d60000;
     }
 
     body {
@@ -59,7 +62,7 @@
       display: flex;
       justify-content: center;
       gap: 25px;
-      padding: 10px 0;
+      padding: 8px 0;
       background-color: var(--bg-color);
     }
 
@@ -91,7 +94,7 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background: var(--bg-color);
+      background-color: var(--panel-bg);
       display: none;
       flex-direction: column;
       padding: 20px;
@@ -105,10 +108,10 @@
 
     .close-btn {
       align-self: flex-end;
-      margin-right: 20px; /* geser ke tengah */
+      margin-right: 20px;
       margin-top: 10px;
       font-size: 26px;
-      color: var(--text-color);
+      color: var(--close-color);
       cursor: pointer;
       background: none;
       border: none;
@@ -119,7 +122,7 @@
       padding: 10px;
       font-size: 16px;
       cursor: pointer;
-      background: #eee;
+      background: var(--button-bg);
       color: var(--text-color);
       border: none;
     }
@@ -267,13 +270,19 @@
 
     function setLightMode() {
       document.documentElement.style.setProperty('--bg-color', '#ffffff');
-      document.documentElement.style.setProperty('--text-color', '#ff0000');
+      document.documentElement.style.setProperty('--text-color', '#d60000');
+      document.documentElement.style.setProperty('--panel-bg', '#f5f5f5');
+      document.documentElement.style.setProperty('--button-bg', '#eeeeee');
+      document.documentElement.style.setProperty('--close-color', '#d60000');
       document.getElementById('mainLogo').src = 'logo-pajar-merah.png';
     }
 
     function setDarkMode() {
       document.documentElement.style.setProperty('--bg-color', '#000000');
       document.documentElement.style.setProperty('--text-color', '#ffffff');
+      document.documentElement.style.setProperty('--panel-bg', '#1a1a1a');
+      document.documentElement.style.setProperty('--button-bg', '#2a2a2a');
+      document.documentElement.style.setProperty('--close-color', '#ffffff');
       document.getElementById('mainLogo').src = 'logo-pajar-putih.png';
     }
   </script>
