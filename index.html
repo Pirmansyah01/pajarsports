@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pajar Sports</title>
+  <title>Pajarsports</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -35,6 +35,9 @@
     }
     .logo img {
       height: 28px;
+    }
+    .logo-img {
+      transition: filter 0.3s ease;
     }
     .icons {
       display: flex;
@@ -173,7 +176,7 @@
   <header>
     <div class="topbar">
       <div class="logo">
-        <img src="logo-pajar.png" alt="Pajar Logo">
+        <img src="logo-pajar.png" alt="Pajar Logo" class="logo-img">
       </div>
       <div class="icons">
         <button class="icon-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
@@ -231,15 +234,19 @@
     }
     function setLightMode() {
       document.documentElement.style.setProperty('--bg-color', '#ffffff');
-      document.documentElement.style.setProperty('--text-color', '#000000');
+      document.documentElement.style.setProperty('--text-color', '#ff0000');
       document.body.style.backgroundColor = '#ffffff';
-      document.body.style.color = '#000000';
+      document.body.style.color = '#ff0000';
+      const logo = document.querySelector('.logo-img');
+      if (logo) logo.style.filter = 'brightness(0) saturate(100%) invert(22%) sepia(96%) saturate(5064%) hue-rotate(357deg) brightness(103%) contrast(113%)';
     }
     function setDarkMode() {
       document.documentElement.style.setProperty('--bg-color', '#000000');
       document.documentElement.style.setProperty('--text-color', '#ffffff');
       document.body.style.backgroundColor = '#000000';
       document.body.style.color = '#ffffff';
+      const logo = document.querySelector('.logo-img');
+      if (logo) logo.style.filter = 'none';
     }
     function toggleSearch() {
       const bar = document.querySelector('.search-bar');
