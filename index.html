@@ -1,194 +1,208 @@
-<!DOCTYPE html><html lang="id"><head>
+<!DOCTYPE html><html lang="id">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PP SPORTS</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <title>Pajar Sports</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
+    :root {
+      --bg-color: #000;
+      --text-color: #fff;
+    }
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
       font-family: 'Roboto', sans-serif;
-    }body.light-mode {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-body.dark-mode {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-header {
-  background-color: #000;
-  color: #00f2aa;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.icon-group svg {
-  width: 24px;
-  height: 24px;
-  fill: white;
-  cursor: pointer;
-  margin-left: 1rem;
-}
-
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #000;
-  color: #fff;
-  display: none;
-  flex-direction: column;
-  padding: 2rem;
-  z-index: 1000;
-}
-
-nav.active {
-  display: flex;
-}
-
-.close-nav {
-  align-self: flex-end;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.mode-toggle {
-  margin-top: 2rem;
-  padding: 1rem;
-  border: none;
-  background-color: #fff;
-  color: #000;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-main video,
-main iframe {
-  width: 100%;
-  height: 90vh;
-  border: none;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #000;
-  display: flex;
-  justify-content: space-around;
-  color: #fff;
-  z-index: 999;
-}
-
-footer div {
-  padding: 0.7rem 0;
-  cursor: pointer;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-footer div:hover {
-  background-color: #111;
-}
-
-#profileBox {
-  margin-top: 2rem;
-  background: #111;
-  padding: 1rem;
-  border-radius: 10px;
-  display: none;
-}
-
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #111;
+      padding: 10px 15px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 22px;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+    }
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 16px;
+      padding: 5px 10px;
+    }
+    nav a:hover {
+      background-color: #333;
+      border-radius: 4px;
+    }
+    .icons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .icon-button {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .menu-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #111;
+      display: none;
+      flex-direction: column;
+      padding: 20px;
+      z-index: 999;
+    }
+    .menu-panel.active {
+      display: flex;
+    }
+    .menu-panel .close-btn {
+      align-self: flex-end;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+    .menu-panel button {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .search-bar {
+      padding: 10px;
+      display: none;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    iframe {
+      flex-grow: 1;
+      width: 100%;
+      border: none;
+    }
+    footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: #111;
+      padding: 10px 0;
+    }
+    footer a {
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    footer i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
   </style>
-</head><body class="dark-mode">
+</head>
+<body>
   <header>
-    <div class="menu-icon" onclick="toggleNav()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    <div class="logo">Vidio</div>
+    <nav>
+      <a href="#" onclick="loadHome()">Home</a>
+      <a href="#" onclick="loadLive()">Live</a>
+      <a href="#" onclick="loadBerita()">Berita</a>
+      <a href="#" onclick="loadJadwal()">Jadwal</a>
+    </nav>
+    <div class="icons">
+      <button class="icon-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
+      <button class="icon-button" onclick="toggleProfile()"><i class="fas fa-user"></i></button>
+      <button class="icon-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
     </div>
-    <div class="logo">PP SPORTS</div>
-    <div class="icon-group">
-      <svg onclick="searchGoogle()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/></svg>
-      <svg onclick="toggleProfile()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
-    </div>
-  </header>  <nav id="sidenav">
-    <div class="close-nav" onclick="toggleNav()">×</div>
-    <button class="mode-toggle" onclick="toggleMode()">Ganti Mode</button>
-    <div id="profileBox">
-      <p><strong>Halo, Guest!</strong></p>
-      <button onclick="logout()">Logout</button>
-    </div>
-  </nav>  <main id="content">
-    <video src="/mnt/data/Intro BolaMedia ⚽️ Berita Bola Terbaru 🔴⚪️.mp4" autoplay muted loop></video>
-  </main>  <footer>
-    <div onclick="loadContent('home')">🏠<br>Beranda</div>
-    <div onclick="loadContent('live')">📺<br>Live</div>
-    <div onclick="loadContent('berita')">📰<br>Berita</div>
-    <div onclick="loadContent('jadwal')">📅<br>Jadwal</div>
+  </header>  <div class="search-bar">
+    <form onsubmit="event.preventDefault(); searchGoogle()">
+      <input type="text" id="searchQuery" placeholder="Cari di Google...">
+    </form>
+  </div>  <div class="menu-panel" id="menuPanel">
+    <div class="close-btn" onclick="toggleMenu()">&times;</div>
+    <button onclick="setLightMode()">Mode Terang</button>
+    <button onclick="setDarkMode()">Mode Gelap</button>
+  </div>  <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1"></iframe>  <footer>
+    <a href="#" onclick="loadHome()">
+      <i class="fas fa-home"></i>
+      Beranda
+    </a>
+    <a href="#" onclick="loadLive()">
+      <i class="fas fa-broadcast-tower"></i>
+      Live
+    </a>
+    <a href="#" onclick="loadBerita()">
+      <i class="fas fa-newspaper"></i>
+      Berita
+    </a>
+    <a href="#" onclick="loadJadwal()">
+      <i class="fas fa-calendar-alt"></i>
+      Jadwal
+    </a>
   </footer>  <script>
-    function toggleNav() {
-      document.getElementById('sidenav').classList.toggle('active');
+    function toggleMenu() {
+      document.getElementById('menuPanel').classList.toggle('active');
     }
-
-    function toggleMode() {
-      const body = document.body;
-      if (body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-      } else {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-      }
+    function setLightMode() {
+      document.documentElement.style.setProperty('--bg-color', '#fff');
+      document.documentElement.style.setProperty('--text-color', '#000');
     }
-
+    function setDarkMode() {
+      document.documentElement.style.setProperty('--bg-color', '#000');
+      document.documentElement.style.setProperty('--text-color', '#fff');
+    }
+    function toggleSearch() {
+      const bar = document.querySelector('.search-bar');
+      bar.style.display = (bar.style.display === 'none' || bar.style.display === '') ? 'block' : 'none';
+    }
     function searchGoogle() {
-      const query = prompt('Cari di Google:');
-      if (query) {
-        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-        document.getElementById('content').innerHTML = `<iframe src="${url}"></iframe>`;
-      }
+      const query = document.getElementById('searchQuery').value;
+      const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+      document.getElementById('mainFrame').src = url;
     }
-
-    function loadContent(menu) {
-      let url = '';
-      switch (menu) {
-        case 'home':
-          document.getElementById('content').innerHTML = '<video src="/mnt/data/Intro BolaMedia ⚽️ Berita Bola Terbaru 🔴⚪️.mp4" autoplay muted loop></video>';
-          return;
-        case 'live':
-          url = 'https://www.rbtvplus01.com/id/football.html';
-          break;
-        case 'berita':
-          url = 'https://www.bolasport.com/read/314271698/tokoh-bola-malaysia-kecam-pembatasan-ramadhan-sananta-di-super-league';
-          break;
-        case 'jadwal':
-          url = 'https://sport.detik.com/sepakbola/jadwal';
-          break;
-      }
-      document.getElementById('content').innerHTML = `<iframe src="${url}"></iframe>`;
-    }
-
     function toggleProfile() {
-      const box = document.getElementById('profileBox');
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+      const name = localStorage.getItem('username') || prompt('Masukkan nama Anda:');
+      if (name) {
+        localStorage.setItem('username', name);
+        alert(`Login sebagai ${name}`);
+      }
+    }
+    function loadHome() {
+      document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1';
+    }
+    function loadLive() {
+      document.getElementById('mainFrame').src = 'https://www.rbtvplus01.com/id/football.html';
+    }
+    function loadBerita() {
+      document.getElementById('mainFrame').src = 'https://www.bolasport.com/read/314271698/tokoh-bola-malaysia-kecam-pembatasan-ramadhan-sananta-di-super-league';
+    }
+    function loadJadwal() {
+      document.getElementById('mainFrame').src = 'https://sport.detik.com/sepakbola/jadwal';
     }
 
-    function logout() {
-      alert('Kamu telah logout.');
-      document.getElementById('profileBox').style.display = 'none';
+    // Saat load halaman, cek apakah ada username tersimpan
+    window.onload = () => {
+      const saved = localStorage.getItem('username');
+      if (saved) {
+        console.log(`Login otomatis sebagai: ${saved}`);
+      }
     }
-  </script></body></html>
+  </script></body>
+</html>
