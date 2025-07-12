@@ -15,6 +15,7 @@
       --button-bg: #eeeeee;
       --close-color: #d60000;
     }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
@@ -24,24 +25,31 @@
       flex-direction: column;
       min-height: 100vh;
     }
+
     header {
       background-color: var(--bg-color);
+      display: flex;
+      flex-direction: column;
       border-bottom: 1px solid #ccc;
     }
+
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 15px;
     }
+
     .logo img {
       height: 28px;
     }
+
     .icons {
       display: flex;
       gap: 12px;
       align-items: center;
     }
+
     .icon-button {
       background: none;
       border: none;
@@ -49,43 +57,53 @@
       font-size: 18px;
       cursor: pointer;
     }
+
     .subscribe-btn {
-      background-color: orange;
-      color: white;
+      background-color: #FFA500;
+      color: #fff;
       padding: 6px 14px;
-      border-radius: 6px;
+      font-size: 14px;
       font-weight: 500;
+      border-radius: 6px;
       text-decoration: none;
     }
+
     nav.navbar {
       display: flex;
       justify-content: center;
       gap: 25px;
       padding: 8px 0;
     }
+
     nav.navbar a {
       text-decoration: none;
       color: var(--text-color);
+      font-size: 15px;
       font-weight: 500;
     }
+
     .search-bar {
       display: none;
       padding: 10px;
     }
+
     .search-bar input {
       width: 100%;
       padding: 10px;
       font-size: 16px;
     }
+
     .menu-panel, .profile-panel {
       position: fixed;
       top: 0;
       left: -100%;
-      width: 80%;
-      max-width: 320px;
+      width: 85%;
+      max-width: 340px;
       height: 100vh;
       background-color: var(--panel-bg);
       box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
       padding: 20px;
       z-index: 9999;
       transition: left 0.3s ease;
@@ -93,9 +111,11 @@
       border-bottom-right-radius: 16px;
       overflow-y: auto;
     }
+
     .menu-panel.active, .profile-panel.active {
       left: 0;
     }
+
     .close-btn {
       align-self: flex-end;
       font-size: 24px;
@@ -104,6 +124,7 @@
       background: none;
       border: none;
     }
+
     .mode-toggle {
       display: flex;
       justify-content: space-between;
@@ -111,96 +132,98 @@
       background: var(--button-bg);
       padding: 12px 18px;
       border-radius: 12px;
-      margin-top: 20px;
-      cursor: pointer;
+      margin-top: 16px;
     }
-    .profile-card {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .profile-pic {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--text-color);
-      margin: 0 auto 10px;
-    }
-    input[type="file"] {
-      padding: 4px;
-      font-size: 14px;
-    }
-    .form-group {
-      position: relative;
-    }
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background-color: var(--button-bg);
-      color: var(--text-color);
-    }
-    .form-group label {
-      position: absolute;
-      top: 8px;
-      left: 12px;
-      font-size: 14px;
-      background: var(--panel-bg);
-      color: #777;
-      transition: 0.2s;
-      pointer-events: none;
-    }
-    .form-group input:focus + label,
-    .form-group textarea:focus + label,
-    .form-group input:not(:placeholder-shown) + label,
-    .form-group textarea:not(:placeholder-shown) + label {
-      top: -10px;
-      left: 8px;
-      background: var(--panel-bg);
-      padding: 0 4px;
-      font-size: 12px;
-      color: var(--text-color);
-    }
-    .save-btn {
-      background-color: var(--text-color);
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+
     .video-container {
       flex-grow: 1;
     }
+
     .video-container iframe {
       width: 100%;
-      height: calc(100vh - 180px);
+      height: calc(100vh - 160px);
       border: none;
     }
+
     footer {
       flex-shrink: 0;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      background-color: var(--bg-color);
       border-top: 1px solid #ccc;
       padding: 10px 0;
     }
+
     footer a {
       color: var(--text-color);
       text-align: center;
       text-decoration: none;
       font-size: 14px;
     }
+
     footer i {
       display: block;
       font-size: 18px;
       margin-bottom: 5px;
+    }
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding-top: 10px;
+    }
+
+    .profile-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--text-color);
+    }
+
+    .form-group {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: var(--button-bg);
+      color: var(--text-color);
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #666;
+    }
+
+    .save-btn, .delete-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .save-btn {
+      background-color: var(--text-color);
+      color: white;
+    }
+
+    .delete-btn {
+      background-color: gray;
+      color: white;
     }
   </style>
 </head>
@@ -220,6 +243,8 @@
     <nav class="navbar">
       <a onclick="loadHome()">Beranda</a>
       <a onclick="loadLive()">Live</a>
+      <a onclick="loadBerita()">Berita</a>
+      <a onclick="loadJadwal()">Jadwal</a>
     </nav>
   </header>
 
@@ -242,27 +267,30 @@
   <div class="profile-panel" id="profilePanel">
     <button class="close-btn" onclick="toggleProfile()">&times;</button>
     <form class="profile-card" id="profileForm">
-      <img id="profilePreview" src="" alt="Foto Profil" class="profile-pic" />
-      <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto()"/>
+      <img id="profilePreview" src="" alt="Foto Profil" />
+      <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto()" />
       <div class="form-group">
-        <input type="text" id="nameInput" required placeholder=" " />
-        <label for="nameInput">Nama kamu</label>
+        <label for="nameInput">Nama</label>
+        <input type="text" id="nameInput" />
       </div>
       <div class="form-group">
-        <textarea id="bioInput" rows="3" required placeholder=" "></textarea>
-        <label for="bioInput">Bio singkat</label>
+        <label for="bioInput">Bio</label>
+        <textarea id="bioInput" rows="2"></textarea>
       </div>
       <button type="submit" class="save-btn">Simpan</button>
+      <button type="button" class="delete-btn" onclick="deleteProfile()">Hapus Profil</button>
     </form>
   </div>
 
   <div class="video-container">
-    <iframe id="mainFrame" src="" allow="autoplay"></iframe>
+    <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay"></iframe>
   </div>
 
   <footer>
     <a onclick="loadHome()"><i class="fas fa-home"></i> Beranda</a>
     <a onclick="loadLive()"><i class="fas fa-broadcast-tower"></i> Live</a>
+    <a onclick="loadBerita()"><i class="fas fa-newspaper"></i> Berita</a>
+    <a onclick="loadJadwal()"><i class="fas fa-calendar-alt"></i> Jadwal</a>
   </footer>
 
   <script>
@@ -282,27 +310,28 @@
       document.getElementById('mainFrame').src = url;
     }
     function loadHome() {
-      document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0';
+      document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0';
     }
     function loadLive() {
       document.getElementById('mainFrame').src = 'https://www.rbtvplus01.com/id/football.html';
     }
+    function loadBerita() {
+      document.getElementById('mainFrame').src = 'https://www.bolasport.com/';
+    }
+    function loadJadwal() {
+      document.getElementById('mainFrame').src = 'https://sport.detik.com/sepakbola/jadwal';
+    }
     function setLightMode() {
       document.documentElement.style.setProperty('--bg-color', '#ffffff');
       document.documentElement.style.setProperty('--text-color', '#d60000');
-      document.documentElement.style.setProperty('--panel-bg', '#f5f5f5');
-      document.documentElement.style.setProperty('--button-bg', '#eeeeee');
-      document.documentElement.style.setProperty('--close-color', '#d60000');
       document.getElementById('mainLogo').src = 'logo-pajar-merah.png';
     }
     function setDarkMode() {
       document.documentElement.style.setProperty('--bg-color', '#000000');
       document.documentElement.style.setProperty('--text-color', '#ffffff');
-      document.documentElement.style.setProperty('--panel-bg', '#1a1a1a');
-      document.documentElement.style.setProperty('--button-bg', '#2a2a2a');
-      document.documentElement.style.setProperty('--close-color', '#ffffff');
       document.getElementById('mainLogo').src = 'logo-pajar-putih.png';
     }
+
     function previewPhoto() {
       const file = document.getElementById('photoInput').files[0];
       if (file) {
@@ -314,12 +343,24 @@
         reader.readAsDataURL(file);
       }
     }
+
+    function deleteProfile() {
+      localStorage.removeItem('profileName');
+      localStorage.removeItem('profileBio');
+      localStorage.removeItem('profilePhoto');
+      document.getElementById('nameInput').value = '';
+      document.getElementById('bioInput').value = '';
+      document.getElementById('profilePreview').src = '';
+      alert('Profil berhasil dihapus!');
+    }
+
     document.getElementById('profileForm').addEventListener('submit', function(e) {
       e.preventDefault();
       localStorage.setItem('profileName', document.getElementById('nameInput').value);
       localStorage.setItem('profileBio', document.getElementById('bioInput').value);
-      alert('Profil berhasil disimpan!');
+      alert('Profil disimpan!');
     });
+
     window.addEventListener('DOMContentLoaded', () => {
       const savedPhoto = localStorage.getItem('profilePhoto');
       const savedName = localStorage.getItem('profileName');
@@ -330,4 +371,4 @@
     });
   </script>
 </body>
-</html>
+  </html>
