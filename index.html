@@ -1,247 +1,250 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PajarSports ID</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
       --bg-color: #000;
       --text-color: #fff;
-      --logo-url-light: url('https://pajarsports.github.io/assets/logo-pajar-merah.png');
-      --logo-url-dark: url('https://pajarsports.github.io/assets/logo-pajar-putih.png');
-    }
+      --primary-color: #e50914;
+      --secondary-bg: #1a1a1a;
+    }body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-    }
+header {
+  background-color: var(--bg-color);
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
 
-    header {
-      background-color: #111;
-      padding: 10px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.logo img {
+  height: 34px;
+}
 
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .logo {
-      background-image: var(--logo-url-dark);
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-      height: 50px;
-      width: 160px;
-    }
+.subscribe-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    nav {
-      margin-top: 10px;
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-    }
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: var(--secondary-bg);
+  padding: 10px;
+}
 
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      padding: 5px 10px;
-    }
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 500;
+}
 
-    .icons {
-      display: flex;
-      gap: 10px;
-    }
+nav a:hover {
+  color: var(--primary-color);
+}
 
-    .icon-button {
-      background: none;
-      border: none;
-      color: var(--text-color);
-      font-size: 20px;
-    }
+.search-bar {
+  display: none;
+  padding: 10px;
+}
 
-    .langganan-button {
-      background-color: orange;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-weight: bold;
-    }
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+}
 
-    iframe {
-      width: 100%;
-      height: calc(100vh - 150px);
-      border: none;
-    }
+.menu-panel,
+.profile-panel,
+.subscribe-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--secondary-bg);
+  color: var(--text-color);
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 999;
+}
 
-    footer {
-      display: flex;
-      justify-content: space-around;
-      background: #111;
-      padding: 10px 0;
-    }
+.menu-panel.active,
+.profile-panel.active,
+.subscribe-panel.active {
+  display: flex;
+}
 
-    footer a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      text-align: center;
-    }
+.close-btn {
+  align-self: flex-end;
+  font-size: 28px;
+  color: var(--primary-color);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
 
-    .mode-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 10px 0;
-    }
+.video-container iframe {
+  width: 100%;
+  height: calc(100vh - 150px);
+  border: none;
+}
 
-    .community {
-      padding: 20px;
-      background: #222;
-      height: 300px;
-      overflow-y: auto;
-    }
+footer {
+  background-color: var(--secondary-bg);
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
 
-    .chat {
-      margin: 10px;
-      padding: 10px;
-      border-radius: 10px;
-      max-width: 70%;
-    }
+footer a {
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  text-decoration: none;
+}
 
-    .chat.left {
-      background: #333;
-      color: white;
-      align-self: flex-start;
-    }
+footer i {
+  display: block;
+  font-size: 18px;
+}
 
-    .chat.right {
-      background: #444;
-      color: white;
-      align-self: flex-end;
-      margin-left: auto;
-    }
+.modern-button {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  text-align: left;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
+  cursor: pointer;
+}
 
-    @media (max-width: 768px) {
-      .logo {
-        height: 40px;
-        width: 130px;
-      }
+.modern-button i {
+  font-size: 18px;
+}
 
-      iframe {
-        height: calc(100vh - 200px);
-      }
-    }
   </style>
 </head>
 <body onload="loadHome()">
-
   <header>
-    <div class="top-bar">
-      <div class="logo" id="logo"></div>
-      <div class="icons">
-        <button class="langganan-button" onclick="openLangganan()">Langganan</button>
-        <button class="icon-button" onclick="toggleSearch()"><img id="searchIcon" src="https://pajarsports.github.io/assets/logo-pajar-putih.png" width="20"></button>
-        <button class="icon-button" onclick="toggleProfile()"><i class="fas fa-user"></i></button>
-        <button class="icon-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-      </div>
+    <div class="logo">
+      <img id="mainLogo" src="https://pajarsports.github.io/assets/logo-pajar-putih.png" alt="PajarSports" />
     </div>
-    <nav>
-      <a onclick="loadHome()">Home</a>
-      <a onclick="loadLive()">Live</a>
-      <a onclick="loadBerita()">Berita</a>
-      <a onclick="loadJadwal()">Jadwal</a>
-      <a onclick="loadKomunitas()">Komunitas</a>
-    </nav>
-  </header>
-
-  <div class="search-bar" style="display:none;">
-    <input type="text" id="searchQuery" placeholder="Cari di Google..." onkeypress="if(event.key === 'Enter') searchGoogle()">
-  </div>
-
-  <iframe id="mainFrame"></iframe>
-
-  <footer>
-    <a onclick="loadHome()"><i class="fas fa-home"></i><br>Home</a>
-    <a onclick="loadLive()"><i class="fas fa-broadcast-tower"></i><br>Live</a>
-    <a onclick="loadBerita()"><i class="fas fa-newspaper"></i><br>Berita</a>
-    <a onclick="loadJadwal()"><i class="fas fa-calendar-alt"></i><br>Jadwal</a>
-  </footer>
-
-  <!-- Menu, Profile, Langganan, Komunitas panels -->
-  <!-- Tambahkan panel ini sesuai kebutuhan -->
-
-  <script>
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (prefersDark) setDarkMode(); else setLightMode();
-
+    <div class="top-right">
+      <button class="subscribe-btn" onclick="toggleSubscribe()">Langganan</button>
+      <button onclick="toggleSearch()"><i class="fas fa-search"></i></button>
+      <button onclick="toggleProfile()"><i class="fas fa-user"></i></button>
+      <button onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>  <nav>
+    <a onclick="loadHome()">Beranda</a>
+    <a onclick="loadLive()">Live</a>
+    <a onclick="loadBerita()">Berita</a>
+    <a onclick="loadJadwal()">Jadwal</a>
+    <a onclick="loadKomunitas()">Komunitas</a>
+  </nav>  <div class="search-bar">
+    <form onsubmit="event.preventDefault(); searchGoogle()">
+      <input type="text" id="searchQuery" placeholder="Cari di Google..." />
+    </form>
+  </div>  <div class="menu-panel" id="menuPanel">
+    <button class="close-btn" onclick="toggleMenu()">×</button>
+    <div class="modern-button" onclick="setLightMode()"><i class="fas fa-sun"></i> Mode Terang</div>
+    <div class="modern-button" onclick="setDarkMode()"><i class="fas fa-moon"></i> Mode Gelap</div>
+  </div>  <div class="profile-panel" id="profilePanel">
+    <button class="close-btn" onclick="toggleProfile()">×</button>
+    <div class="modern-button"><i class="fas fa-camera"></i> Upload Foto</div>
+    <div class="modern-button"><i class="fas fa-user-edit"></i> Ganti Nama</div>
+    <div class="modern-button"><i class="fas fa-heart"></i> Hobi</div>
+    <div class="modern-button"><i class="fas fa-info-circle"></i> Bio</div>
+    <div class="modern-button"><i class="fas fa-sign-out-alt"></i> Logout</div>
+  </div>  <div class="subscribe-panel" id="subscribePanel">
+    <button class="close-btn" onclick="toggleSubscribe()">×</button>
+    <div class="modern-button"><i class="fab fa-youtube"></i> YouTube: PajarSports ID</div>
+    <div class="modern-button"><i class="fab fa-instagram"></i> Instagram: pajarsportsid</div>
+    <div class="modern-button"><i class="fab fa-tiktok"></i> TikTok: PajarSports ID</div>
+    <div class="modern-button"><i class="fab fa-whatsapp"></i> WhatsApp: PajarSports ID</div>
+  </div>  <div class="video-container">
+    <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A" allow="autoplay"></iframe>
+  </div>  <footer>
+    <a onclick="loadHome()"><i class="fas fa-home"></i> Beranda</a>
+    <a onclick="loadLive()"><i class="fas fa-broadcast-tower"></i> Live</a>
+    <a onclick="loadBerita()"><i class="fas fa-newspaper"></i> Berita</a>
+    <a onclick="loadJadwal()"><i class="fas fa-calendar-alt"></i> Jadwal</a>
+    <a onclick="loadKomunitas()"><i class="fas fa-comments"></i> Komunitas</a>
+  </footer>  <script>
+    function toggleMenu() {
+      document.getElementById('menuPanel').classList.toggle('active');
+    }
+    function toggleProfile() {
+      document.getElementById('profilePanel').classList.toggle('active');
+    }
     function toggleSearch() {
-      const el = document.querySelector('.search-bar');
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+      const bar = document.querySelector('.search-bar');
+      bar.style.display = bar.style.display === 'block' ? 'none' : 'block';
     }
-
-    function setDarkMode() {
-      document.documentElement.style.setProperty('--bg-color', '#000');
-      document.documentElement.style.setProperty('--text-color', '#fff');
-      document.getElementById("logo").style.backgroundImage = "url('https://pajarsports.github.io/assets/logo-pajar-putih.png')";
-      document.getElementById("searchIcon").src = "https://pajarsports.github.io/assets/logo-pajar-putih.png";
+    function toggleSubscribe() {
+      document.getElementById('subscribePanel').classList.toggle('active');
     }
-
     function setLightMode() {
       document.documentElement.style.setProperty('--bg-color', '#fff');
       document.documentElement.style.setProperty('--text-color', '#000');
-      document.getElementById("logo").style.backgroundImage = "url('https://pajarsports.github.io/assets/logo-pajar-merah.png')";
-      document.getElementById("searchIcon").src = "https://pajarsports.github.io/assets/logo-pajar-merah.png";
+      document.getElementById('mainLogo').src = 'https://pajarsports.github.io/assets/logo-pajar-merah.png';
     }
-
+    function setDarkMode() {
+      document.documentElement.style.setProperty('--bg-color', '#000');
+      document.documentElement.style.setProperty('--text-color', '#fff');
+      document.getElementById('mainLogo').src = 'https://pajarsports.github.io/assets/logo-pajar-putih.png';
+    }
     function searchGoogle() {
       const query = document.getElementById('searchQuery').value;
-      if (query) {
-        document.getElementById('mainFrame').src = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-      }
+      document.getElementById('mainFrame').src = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
     }
-
     function loadHome() {
       document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A';
     }
-
     function loadLive() {
       document.getElementById('mainFrame').src = 'https://www.rbtvplus01.com/id/football.html';
     }
-
     function loadBerita() {
       document.getElementById('mainFrame').src = 'https://www.bolasport.com/';
     }
-
     function loadJadwal() {
       document.getElementById('mainFrame').src = 'https://sport.detik.com/sepakbola/jadwal';
     }
-
     function loadKomunitas() {
-      document.getElementById('mainFrame').src = 'https://example.com/komunitas'; // ganti nanti
+      document.getElementById('mainFrame').src = 'https://www5.cbox.ws/box/?boxid=952395&boxtag=JwUpN5';
     }
-
-    function openLangganan() {
-      alert("Follow media sosial kami:\nInstagram: @pajarsportsid\nYouTube: PajarSports ID\nTikTok: @PajarSports ID\nWhatsApp Channel: PajarSports ID");
-    }
-
-    function toggleMenu() {
-      alert("Menu modern ditampilkan di versi lengkap.");
-    }
-
-    function toggleProfile() {
-      alert("Menu profil modern ditampilkan di versi lengkap.");
-    }
-  </script>
-</body>
+  </script></body>
 </html>
