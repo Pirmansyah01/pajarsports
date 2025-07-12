@@ -10,7 +10,6 @@
     :root {
       --bg-color: #ffffff;
       --text-color: #ff0000;
-      --logo-filter: none;
     }
 
     body {
@@ -39,8 +38,7 @@
 
     .logo img {
       height: 32px;
-      transition: filter 0.3s ease;
-      filter: var(--logo-filter);
+      transition: all 0.3s ease;
     }
 
     .icons {
@@ -107,7 +105,7 @@
 
     .close-btn {
       align-self: flex-end;
-      margin-right: 10px;
+      margin-right: 20px; /* geser ke tengah */
       margin-top: 10px;
       font-size: 26px;
       color: var(--text-color);
@@ -182,7 +180,7 @@
   <header>
     <div class="topbar">
       <div class="logo">
-        <img src="logo-pajar.png" alt="Logo" id="mainLogo">
+        <img src="logo-pajar-merah.png" alt="Logo" id="mainLogo">
       </div>
       <div class="icons">
         <button class="icon-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
@@ -270,13 +268,13 @@
     function setLightMode() {
       document.documentElement.style.setProperty('--bg-color', '#ffffff');
       document.documentElement.style.setProperty('--text-color', '#ff0000');
-      document.documentElement.style.setProperty('--logo-filter', 'none');
+      document.getElementById('mainLogo').src = 'logo-pajar-merah.png';
     }
 
     function setDarkMode() {
       document.documentElement.style.setProperty('--bg-color', '#000000');
       document.documentElement.style.setProperty('--text-color', '#ffffff');
-      document.documentElement.style.setProperty('--logo-filter', 'invert(1)');
+      document.getElementById('mainLogo').src = 'logo-pajar-putih.png';
     }
   </script>
 
