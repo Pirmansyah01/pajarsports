@@ -1,200 +1,182 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PP SPORTS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
   <style>
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
     }
-    body {
-      background-color: #000;
-      color: #fff;
-      overflow-x: hidden;
+
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000000;
     }
+
+    body.dark-mode {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
     header {
-      background: #000;
-      padding: 10px 16px;
+      background-color: #000;
+      color: #00f2aa;
+      padding: 1rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #222;
+      justify-content: space-between;
     }
+
     .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #89f0d5;
+      font-weight: 700;
+      font-size: 1.5rem;
     }
-    .top-icons {
-      display: flex;
-      gap: 10px;
-    }
-    .top-icons button {
-      background: transparent;
-      border: none;
-      font-size: 20px;
-      color: white;
+
+    .menu-icon,
+    .search-icon,
+    .profile-icon {
+      color: #fff;
+      font-size: 1.5rem;
       cursor: pointer;
+      margin-left: 1rem;
     }
-    iframe {
-      width: 100%;
-      height: calc(100vh - 110px);
-      border: none;
-    }
-    nav.bottom {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #111;
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid #333;
-    }
-    nav.bottom a {
-      flex: 1;
-      text-align: center;
-      padding: 8px 0;
-      font-size: 12px;
-      color: #ccc;
-      text-decoration: none;
-    }
-    nav.bottom a.active {
-      color: white;
-    }
-    .overlay {
+
+    nav {
       position: fixed;
       top: 0;
       left: 0;
-      background: rgba(0,0,0,0.95);
       width: 100%;
-      height: 100%;
-      z-index: 1000;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
       display: none;
       flex-direction: column;
-      padding: 20px;
+      padding: 2rem;
+      z-index: 1000;
     }
-    .overlay.active {
+
+    nav.active {
       display: flex;
     }
-    .overlay .close {
+
+    .close-nav {
       align-self: flex-end;
-      font-size: 24px;
+      font-size: 2rem;
       cursor: pointer;
     }
-    .overlay h3 {
-      margin-bottom: 10px;
+
+    .mode-toggle {
+      margin-top: 2rem;
+      padding: 1rem;
+      border: none;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
     }
-    .overlay input[type=\"text\"] {
-      padding: 10px;
-      margin-bottom: 10px;
-      width: 90%;
+
+    main iframe {
+      width: 100%;
+      height: 90vh;
+      border: none;
     }
-    .overlay button {
-      padding: 10px;
-      margin-top: 5px;
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: space-around;
+      color: #fff;
+      z-index: 999;
+    }
+
+    footer div {
+      padding: 0.7rem 0;
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer div:hover {
+      background-color: #111;
     }
   </style>
 </head>
-<body>
 
+<body class="dark-mode">
   <header>
+    <div class="menu-icon" onclick="toggleNav()">☰</div>
     <div class="logo">PP SPORTS</div>
-    <div class="top-icons">
-      <button onclick="toggleSidebar()">☰</button>
-      <button onclick="toggleSearch()">🔍</button>
-      <button onclick="toggleProfile()">👤</button>
+    <div>
+      <span class="search-icon" onclick="searchGoogle()">🔍</span>
+      <span class="profile-icon" onclick="alert('Login Google asli akan ditambahkan di update selanjutnya.')">👤</span>
     </div>
   </header>
 
-  <iframe id="mainframe" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=ePZzGxxLd3A"></iframe>
-
-  <nav class="bottom">
-    <a href="#" onclick="changeMenu('beranda')" class="active">🏠<br>Beranda</a>
-    <a href="#" onclick="changeMenu('live')">📺<br>Live</a>
-    <a href="#" onclick="changeMenu('berita')">📰<br>Berita</a>
-    <a href="#" onclick="changeMenu('jadwal')">📅<br>Jadwal</a>
+  <nav id="sidenav">
+    <div class="close-nav" onclick="toggleNav()">×</div>
+    <button class="mode-toggle" onclick="toggleMode()">Ganti Mode</button>
   </nav>
 
-  <!-- SIDEBAR -->
-  <div class="overlay" id="sidebar">
-    <div class="close" onclick="toggleSidebar()">×</div>
-    <h3>Mode Tampilan</h3>
-    <button onclick="toggleMode()">Mode Terang / Gelap</button>
-  </div>
+  <main id="content">
+    <iframe src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&controls=0&loop=1&playlist=ePZzGxxLd3A"></iframe>
+  </main>
 
-  <!-- SEARCH -->
-  <div class="overlay" id="search">
-    <div class="close" onclick="toggleSearch()">×</div>
-    <h3>Pencarian Google</h3>
-    <form onsubmit="searchGoogle(event)">
-      <input type="text" id="searchInput" placeholder="Cari..." />
-      <button type="submit">Cari</button>
-    </form>
-  </div>
-
-  <!-- PROFIL -->
-  <div class="overlay" id="profile">
-    <div class="close" onclick="toggleProfile()">×</div>
-    <h3>Login Profil</h3>
-    <p>Login (Google/Nomor) akan diterapkan pakai Firebase jika kamu setuju.</p>
-    <button>Login Google</button>
-    <button>Login Nomor HP</button>
-    <hr />
-    <button>Ganti Profil</button>
-    <button>Hapus Profil</button>
-  </div>
+  <footer>
+    <div onclick="loadContent('home')">🏠<br>Beranda</div>
+    <div onclick="loadContent('live')">📺<br>Live</div>
+    <div onclick="loadContent('berita')">📰<br>Berita</div>
+    <div onclick="loadContent('jadwal')">📅<br>Jadwal</div>
+  </footer>
 
   <script>
-    function changeMenu(menu) {
-      const iframe = document.getElementById('mainframe');
-      document.querySelectorAll('nav.bottom a').forEach(a => a.classList.remove('active'));
-      event.target.closest('a').classList.add('active');
-
-      if(menu === 'beranda') {
-        iframe.src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=ePZzGxxLd3A';
-      } else if(menu === 'live') {
-        iframe.src = 'https://www.rbtvplus01.com/id/football.html';
-      } else if(menu === 'berita') {
-        iframe.src = 'https://www.bolasport.com/read/314271698/tokoh-bola-malaysia-kecam-pembatasan-ramadhan-sananta-di-super-league';
-      } else if(menu === 'jadwal') {
-        iframe.src = 'https://sport.detik.com/sepakbola/jadwal';
-      }
-    }
-
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-
-    function toggleSearch() {
-      document.getElementById('search').classList.toggle('active');
-    }
-
-    function toggleProfile() {
-      document.getElementById('profile').classList.toggle('active');
-    }
-
-    function searchGoogle(e) {
-      e.preventDefault();
-      const query = document.getElementById('searchInput').value;
-      const iframe = document.getElementById('mainframe');
-      iframe.src = 'https://www.google.com/search?q=' + encodeURIComponent(query);
-      toggleSearch();
+    function toggleNav() {
+      document.getElementById('sidenav').classList.toggle('active');
     }
 
     function toggleMode() {
-      const body = document.body;
-      if (body.style.backgroundColor === 'white') {
-        body.style.backgroundColor = '#000';
-        body.style.color = '#fff';
-      } else {
-        body.style.backgroundColor = 'white';
-        body.style.color = '#000';
+      document.body.classList.toggle('dark-mode');
+      document.body.classList.toggle('light-mode');
+    }
+
+    function searchGoogle() {
+      const query = prompt('Cari di Google:');
+      if (query) {
+        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        const iframe = `<iframe src="${url}"></iframe>`;
+        document.getElementById('content').innerHTML = iframe;
       }
     }
-  </script>
 
+    function loadContent(menu) {
+      let url = '';
+      switch (menu) {
+        case 'home':
+          url = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&controls=0&loop=1&playlist=ePZzGxxLd3A';
+          break;
+        case 'live':
+          url = 'https://www.rbtvplus01.com/id/football.html';
+          break;
+        case 'berita':
+          url = 'https://www.bolasport.com/read/314271698/tokoh-bola-malaysia-kecam-pembatasan-ramadhan-sananta-di-super-league';
+          break;
+        case 'jadwal':
+          url = 'https://sport.detik.com/sepakbola/jadwal';
+          break;
+      }
+      document.getElementById('content').innerHTML = `<iframe src="${url}"></iframe>`;
+    }
+  </script>
 </body>
+
 </html>
