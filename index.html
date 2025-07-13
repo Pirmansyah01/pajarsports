@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-  <!-- ✅ Google AdSense Script -->
+  <!-- KODE GOOGLE ADSENSE -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6440195817779178"
      crossorigin="anonymous"></script>
 
@@ -64,45 +64,6 @@
       cursor: pointer;
     }
 
-    /* ✅ Iklan Styling */
-    .adsense-box {
-      margin: 20px auto;
-      text-align: center;
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="topbar">
-      <div class="logo">
-        <img src="logo.png" alt="Logo PajarSports">
-      </div>
-      <div class="icons">
-        <button class="icon-button"><i class="fas fa-search"></i></button>
-        <button class="icon-button"><i class="fas fa-bars"></i></button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ✅ Google AdSense Iklan di bawah header -->
-  <div class="adsense-box">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6440195817779178"
-         data-ad-slot="1234567890"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-
-  <!-- Konten lainnya lanjut di sini... -->
-
-</body>
-</html>
     .subscribe-btn {
       background-color: #FFA500;
       color: #fff;
@@ -220,7 +181,7 @@
       resize: none;
     }
 
-    .profile-form input[type="file"] {
+    .profile-form input[type=\"file\"] {
       border: none;
     }
 
@@ -298,6 +259,19 @@
     </nav>
   </header>
 
+  <!-- BLOK IKLAN GOOGLE ADSENSE -->
+  <div style="text-align:center; margin: 12px 0;">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-6440195817779178"
+      data-ad-slot="1234567890"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <div class="search-bar">
     <form onsubmit="event.preventDefault(); searchGoogle()">
       <input type="text" id="searchQuery" placeholder="Cari di Google...">
@@ -327,7 +301,6 @@
       <button type="button" onclick="hapusProfil()" style="background-color:#999;">Hapus Profil</button>
     </form>
   </div>
-
   <div class="menu-panel" id="langgananPanel">
     <button class="close-btn" onclick="toggleLangganan()">&times;</button>
     <div style="margin-top: 20px;">
@@ -344,13 +317,13 @@
   <div class="video-container">
     <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay"></iframe>
   </div>
+
   <footer>
     <a onclick="loadHome()"><i class="fas fa-home"></i> Beranda</a>
     <a onclick="loadLive()"><i class="fas fa-broadcast-tower"></i> Live</a>
     <a onclick="loadBerita()"><i class="fas fa-newspaper"></i> Berita</a>
     <a onclick="loadJadwal()"><i class="fas fa-calendar-alt"></i> Jadwal</a>
   </footer>
-
   <script>
     function toggleMenu() {
       document.getElementById('menuPanel').classList.toggle('active');
@@ -400,6 +373,7 @@
       document.documentElement.style.setProperty('--close-color', '#ffffff');
       document.getElementById('mainLogo').src = 'logo-pajar-putih.png';
     }
+
     function simpanProfil() {
       const nama = document.getElementById('nama').value;
       const bio = document.getElementById('bio').value;
@@ -426,7 +400,7 @@
 
     function previewFoto(event) {
       const reader = new FileReader();
-      reader.onload = function() {
+      reader.onload = function () {
         document.getElementById('profilePic').src = reader.result;
       }
       reader.readAsDataURL(event.target.files[0]);
@@ -443,5 +417,8 @@
       if (foto) document.getElementById('profilePic').src = foto;
     });
   </script>
-  </body>
+  <!-- SCRIPT GOOGLE ADSENSE (di akhir sebelum </body>) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6440195817779178"
+    crossorigin="anonymous"></script>
+</body>
 </html>
