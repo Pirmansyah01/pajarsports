@@ -1,406 +1,738 @@
-<!DOCTYPE html>  <html lang="id">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
-  <title>PajarSports ID</title>  
-  <link rel="icon" type="image/png" href="favicon.png" />  
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>    <!-- SCRIPT GOOGLE ADSENSE -->    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6440195817779178"  
-    crossorigin="anonymous"></script>    <style>  
-    :root {  
-      --bg-color: #ffffff;  
-      --text-color: #d60000;  
-      --panel-bg: #f5f5f5;  
-      --button-bg: #eeeeee;  
-      --close-color: #d60000;  
-    }  
-  
-    body {  
-      margin: 0;  
-      font-family: 'Roboto', sans-serif;  
-      background-color: var(--bg-color);  
-      color: var(--text-color);  
-      display: flex;  
-      flex-direction: column;  
-      min-height: 100vh;  
-    }  
-  
-    header {  
-      background-color: var(--bg-color);  
-      display: flex;  
-      flex-direction: column;  
-      border-bottom: 1px solid #ccc;  
-    }  
-  
-    .topbar {  
-      display: flex;  
-      justify-content: space-between;  
-      align-items: center;  
-      padding: 10px 15px;  
-    }  
-  
-    .logo img {  
-      height: 28px;  
-      transition: all 0.3s ease;  
-    }  
-  
-    .icons {  
-      display: flex;  
-      gap: 12px;  
-      align-items: center;  
-    }  
-  
-    .icon-button {  
-      background: none;  
-      border: none;  
-      color: var(--text-color);  
-      font-size: 18px;  
-      cursor: pointer;  
-    }  
-  
-    .subscribe-btn {  
-      background-color: #FFA500;  
-      color: #fff;  
-      padding: 6px 14px;  
-      font-size: 14px;  
-      font-weight: 500;  
-      border-radius: 6px;  
-      text-decoration: none;  
-      transition: background 0.3s ease;  
-    }  
-  
-    .subscribe-btn:hover {  
-      background-color: #e69500;  
-    }  
-  
-    nav.navbar {  
-      display: flex;  
-      justify-content: center;  
-      gap: 25px;  
-      padding: 8px 0;  
-      background-color: var(--bg-color);  
-    }  
-  
-    nav.navbar a {  
-      text-decoration: none;  
-      color: var(--text-color);  
-      font-size: 15px;  
-      font-weight: 500;  
-    }  
-  
-    nav.navbar a:hover {  
-      text-decoration: underline;  
-    }  
-    .search-bar {  
-      display: none;  
-      padding: 10px;  
-    }  
-  
-    .search-bar input {  
-      width: 100%;  
-      padding: 10px;  
-      font-size: 16px;  
-    }  
-  
-    .menu-panel, .profile-panel {  
-      position: fixed;  
-      top: 0;  
-      left: -100%;  
-      width: 80%;  
-      max-width: 320px;  
-      height: 100vh;  
-      background-color: var(--panel-bg);  
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);  
-      display: flex;  
-      flex-direction: column;  
-      padding: 20px;  
-      z-index: 9999;  
-      transition: left 0.3s ease;  
-      border-top-right-radius: 16px;  
-      border-bottom-right-radius: 16px;  
-    }  
-  
-    .menu-panel.active, .profile-panel.active {  
-      left: 0;  
-    }  
-  
-    .close-btn {  
-      align-self: flex-end;  
-      margin-right: 5px;  
-      font-size: 24px;  
-      color: var(--close-color);  
-      cursor: pointer;  
-      background: none;  
-      border: none;  
-    }  
-  
-    .menu-panel .mode-toggle {  
-      display: flex;  
-      align-items: center;  
-      justify-content: space-between;  
-      margin-top: 20px;  
-      background: var(--button-bg);  
-      padding: 12px 18px;  
-      border-radius: 12px;  
-      cursor: pointer;  
-      transition: background 0.3s ease;  
-    }  
-  
-    .menu-panel .mode-toggle:hover {  
-      background: #ddd;  
-    }  
-  
-    .mode-toggle i {  
-      font-size: 18px;  
-    }  
-  
-    .mode-toggle span {  
-      font-weight: 500;  
-      font-size: 15px;  
-    }  
-  
-    .profile-form {  
-      display: flex;  
-      flex-direction: column;  
-      gap: 12px;  
-      margin-top: 20px;  
-    }  
-  
-    .profile-form input,  
-    .profile-form textarea {  
-      padding: 10px;  
-      font-size: 14px;  
-      border: 1px solid #ccc;  
-      border-radius: 8px;  
-      resize: none;  
-    }  
-  
-    .profile-form input[type="file"] {  
-      border: none;  
-    }  
-  
-    .profile-form button {  
-      padding: 10px;  
-      font-size: 14px;  
-      background-color: #d60000;  
-      color: white;  
-      border: none;  
-      border-radius: 8px;  
-      cursor: pointer;  
-    }  
-  
-    .profile-form img {  
-      width: 80px;  
-      height: 80px;  
-      border-radius: 50%;  
-      object-fit: cover;  
-      align-self: center;  
-    }  
-  
-    .video-container {  
-      flex-grow: 1;  
-    }  
-  
-    .video-container iframe {  
-      width: 100%;  
-      height: calc(100vh - 160px);  
-      border: none;  
-    }  
-  
-    footer {  
-      flex-shrink: 0;  
-      display: flex;  
-      justify-content: space-around;  
-      align-items: center;  
-      background-color: var(--bg-color);  
-      border-top: 1px solid #ccc;  
-      padding: 10px 0;  
-    }  
-  
-    footer a {  
-      color: var(--text-color);  
-      text-align: center;  
-      text-decoration: none;  
-      font-size: 14px;  
-    }  
-  
-    footer i {  
-      display: block;  
-      font-size: 18px;  
-      margin-bottom: 5px;  
-      color: var(--text-color);  
-    }  
-  </style>  </head>  
-<body onload="loadHome()">  
-  <header>  
-    <div class="topbar">  
-      <div class="logo">  
-        <img src="logo-pajar-merah.png" alt="Logo" id="mainLogo">  
-      </div>  
-      <div class="icons">  
-        <button class="icon-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>  
-        <a href="#" class="subscribe-btn" onclick="toggleLangganan()">Langganan</a>  
-        <button class="icon-button" onclick="toggleProfile()"><i class="fas fa-user"></i></button>  
-        <button class="icon-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>  
-      </div>  
-    </div>  
-    <nav class="navbar">  
-      <a onclick="loadHome()">Beranda</a>  
-      <a onclick="loadLive()">Live</a>  
-      <a onclick="loadBerita()">Berita</a>  
-      <a onclick="loadJadwal()">Jadwal</a>  
-    </nav>  
-  </header>    <div class="search-bar">  
-    <form onsubmit="event.preventDefault(); searchGoogle()">  
-      <input type="text" id="searchQuery" placeholder="Cari di Google...">  
-    </form>  
-  </div>    <div class="menu-panel" id="menuPanel">  
-    <button class="close-btn" onclick="toggleMenu()">&times;</button>  
-    <div class="mode-toggle" onclick="setLightMode()">  
-      <span>Mode Terang</span>  
-      <i class="fas fa-sun"></i>  
-    </div>  
-    <div class="mode-toggle" onclick="setDarkMode()">  
-      <span>Mode Gelap</span>  
-      <i class="fas fa-moon"></i>  
-    </div>  
-  </div>    <div class="profile-panel" id="profilePanel">  
-    <button class="close-btn" onclick="toggleProfile()">&times;</button>  
-    <form class="profile-form" id="profileForm">  
-      <img id="profilePic" src="https://via.placeholder.com/80" alt="Foto Profil">  
-      <input type="file" id="foto" accept="image/*" onchange="previewFoto(event)">  
-      <input type="text" id="nama" placeholder="Nama Kamu">  
-      <textarea id="bio" rows="3" placeholder="Bio singkat"></textarea>  
-      <button type="button" onclick="simpanProfil()">Simpan Profil</button>  
-      <button type="button" onclick="hapusProfil()" style="background-color:#999;">Hapus Profil</button>  
-    </form>  
-  </div>    <div class="menu-panel" id="langgananPanel">  
-    <button class="close-btn" onclick="toggleLangganan()">&times;</button>  
-    <div style="margin-top: 20px;">  
-      <p><strong>Ikuti PajarSports:</strong></p>  
-      <ul style="list-style: none; padding: 0; font-size: 15px;">  
-        <li><a href="https://www.youtube.com/@Pajar-Sports" target="_blank">YouTube</a></li>  
-        <li><a href="https://www.instagram.com/pajarsports.id" target="_blank">Instagram</a></li>  
-        <li><a href="https://www.tiktok.com/@pajarsports.id?_t=ZS-8xyUy43yZB2&_r=1" target="_blank">TikTok</a></li>  
-        <li><a href="https://whatsapp.com/channel/0029Vb66XHX4o7qM6xSJv70x" target="_blank">Saluran WhatsApp</a></li>  
-      </ul>  
-    </div>  
-  </div>    <div class="video-container">  
-    <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay"></iframe>  
-  </div>    <footer>  
-    <a onclick="loadHome()"><i class="fas fa-home"></i> Beranda</a>  
-    <a onclick="loadLive()"><i class="fas fa-broadcast-tower"></i> Live</a>  
-    <a onclick="loadBerita()"><i class="fas fa-newspaper"></i> Berita</a>  
-    <a onclick="loadJadwal()"><i class="fas fa-calendar-alt"></i> Jadwal</a>  
-  </footer>  
-  <script>  
-  function toggleMenu() {  
-    document.getElementById('menuPanel').classList.toggle('active');  
-  }  
-  function toggleLangganan() {  
-    document.getElementById('langgananPanel').classList.toggle('active');  
-  }  
-  function toggleProfile() {  
-    document.getElementById('profilePanel').classList.toggle('active');  
-  }  
-  function toggleSearch() {  
-    const bar = document.querySelector('.search-bar');  
-    bar.style.display = (bar.style.display === 'none' || bar.style.display === '') ? 'block' : 'none';  
-  }  
-  function searchGoogle() {  
-    const query = document.getElementById('searchQuery').value;  
-    const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;  
-    document.getElementById('mainFrame').src = url;  
-  }  
-  function loadHome() {  
-    document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0';  
-  }  
-  function loadLive() {  
-    document.getElementById('mainFrame').src = 'https://www.rbtvplus01.com/id/football.html';  
-  }  
-  function loadBerita() {  
-    document.getElementById('mainFrame').src = 'https://www.bolasport.com/read/314271698/tokoh-bola-malaysia-kecam-pembatasan-ramadhan-sananta-di-super-league';  
-  }  
-  function loadJadwal() {  
-    document.getElementById('mainFrame').src = 'https://sport.detik.com/sepakbola/jadwal';  
-  }  function setLightMode() {
-document.documentElement.style.setProperty('--bg-color', '#ffffff');
-document.documentElement.style.setProperty('--text-color', '#d60000');
-document.documentElement.style.setProperty('--panel-bg', '#f5f5f5');
-document.documentElement.style.setProperty('--button-bg', '#eeeeee');
-document.documentElement.style.setProperty('--close-color', '#d60000');
-document.getElementById('mainLogo').src = 'logo-pajar-merah.png';
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PajarSports ID</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- SCRIPT GOOGLE ADSENSE -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6440195817779178" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #d60000;
+      --panel-bg: #f5f5f5;
+      --button-bg: #eeeeee;
+      --close-color: #d60000;
+    }
 
-function setDarkMode() {
-document.documentElement.style.setProperty('--bg-color', '#000000');
-document.documentElement.style.setProperty('--text-color', '#ffffff');
-document.documentElement.style.setProperty('--panel-bg', '#1a1a1a');
-document.documentElement.style.setProperty('--button-bg', '#2a2a2a');
-document.documentElement.style.setProperty('--close-color', '#ffffff');
-document.getElementById('mainLogo').src = 'logo-pajar-putih.png';
-}
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-function simpanProfil() {
-const nama = document.getElementById('nama').value;
-const bio = document.getElementById('bio').value;
-const foto = document.getElementById('profilePic').src;
+    header {
+      background-color: var(--bg-color);
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #ccc;
+    }
 
-localStorage.setItem('profileNama', nama);  
-localStorage.setItem('profileBio', bio);  
-localStorage.setItem('profileFoto', foto);  
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
 
-alert('Profil disimpan!');
+    .logo img {
+      height: 28px;
+      transition: all 0.3s ease;
+    }
 
-}
+    .icons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
 
-function hapusProfil() {
-if (confirm('Yakin ingin menghapus profil?')) {
-localStorage.removeItem('profileNama');
-localStorage.removeItem('profileBio');
-localStorage.removeItem('profileFoto');
+    .icon-button {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 18px;
+      cursor: pointer;
+    }
 
-document.getElementById('nama').value = '';  
-  document.getElementById('bio').value = '';  
-  document.getElementById('profilePic').src = 'https://via.placeholder.com/80';  
-}
+    .subscribe-btn {
+      background-color: #FFA500;
+      color: #fff;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
 
-}
+    .subscribe-btn:hover {
+      background-color: #e69500;
+    }
 
-function previewFoto(event) {
-const reader = new FileReader();
-reader.onload = function () {
-document.getElementById('profilePic').src = reader.result;
-}
-reader.readAsDataURL(event.target.files[0]);
-}
+    nav.navbar {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 8px 0;
+      background-color: var(--bg-color);
+    }
 
-// Load profil saat awal
-window.addEventListener('load', () => {
-const nama = localStorage.getItem('profileNama');
-const bio = localStorage.getItem('profileBio');
-const foto = localStorage.getItem('profileFoto');
+    nav.navbar a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 15px;
+      font-weight: 500;
+    }
 
-if (nama) document.getElementById('nama').value = nama;  
-if (bio) document.getElementById('bio').value = bio;  
-if (foto) document.getElementById('profilePic').src = foto;
+    nav.navbar a:hover {
+      text-decoration: underline;
+    }
 
-});
-</script>
+    .search-bar {
+      display: none;
+      padding: 10px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .menu-panel,
+    .profile-panel {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 320px;
+      height: 100vh;
+      background-color: var(--panel-bg);
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      z-index: 9999;
+      transition: left 0.3s ease;
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+
+    .menu-panel.active,
+    .profile-panel.active {
+      left: 0;
+    }
+
+    .close-btn {
+      align-self: flex-end;
+      margin-right: 5px;
+      font-size: 24px;
+      color: var(--close-color);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .menu-panel .mode-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      background: var(--button-bg);
+      padding: 12px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .menu-panel .mode-toggle:hover {
+      background: #ddd;
+    }
+
+    .mode-toggle i {
+      font-size: 18px;
+    }
+
+    .mode-toggle span {
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .profile-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .profile-form input,
+    .profile-form textarea {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: none;
+    }
+
+    .profile-form input[type="file"] {
+      border: none;
+    }
+
+    .profile-form button {
+      padding: 10px;
+      font-size: 14px;
+      background-color: #d60000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .profile-form img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      align-self: center;
+    }
+
+    .video-container {
+      flex-grow: 1;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: calc(100vh - 160px);
+      border: none;
+    }
+
+    footer {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: var(--bg-color);
+      border-top: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    footer a {
+      color: var(--text-color);
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    footer i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: var(--text-color);
+    }
+  </style>
+</head>
 <body onload="loadHome()">
+  <header>
+    <div class="topbar">
+      <div class="logo">
+        <img src="logo-pajar-merah.png" alt="Logo" id="mainLogo">
+      </div>
+      <div class="icons">
+        <button class="icon-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
+        <a href="#" class="subscribe-btn" onclick="toggleLangganan()">Langganan</a>
+        <button class="icon-button" onclick="toggleProfile()"><i class="fas fa-user"></i></button>
+        <button class="icon-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
 
-  <header>  
-    <!-- Header seperti biasa -->  
-  </header>    <!-- PASANG IKLAN DISINI -->    <div style="max-width: 100%; margin: 20px auto; text-align:center;">  
-    <ins class="adsbygoogle"  
-         style="display:block"  
-         data-ad-client="ca-pub-6440195817779178"  
-         data-ad-slot="1234567890"  
-         data-ad-format="auto"  
-         data-full-width-responsive="true"></ins>  
-    <script>  
-         (adsbygoogle = window.adsbygoogle || []).push({});  
-    </script>  
-  </div>    <!-- Konten lain ... -->  
-</body>  
-</html>  
+    <nav class="navbar">
+      <a onclick="loadHome()">Beranda</a>
+      <a onclick="loadLive()">Live</a>
+      <a onclick="loadBerita()">Berita</a>
+      <a onclick="loadJadwal()">Jadwal</a>
+      <a onclick="loadArtikel()">Artikel</a>
+    </nav>
+  </header>
+
+  <div class="search-bar">
+    <form onsubmit="event.preventDefault(); searchGoogle()">
+      <input type="text" id="searchQuery" placeholder="Cari di Google...">
+    </form>
+  </div>
+
+  <div class="menu-panel" id="menuPanel">
+    <button class="close-btn" onclick="toggleMenu()">&times;</button>
+    <div class="mode-toggle" onclick="setLightMode()">
+      <span>Mode Terang</span>
+      <i class="fas fa-sun"></i>
+    </div>
+    <div class="mode-toggle" onclick="setDarkMode()">
+      <span>Mode Gelap</span>
+      <i class="fas fa-moon"></i>
+    </div>
+  </div>
+
+  <div class="profile-panel" id="profilePanel">
+    <button class="close-btn" onclick="toggleProfile()">&times;</button>
+    <form class="profile-form" id="profileForm">
+      <img id="profilePic" src="https://via.placeholder.com/80" alt="Foto Profil">
+      <input type="file" id="foto" accept="image/*" onchange="previewFoto(event)">
+      <input type="text" id="nama" placeholder="Nama Kamu">
+      <textarea id="bio" rows="3" placeholder="Bio singkat"></textarea>
+      <button type="button" onclick="simpanProfil()">Simpan Profil</button>
+      <button type="button" onclick="hapusProfil()" style="background-color:#999;">Hapus Profil</button>
+    </form>
+  </div>
+
+  <div class="menu-panel" id="langgananPanel">
+    <button class="close-btn" onclick="toggleLangganan()">&times;</button>
+    <div style="margin-top: 20px;">
+      <p><strong>Ikuti PajarSports:</strong></p>
+      <ul style="list-style: none; padding: 0; font-size: 15px;">
+        <li><a href="https://www.youtube.com/@Pajar-Sports" target="_blank">YouTube</a></li>
+        <li><a href="https://www.instagram.com/pajarsports.id" target="_blank">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@pajarsports.id?_t=ZS-8xyUy43yZB2&_r=1" target="_blank">TikTok</a></li>
+        <li><a href="https://whatsapp.com/channel/0029Vb66XHX4o7qM6xSJv70x" target="_blank">Saluran WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <iframe id="mainFrame" src="https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0" allow="autoplay"></iframe>
+  </div>
+  <footer>
+    <a onclick="loadHome()"><i class="fas fa-home"></i> Beranda</a>
+    <a onclick="loadLive()"><i class="fas fa-broadcast-tower"></i> Live</a>
+    <a onclick="loadBerita()"><i class="fas fa-newspaper"></i> Berita</a>
+    <a onclick="loadJadwal()"><i class="fas fa-calendar-alt"></i> Jadwal</a>
+    <a onclick="loadArtikel()"><i class="fas fa-book"></i> Artikel</a>
+  </footer>
+
+  <!-- PASANG IKLAN DISINI -->
+  <div style="max-width: 100%; margin: 20px auto; text-align:center;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6440195817779178"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuPanel').classList.toggle('active');
+    }
+
+    function toggleLangganan() {
+      document.getElementById('langgananPanel').classList.toggle('active');
+    }
+
+    function toggleProfile() {
+      document.getElementById('profilePanel').classList.toggle('active');
+    }
+
+    function toggleSearch() {
+      const bar = document.querySelector('.search-bar');
+      bar.style.display = (bar.style.display === 'none' || bar.style.display === '') ? 'block' : 'none';
+    }
+
+    function searchGoogle() {
+      const query = document.getElementById('searchQuery').value;
+      const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+      document.getElementById('mainFrame').src = url;
+    }
+
+    function loadHome() {
+      document.getElementById('mainFrame').src = 'https://www.youtube.com/embed/ePZzGxxLd3A?autoplay=1&mute=0&loop=1&playlist=ePZzGxxLd3A&controls=0&modestbranding=1&showinfo=0&rel=0';
+    }
+
+    function loadLive() {
+      document.getElementById('mainFrame').src = 'https://www.rbtvplus01.com/id/football.html';
+    }
+
+    function loadBerita() {
+      document.getElementById('mainFrame').src = 'https://www.bolasport.com/read/314271698/tokoh-bola-malaysia-kecam-pembatasan-ramadhan-sananta-di-super-league';
+    }
+
+    function loadJadwal() {
+      document.getElementById('mainFrame').src = 'https://sport.detik.com/sepakbola/jadwal';
+    }
+
+    function loadArtikel() {
+      document.getElementById('mainFrame').src = 'berita.html';
+    }
+    function setLightMode() {
+      document.documentElement.style.setProperty('--bg-color', '#ffffff');
+      document.documentElement.style.setProperty('--text-color', '#d60000');
+      document.documentElement.style.setProperty('--panel-bg', '#f5f5f5');
+      document.documentElement.style.setProperty('--button-bg', '#eeeeee');
+      document.documentElement.style.setProperty('--close-color', '#d60000');
+      document.getElementById('mainLogo').src = 'logo-pajar-merah.png';
+    }
+
+    function setDarkMode() {
+      document.documentElement.style.setProperty('--bg-color', '#000000');
+      document.documentElement.style.setProperty('--text-color', '#ffffff');
+      document.documentElement.style.setProperty('--panel-bg', '#1a1a1a');
+      document.documentElement.style.setProperty('--button-bg', '#2a2a2a');
+      document.documentElement.style.setProperty('--close-color', '#ffffff');
+      document.getElementById('mainLogo').src = 'logo-pajar-putih.png';
+    }
+
+    function simpanProfil() {
+      const nama = document.getElementById('nama').value;
+      const bio = document.getElementById('bio').value;
+      const foto = document.getElementById('profilePic').src;
+
+      localStorage.setItem('profileNama', nama);
+      localStorage.setItem('profileBio', bio);
+      localStorage.setItem('profileFoto', foto);
+
+      alert('Profil disimpan!');
+    }
+
+    function hapusProfil() {
+      if (confirm('Yakin ingin menghapus profil?')) {
+        localStorage.removeItem('profileNama');
+        localStorage.removeItem('profileBio');
+        localStorage.removeItem('profileFoto');
+
+        document.getElementById('nama').value = '';
+        document.getElementById('bio').value = '';
+        document.getElementById('profilePic').src = 'https://via.placeholder.com/80';
+      }
+    }
+
+    function previewFoto(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        document.getElementById('profilePic').src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // Load profil saat awal
+    window.addEventListener('load', () => {
+      const nama = localStorage.getItem('profileNama');
+      const bio = localStorage.getItem('profileBio');
+      const foto = localStorage.getItem('profileFoto');
+
+      if (nama) document.getElementById('nama').value = nama;
+      if (bio) document.getElementById('bio').value = bio;
+      if (foto) document.getElementById('profilePic').src = foto;
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artikel Bola - PajarSports</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d60000;
+    }
+
+    .artikel-list {
+      max-width: 600px;
+      margin: 20px auto;
+      list-style: none;
+      padding: 0;
+    }
+
+    .artikel-list li {
+      padding: 12px 18px;
+      margin: 10px 0;
+      background-color: #f5f5f5;
+      border-left: 6px solid #d60000;
+      border-radius: 8px;
+    }
+
+    .artikel-list li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      display: block;
+    }
+
+    .artikel-list li a:hover {
+      color: #d60000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Daftar Artikel Sepak Bola</h1>
+  <ul class="artikel-list">
+    <li><a href="artikel1.html" target="_blank">🔥 Messi Resmi Kembali ke Barcelona</a></li>
+    <li><a href="artikel2.html" target="_blank">⚽ Ronaldo Cetak Hattrick di Liga Arab</a></li>
+    <li><a href="artikel3.html" target="_blank">📅 Jadwal Lengkap Liga Champions Musim Ini</a></li>
+    <li><a href="artikel4.html" target="_blank">🇫🇷 Mbappé Resmi Gabung Real Madrid</a></li>
+    <li><a href="artikel5.html" target="_blank">🧤 Kiper Terbaik Dunia Pilihan FIFA</a></li>
+    <li><a href="artikel6.html" target="_blank">🇮🇩 Timnas Indonesia U-23 Cetak Sejarah</a></li>
+    <li><a href="artikel7.html" target="_blank">🎙️ Wawancara Eksklusif Erik Ten Hag</a></li>
+    <li><a href="artikel8.html" target="_blank">💸 Bursa Transfer: Siapa Paling Aktif?</a></li>
+    <li><a href="artikel9.html" target="_blank">⚡ Pemain Muda Paling Bersinar 2025</a></li>
+    <li><a href="artikel10.html" target="_blank">📝 Prediksi Final Euro 2025</a></li>
+  </ul>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Messi Resmi Kembali ke Barcelona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      padding: 20px;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #d60000;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: #777;
+    }
+
+    article {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    a.kembali {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 18px;
+      background: #d60000;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    a.kembali:hover {
+      background: #b50000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Messi Resmi Kembali ke Barcelona</h1>
+    <p class="meta">Ditulis oleh Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+
+  <article>
+    <img src="https://assets.goal.com/images/v3/blt354e96b77b6c5947/messi-barca.jpg" alt="Lionel Messi Barcelona" />
+
+    <p>Setelah dua musim membela Paris Saint-Germain, Lionel Messi resmi diumumkan kembali ke Barcelona. Kabar ini menjadi kejutan besar bagi pecinta sepak bola dunia.</p>
+
+    <p>Messi menandatangani kontrak berdurasi 1 tahun dengan opsi perpanjangan, dan disebut-sebut akan mendapat peran ganda sebagai pemain dan duta global klub.</p>
+
+    <p>"Barcelona adalah rumah saya. Saya senang bisa kembali dan memberikan segalanya untuk klub ini," ujar Messi dalam konferensi pers resminya.</p>
+
+    <p>Kembalinya Messi disambut hangat oleh para fans Blaugrana, dan tiket musim 2025/2026 langsung ludes terjual hanya dalam waktu 24 jam setelah pengumuman.</p>
+
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ronaldo Cetak Hattrick di Liga Arab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'Roboto', sans-serif; background: #fff; padding: 20px; margin: 0; line-height: 1.7; color: #333; }
+    header { text-align: center; margin-bottom: 20px; }
+    h1 { font-size: 24px; color: #d60000; }
+    .meta { font-size: 14px; color: #777; }
+    article { max-width: 700px; margin: auto; }
+    img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
+    a.kembali { display: inline-block; margin-top: 30px; padding: 10px 18px; background: #d60000; color: white; border-radius: 8px; text-decoration: none; }
+    a.kembali:hover { background: #b50000; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ronaldo Cetak Hattrick di Liga Arab</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://cdn.antaranews.com/cache/800x533/2023/04/19/ronaldo-alnassr.jpg" alt="Cristiano Ronaldo Al Nassr" />
+    <p>Cristiano Ronaldo kembali menunjukkan tajinya dengan mencetak hattrick untuk Al-Nassr dalam pertandingan Liga Arab melawan Al-Shabab.</p>
+    <p>Ronaldo mencetak gol pada menit ke-7, 42, dan 68, membawa timnya menang 4-1 dan menempati posisi teratas klasemen sementara.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head> ... sama seperti sebelumnya ... </head>
+<body>
+  <header>
+    <h1>Jadwal Lengkap Liga Champions Musim Ini</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://cdn1-production-images-kly.akamaized.net/q7PGtw4vFOnXIvKfgJDj3aHpKFA=/0x183:3000x1870/960x640/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/3320219/original/099022900_1601516044-ucl.jpg" alt="Liga Champions" />
+    <p>UEFA resmi merilis jadwal lengkap Liga Champions 2025/2026. Babak penyisihan grup akan dimulai pada bulan September.</p>
+    <p>Final Liga Champions akan digelar di Stadion Wembley, London pada bulan Juni 2026 mendatang.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head> ... sama ... </head>
+<body>
+  <header>
+    <h1>Mbappé Resmi Gabung Real Madrid</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://assets.goal.com/images/v3/bltc2d64bcdad3e340b/mbappe-real-madrid.jpg" alt="Mbappé Real Madrid" />
+    <p>Setelah spekulasi panjang, Kylian Mbappé akhirnya resmi diperkenalkan sebagai pemain Real Madrid.</p>
+    <p>Kontrak berdurasi 5 tahun dengan klausul buyout senilai 1 miliar euro menjadikannya pemain termahal dalam sejarah klub.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head> ... sama ... </head>
+<body>
+  <header>
+    <h1>Kiper Terbaik Dunia Pilihan FIFA</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://cdn.football5star.com/wp-content/uploads/2022/01/Edouard-Mendy-FIFA-Best.jpg" alt="Kiper FIFA" />
+    <p>FIFA mengumumkan Ederson Moraes dari Manchester City sebagai kiper terbaik dunia tahun ini, mengalahkan Alisson dan Mendy.</p>
+    <p>Ederson tampil konsisten sepanjang musim dan berperan besar dalam kemenangan City di berbagai kompetisi Eropa.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head> ... </head>
+<body>
+  <header>
+    <h1>Timnas Indonesia U-23 Cetak Sejarah</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://akcdn.detik.net.id/visual/2023/05/13/timnas-u-22-indonesia-vs-thailand-3_169.jpeg" alt="Timnas Indonesia" />
+    <p>Timnas Indonesia U-23 mencetak sejarah dengan menembus final Piala Asia U-23 setelah mengalahkan Jepang di semifinal.</p>
+    <p>Kemenangan ini disambut antusias oleh masyarakat Indonesia, dan pelatih Shin Tae-yong mendapat pujian luas atas strateginya.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head> ... </head>
+<body>
+  <header>
+    <h1>Wawancara Eksklusif Erik Ten Hag</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://assets.manutd.com/AssetPicker/images/0/0/16/74/1065190/ETH_Presser_22-1682436921393.jpg" alt="Erik Ten Hag" />
+    <p>Pelatih Manchester United, Erik Ten Hag, berbicara tentang masa depan klub, perkembangan pemain muda, dan target musim 2025/2026.</p>
+    <p>"Saya percaya dengan proses. Kita punya pemain hebat dan semangat juang yang tinggi," kata Ten Hag.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head> ... </head>
+<body>
+  <header>
+    <h1>Bursa Transfer: Siapa Paling Aktif?</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://img.okezone.com/content/2023/01/11/51/2744363/daftar-transfer-musim-dingin-eropa-lengkap-sK1DVEvLIX.jpg" alt="Bursa Transfer" />
+    <p>Real Madrid, Manchester United, dan Bayern Munchen menjadi klub paling aktif di bursa transfer musim panas ini.</p>
+    <p>Para pengamat menilai bahwa tren belanja besar-besaran ini menjadi bagian dari upaya menyusun skuad jangka panjang.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head> ... </head>
+<body>
+  <header>
+    <h1>Pemain Muda Paling Bersinar 2025</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://cdn.football5star.com/wp-content/uploads/2022/11/Jude-Bellingham-Dortmund-vs-Manchester-City-@ChampionsLeague.jpg" alt="Jude Bellingham" />
+    <p>Jude Bellingham, Gavi, dan Endrick menjadi sorotan di dunia sepak bola sebagai pemain muda dengan performa paling bersinar sepanjang tahun ini.</p>
+    <p>Bellingham menunjukkan kedewasaan permainan meski baru berusia 21 tahun dan menjadi andalan di Real Madrid.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head> ... </head>
+<body>
+  <header>
+    <h1>Prediksi Final Euro 2025</h1>
+    <p class="meta">Redaksi PajarSports • 15 Juli 2025</p>
+  </header>
+  <article>
+    <img src="https://imgresizer.eurosport.com/unsafe/1200x0/filters:quality(75)/origin-imgresizer.eurosport.com/2021/07/09/3163096-64824488-2560-1440.jpg" alt="Euro 2025" />
+    <p>Euro 2025 diprediksi akan mempertemukan Prancis vs Inggris di partai final. Keduanya menunjukkan performa terbaik sejak fase grup.</p>
+    <p>Mbappé dan Bellingham diprediksi menjadi bintang pertandingan jika kedua negara bertemu di Wembley Juni 2025 mendatang.</p>
+    <a class="kembali" href="berita.html">← Kembali ke Daftar Artikel</a>
+  </article>
+</body>
+</html>
